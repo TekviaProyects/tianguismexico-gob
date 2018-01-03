@@ -1,0 +1,233 @@
+<style>
+	canvas {
+		display: block;
+		margin: 0 auto;
+		background: #fff;
+		border-radius: 3px;
+		box-shadow: 0px 0px 15px 3px #ccc;
+		cursor: pointer;
+	}
+
+	p {
+		text-align: center;
+		cursor: pointer;
+	}
+</style>
+
+<canvas id="canvas">Su navegador no soporta canvas :( </canvas>
+<p id="limpiar">limpiar</p>
+<canvas id="canvas2">Su navegador no soporta canvas :( </canvas>
+<p id="limpiar2">limpiar</p>
+<img id="canvasImg" alt="Right click to save me!">
+<img id="canvasImg2" alt="Right click to save me!">
+<script>
+	var limpiar = document.getElementById("limpiar");
+	var canvas = document.getElementById("canvas");
+	var canvas2 = document.getElementById("canvas2");
+	var ctx = canvas.getContext("2d");
+	var ctx2 = canvas2.getContext("2d");
+	var cw = canvas.width = 300,
+		cw2 = canvas2.width = 300,
+	    cx = cw / 2,
+	    cx2 = cw2 / 2;
+	var ch = canvas.height = 300,
+		ch2 = canvas2.height = 300,
+	    cy = ch / 2,
+	    cy2 = ch2 / 2;
+
+	var dibujar = false,
+		dibujar2 = false;
+	var factorDeAlisamiento = 5,
+		factorDeAlisamiento2 = 5;
+	var Trazados = [],
+		Trazados2 = [];
+	var puntos = [],
+		puntos2 = [];
+		
+	ctx.lineJoin = "round";
+	ctx2.lineJoin = "round";
+	
+	limpiar.addEventListener('click', function(evt) {
+		dibujar = false;
+		ctx.clearRect(0, 0, cw, ch);
+		Trazados.length = 0;
+		puntos.length = 0;
+		document.getElementById('canvasImg').src = '';
+	}, false);
+	
+	limpiar2.addEventListener('click', function(evt) {
+		dibujar2 = false;
+		ctx2.clearRect(0, 0, cw2, ch2);
+		Trazados2.length = 0;
+		puntos2.length = 0;
+		document.getElementById('canvasImg2').src = '';
+	}, false);
+
+	canvas.addEventListener('mousedown', function(evt) {
+		dibujar = true;
+		//ctx.clearRect(0, 0, cw, ch);
+		puntos.length = 0;
+		ctx.beginPath();
+	}, false);
+	
+	canvas2.addEventListener('mousedown', function(evt) {
+		dibujar2 = true;
+		//ctx.clearRect(0, 0, cw, ch);
+		puntos2.length = 0;
+		ctx2.beginPath();
+
+	}, false);
+	
+	canvas.addEventListener('mouseup', function(evt) {
+		redibujarTrazados();
+		 // save canvas image as data url (png format by default)
+      var dataURL = canvas.toDataURL();
+
+      // set canvasImg image src to dataURL
+      // so it can be saved as an image
+      document.getElementById('canvasImg').src = dataURL;
+	}, false);
+	canvas2.addEventListener('mouseup', function(evt) {
+		redibujarTrazados2();
+		 // save canvas image as data url (png format by default)
+      var dataURL2 = canvas2.toDataURL();
+
+      // set canvasImg image src to dataURL
+      // so it can be saved as an image
+      document.getElementById('canvasImg2').src = dataURL2;
+	}, false);
+	
+	canvas.addEventListener("mousemove", function(evt) {
+		if (dibujar) {
+			var m = oMousePos(canvas, evt);
+			puntos.push(m);
+			ctx.lineTo(m.x, m.y);
+			ctx.stroke();
+		}
+	}, false);
+	canvas2.addEventListener("mousemove", function(evt) {
+		if (dibujar2) {
+			var m2 = oMousePos(canvas2, evt);
+			puntos2.push(m2);
+			ctx2.lineTo(m2.x, m2.y);
+			ctx2.stroke();
+		}
+	}, false);
+	
+	
+	
+	
+	
+	
+	// Add touch event listeners to canvas element
+	canvas2.addEventListener("touchstart", function(evt) {
+		dibujar2 = true;
+		//ctx.clearRect(0, 0, cw, ch);
+		puntos2.length = 0;
+		ctx2.beginPath();
+	}, false);
+	
+	canvas2.addEventListener("touchmove", function(evt) {
+		if (dibujar2) {
+			var m2 = oMousePos(canvas2, evt);
+			puntos2.push(m2);
+			ctx2.lineTo(m2.x, m2.y);
+			ctx2.stroke();
+		}
+	}, false);
+	canvas2.addEventListener("touchend", function(evt) {
+		redibujarTrazados2();
+		var dataURL2 = canvas2.toDataURL();
+		document.getElementById('canvasImg2').src = dataURL2;
+	}, false);
+	canvas2.addEventListener("touchcancel", function(evt) {
+		dibujar2 = false;
+	}, false);
+	
+	
+	
+	
+	
+	function reducirArray(n, elArray) {
+		var nuevoArray = [];
+		nuevoArray[0] = elArray[0];
+		for (var i = 0; i < elArray.length; i++) {
+			if (i % n == 0) {
+				nuevoArray[nuevoArray.length] = elArray[i];
+			}
+		}
+		nuevoArray[nuevoArray.length - 1] = elArray[elArray.length - 1];
+		Trazados.push(nuevoArray);
+	}
+
+	function reducirArray2(n, elArray) {
+		var nuevoArray = [];
+		nuevoArray[0] = elArray[0];
+		for (var i = 0; i < elArray.length; i++) {
+			if (i % n == 0) {
+				nuevoArray[nuevoArray.length] = elArray[i];
+			}
+		}
+		nuevoArray[nuevoArray.length - 1] = elArray[elArray.length - 1];
+		Trazados2.push(nuevoArray);
+	}
+	
+	function calcularPuntoDeControl(ry, a, b) {
+		var pc = {}
+		pc.x = (ry[a].x + ry[b].x) / 2;
+		pc.y = (ry[a].y + ry[b].y) / 2;
+		return pc;
+	}
+
+	function alisarTrazado(ry) {
+		if (ry.length > 1) {
+			var ultimoPunto = ry.length - 1;
+			ctx.beginPath();
+			ctx.moveTo(ry[0].x, ry[0].y);
+			for ( i = 1; i < ry.length - 2; i++) {
+				var pc = calcularPuntoDeControl(ry, i, i + 1);
+				ctx.quadraticCurveTo(ry[i].x, ry[i].y, pc.x, pc.y);
+			}
+			ctx.quadraticCurveTo(ry[ultimoPunto - 1].x, ry[ultimoPunto - 1].y, ry[ultimoPunto].x, ry[ultimoPunto].y);
+			ctx.stroke();
+		}
+	}
+
+	function alisarTrazado2(ry) {
+		if (ry.length > 1) {
+			var ultimoPunto = ry.length - 1;
+			ctx2.beginPath();
+			ctx2.moveTo(ry[0].x, ry[0].y);
+			for ( i = 1; i < ry.length - 2; i++) {
+				var pc = calcularPuntoDeControl(ry, i, i + 1);
+				ctx2.quadraticCurveTo(ry[i].x, ry[i].y, pc.x, pc.y);
+			}
+			ctx2.quadraticCurveTo(ry[ultimoPunto - 1].x, ry[ultimoPunto - 1].y, ry[ultimoPunto].x, ry[ultimoPunto].y);
+			ctx2.stroke();
+		}
+	}
+	
+	function redibujarTrazados() {
+		dibujar = false;
+		ctx.clearRect(0, 0, cw, ch);
+		reducirArray(factorDeAlisamiento, puntos);
+		for (var i = 0; i < Trazados.length; i++)
+			alisarTrazado(Trazados[i]);
+	}
+
+	function redibujarTrazados2() {
+		dibujar2 = false;
+		ctx2.clearRect(0, 0, cw2, ch2);
+		reducirArray2(factorDeAlisamiento2, puntos2);
+		for (var i = 0; i < Trazados2.length; i++)
+			alisarTrazado2(Trazados2[i]);
+	}
+
+	function oMousePos(canvas, evt) {
+		var ClientRect = canvas.getBoundingClientRect();
+		return {//objeto
+			x : Math.round(evt.clientX - ClientRect.left),
+			y : Math.round(evt.clientY - ClientRect.top)
+		};
+	}
+</script>

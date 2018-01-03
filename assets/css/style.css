@@ -1,0 +1,108 @@
+.mesaAyuda{
+  width: 100%;
+  height: 250px;
+  background-color: #1C1C1C;
+  color: #F2F2F2;
+  margin-top: 0!important;
+}
+.txtmAyuda{
+  display: flex!important;
+  display: flex!important;
+  display: -webkit-flex!important;
+  display: -moz-flex!important;
+  align-items: center!important;
+  -webkit-align-items: center!important;
+  -moz-align-items: center!important;
+  justify-content: center!important;
+  -webkit-justify-content: center!important;
+  -moz-justify-content: center!important;
+  height: 150px;
+  font-size: 28px;
+}
+.buscador{
+  display: flex!important;
+  display: flex!important;
+  display: -webkit-flex!important;
+  display: -moz-flex!important;
+  align-items: center!important;
+  -webkit-align-items: center!important;
+  -moz-align-items: center!important;
+  justify-content: center!important;
+  -webkit-justify-content: center!important;
+  -moz-justify-content: center!important;
+  height: 25px;
+  width: 100%!important;
+}
+.mas{
+  width: 65%!important;
+}
+.si{
+  display: flex!important;
+  display: flex!important;
+  display: -webkit-flex!important;
+  display: -moz-flex!important;
+  align-items: center!important;
+  -webkit-align-items: center!important;
+  -moz-align-items: center!important;
+  justify-content: center!important;
+  -webkit-justify-content: center!important;
+  -moz-justify-content: center!important;
+}
+.cartilla{
+  height: 200px!important;
+}
+.consultas{
+  width: 100%;
+  margin-top: 25px;
+  height: 25px!important;
+}
+.c1, .c2{
+  float: left;
+  width: 50%;
+}
+.btnConsultas{
+  margin-left: 60%!important;
+}
+.txtConsultas{
+  margin-left: 100px;
+}
+.menuu{
+  margin-top: -3%!important;
+}
+.lascosultas{
+  width: 100%;
+  margin: 50px;
+}
+.cien{
+  width: 100%!important;
+}
+.noventa{
+  width: 90%!important;
+}
+.panelR{
+  width: 100%;
+  height: auto;
+}
+.notoy{
+  display: none!important;
+}
+
+footer{
+  background-color: rgb(22, 21, 21);
+  font-size: 8px!important;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  display: flex!important;
+  display: -webkit-flex!important;
+  display: -moz-flex!important;
+  align-items: center!important;
+  -webkit-align-items: center!important;
+  -moz-align-items: center!important;
+  justify-content: center!important;
+  -webkit-justify-content: center!important;
+  -moz-justify-content: center!important;
+  z-index: 15!important;
+}
