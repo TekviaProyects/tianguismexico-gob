@@ -23,8 +23,8 @@
 		/*display: block;*/
 		/*margin: 0 auto;*/
 		/*background: #fff;*/
-		/*border-radius: 3px;*/
-		/*box-shadow: 0px 0px 15px 3px #ccc;*/
+		border-radius: 3px;
+		box-shadow: 0px 0px 15px 3px #ccc;
 		cursor: pointer;
 	}
 </style>
