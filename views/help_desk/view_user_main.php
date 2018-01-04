@@ -1,31 +1,80 @@
-<?php session_start(); ?>
-<ul class="nav nav-tabs">
-	<li class="active">
-		<a data-toggle="tab" href="#tab1">Inbox</a>
-	</li>
-	<li>
-		<a data-toggle="tab" href="#tab2">Preguntas frecuentes</a>
-	</li>
-</ul>
-<div class="tab-content">
-	<div id="tab1" class="tab-pane fade in active">
+<?php
+// Validate the requests
+	if (empty($questions)) {?>
+		<div align="center">
+			Sin datos
+		</div><?php
 		
+		return;
+	} ?>
+	
+	<h2 align="center">¿En que podemos ayudarte?</h2><br />
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="input-group input-group-lg">
+				<input type="search" class="form-control" placeholder="Escribe tu consulta..." id="input_search_questions">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" onclick="buscar($('#input_search_questions').val())">
+						<i class="fa fa-search"></i> Buscar
+					</button> 
+				</span>
+			</div>
+		</div>
+	</div><br />
+	<div id="div_all_questions"><?php
+		foreach ($questions as $key => $value) { ?>
+			<div class="row search_item" name="<?php echo $value['question'] ?>" answer="<?php echo $value['answer'] ?>">
+				<div class="col-sm-12">
+					<input 
+						id="input_question_<?php echo $value['id'] ?>"
+						style="cursor: pointer; height: 41px"
+						data-toggle="collapse" 
+						data-target="#question_<?php echo $key ?>"
+						value="<?php echo $value['question'] ?>"
+						type="text" 
+						class="form-control"
+						readonly="true">
+				</div>
+				<div class="col-sm-12">
+					<div id="question_<?php echo $key ?>" class="collapse panel-body">
+						<?php echo $value['answer'] ?>
+					</div>
+				</div>
+			</div><?php
+		} ?>
 	</div>
-	<div id="tab2" class="tab-pane fade">
-		
-	</div>
-</div>
 <script>
-	requests.list_requests({
-		div: 'tab1',
-		view: 'view_user_messages',
-		mail: '<?php echo $_SESSION['user']['correo'] ?>',
-		from_user: 1
-	});
-	requests.list_requests({
-		div: 'tab2',
-		view: 'view_user_questions',
-		mail: '<?php echo $_SESSION['user']['correo'] ?>',
-		from_user: 1
+	function buscar(data){
+		var palabra = '';
+		
+		palabra = data.toLowerCase();
+		
+		$('.search_item').show();
+		
+		if(palabra === ""){
+			return;
+		}
+		
+	    $("#div_all_questions").find('.search_item').each(function(e){
+            if($(this).attr("name").toLowerCase().indexOf(""+palabra) < 0 && $(this).attr("answer").toLowerCase().indexOf(""+palabra) < 0){
+                $(this).hide();
+            }
+		});
+	}
+	
+	$("#input_search_questions").keyup(function() {
+		palabra = $(this).val().toLowerCase();
+	    
+	    $('.search_item').show();
+		
+		if(palabra === ""){
+			return;
+		}
+		
+	    $("#div_all_questions").find('.search_item').each(function(e){
+            if($(this).attr("name").toLowerCase().indexOf(""+palabra) < 0 && $(this).attr("answer").toLowerCase().indexOf(""+palabra) < 0){
+                $(this).hide();
+            }
+		});
 	});
 </script>

@@ -72,13 +72,17 @@ class requestsModel extends Connection {
 		$condition .= (!empty($objet['municipality'])) ? ' AND r.municipiomx = \''.$objet['municipality'].'\'' : '' ;
 		
 		$sql = "SELECT
-					r.*, u.id AS user_id, u.name AS user_name, u.curp
+					r.*, u.id AS user_id, u.name AS user_name, u.curp, d.cost_transfer_rights
 				FROM
 					registros r
 				LEFT JOIN
 						users u
 					ON
 						u.mail = CONVERT(r.correo using utf8) collate utf8_spanish_ci
+				LEFT JOIN
+						dependencies d
+					ON
+						(d.municipiodep = CONVERT(r.municipiomx using utf8) && estadodep = CONVERT(r.estadomx using utf8))
 				WHERE
 					1 = 1".
 				$condition;
@@ -110,9 +114,9 @@ class requestsModel extends Connection {
 		return $result;
 	}
 	
-///////////////// ******** ----						END update						------ ************ //////////////////
+///////////////// ******** ----						END update							------ ************ //////////////////
 
-///////////////// ******** ---- 					list_messages					------ ************ //////////////////
+///////////////// ******** ---- 					list_messages						------ ************ //////////////////
 //////// Check the messages in the DB and return into array
 	// The parameters can receive:
 		// reservation_id -> Ad ID
@@ -147,9 +151,9 @@ class requestsModel extends Connection {
 		return $result;
 	}
 	
-///////////////// ******** ---- 				FIN list_messages					------ ************ //////////////////
+///////////////// ******** ---- 					END list_messages					------ ************ //////////////////
 	
-///////////////// ******** ---- 				save_message						------ ************ //////////////////
+///////////////// ******** ---- 					save_message						------ ************ //////////////////
 //////// Save the message in the DB
 	// The parameters can receive:
 		// request_id -> Ad ID
@@ -170,7 +174,95 @@ class requestsModel extends Connection {
 		return $result;
 	}
 	
-///////////////// ******** ---- 				FIN save_message					------ ************ //////////////////
+///////////////// ******** ---- 					END save_message					------ ************ //////////////////
+	
+///////////////// ******** ---- 					list_users							------ ************ //////////////////
+//////// Check the users in the DB and return into array
+	// The parameters can receive:
+		// mail -> User mail
+	
+	function list_users($objet) {
+	// Filter by the User mail
+		$condition .= (!empty($objet['mail'])) ? ' AND mail = \''.$objet['mail'].'\'' : '';
+		
+		$sql = "SELECT 
+					* 					
+				FROM
+					users
+				WHERE
+					1 = 1 ".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ---- 					END list_users						------ ************ //////////////////
+	
+///////////////// ******** ---- 					list_transfer_rights				------ ************ //////////////////
+//////// Check the users in the DB and return into array
+	// The parameters can receive:
+		// mail -> User mail
+	
+	function list_transfer_rights($objet) {
+	// Filter by the request ID
+		$condition .= (!empty($objet['request_id'])) ? ' AND t.request_id = '.$objet['request_id'] : '';
+	// Filter by the status
+		$condition .= (!empty($objet['status'])) ? ' AND t.status = '.$objet['status'] : '';
+	// Filter by the status
+		$condition .= (!empty($objet['user_id'])) ? ' AND t.user_id = '.$objet['user_id'] : '';
+		
+		$sql = "SELECT 
+					t.*, u.name AS user_name, 
+					(	SELECT
+							name
+						FROM
+							users
+						WHERE
+							id = t.new_user_id) AS new_user_name 					
+				FROM
+					transfers t
+				LEFT JOIN
+						users u
+					ON
+						u.id = t.user_id
+				WHERE
+					1 = 1 ".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ---- 					END list_transfer_rights			------ ************ //////////////////
+	
+///////////////// ******** ---- 					save_transfer_rights				------ ************ //////////////////
+//////// Save the transfer in the DB
+	// The parameters can receive:
+		// request_id -> Request ID
+		// user_id -> User ID
+		// new_user_id -> User ID
+		// reason -> Reason to transfer
+		// cost -> Cost of the dependencie
+		// assignee -> Base 64 string with the frim of the assignee
+		// transferor -> Base 64 string with the frim of the transferor
+	
+	function save_transfer_rights($objet) {
+		$date = date("Y-m-d H:i:s");
+		
+		$sql = "INSERT INTO 
+					transfers(request_id, user_id, new_user_id, reason, cost, assignee, transferor, date)
+				VALUES
+					('".$objet['request_id']."', '".$objet['user_id']."', '".$objet['new_user_id']."', '".$objet['reason']."', 
+					 '".$objet['cost']."', '".$objet['assignee']."', '".$objet['transferor']."','".$date."')";
+		$result = $this -> query($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ---- 				END save_transfer_rights				------ ************ //////////////////
 	
 }
 

@@ -365,7 +365,7 @@ if (empty($_SESSION['user'])) {
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 										<img 
 											src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png" 
-											onerror="this.src='images/photos/loggeduser.png'; />
+											onerror="this.src='images/photos/loggeduser.png';" />
 										
 										<?php echo $_SESSION['user']['nombre'] ?>
 										<span class="caret"></span>

@@ -622,8 +622,139 @@ var requests = {
 				type : 'error'
 			});
 		});
-	}
+	},
 
 ///////////////// ******** ----						END covert_360						------ ************ //////////////////
+
+///////////////// ******** ----						transfer_rights						------ ************ //////////////////
+//////// Transfer the request to another user
+	// The parameters that can receive are:
+		// request_id -> Request ID
+		// mail -> New user mail
+		// reason -> Reason to transfer
+		// cost -> Cost of the dependencie
+		
+	transfer_rights : function($objet){
+		"use strict";
+	
+	// ** Validations
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+			canvas1 = document.getElementById("canvas1"),
+			dataURL1 = canvas1.toDataURL(),
+			canvas2 = document.getElementById("canvas2"),
+			dataURL2 = canvas2.toDataURL();
+		
+		re = re.test($objet.mail.toLowerCase());
+		$objet.transferor = dataURL1;
+		$objet.assignee = dataURL2;
+		
+		console.log('==========> $objet transfer_rights', $objet);
+		
+		if(re === false){
+			swal({
+				title : 'Datos no validos',
+				text : 'Correo no valido',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'warning'
+			});
+			
+			return;
+		}
+		
+		if($objet.reason === ""){
+			swal({
+				title : 'Datos no validos',
+				text : 'Razon no valida',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'warning'
+			});
+			
+			return;
+		}
+		
+		if(parseInt($objet.canva1) === 0 || parseInt($objet.canva2) === 0){
+			swal({
+				title : 'Datos no validos',
+				text : 'Falta alguna firma',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'warning'
+			});
+			
+			return;
+		}
+		
+		$("#btn_transfer").prop("disabled", true);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=requests&f=transfer_rights',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> done transfer_rights', resp);
+			
+			$("#btn_transfer").prop("disabled", false);
+			
+			if(resp.status === 2){
+				swal({
+					title : 'Datos no validos',
+					text : resp.message,
+					timer : 5000,
+					showConfirmButton : true,
+					type : 'warning'
+				});
+				
+				return;
+			}
+			
+			swal({
+				title : 'Cesión de derechos solicitada',
+				text : 'La solicitud de la cesión de derechos ha sido creada exitosamente',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'success'
+			});
+		}).fail(function(resp) {
+			console.log('==========> fail !!! transfer_rights', resp);
+			
+			$("#btn_transfer").prop("disabled", false);
+			swal({
+				title : 'Error',
+				text : 'Error al ceder los derechos, intenta mas tarde',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----					END transfer_rights						------ ************ //////////////////
+
+///////////////// ******** ----					details_transfer						------ ************ //////////////////
+//////// Load the info details of the request
+	// The parameters that can receive are:
+		// reason -> Reason to transfer
+		// cost -> Cost of the dependencie
+		// assignee -> Base 64 string with the frim of the assignee
+		// transferor -> Base 64 string with the frim of the transferor
+		// date -> Create request date
+		
+	details_transfer : function($objet){
+		"use strict";
+		console.log('==========> $objet details_transfer', $objet);
+		
+		$('#div_reason').html($objet.reason);
+		$('#div_date').html($objet.date);
+		$("#img_assignee").attr('src', $objet.assignee);
+		$("#img_transferor").attr('src', $objet.transferor);
+		
+	},
+
+///////////////// ******** ----						END details_transfer				------ ************ //////////////////
 
 };

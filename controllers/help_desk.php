@@ -196,6 +196,9 @@ class help_desk extends Common {
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_POST : $objet;
 		
+		$questions = $this -> help_deskModel -> list_questions($objet);
+		$questions = $questions['rows'];
+		
 		require ('views/help_desk/view_user_main.php');
 	}
 	

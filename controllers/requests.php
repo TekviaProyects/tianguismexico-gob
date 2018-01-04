@@ -119,6 +119,7 @@ class requests extends Common {
 	function list_requests($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
+		session_start();
 		$objet = (empty($objet)) ? $_POST : $objet;
 		
 		$requests = $this -> requestsModel -> list_requests($objet);
@@ -137,6 +138,10 @@ class requests extends Common {
 			$requests[$key]['cartaaceptacion'] = str_replace('../../', $url, $value['cartaaceptacion']);
 			$requests[$key]['sanidad'] = str_replace('../../', $url, $value['sanidad']);
 		}
+		
+		$objet_transfer['user_id'] = $_SESSION['user']['id'];
+		$transfer_rights = $this -> requestsModel -> list_transfer_rights($objet_transfer);
+		$transfer_rights = $transfer_rights['rows'];
 		
 		if ($objet['json'] == 1) {
 			echo json_encode($requests);
@@ -210,7 +215,7 @@ class requests extends Common {
 	    phptopdf($pdf_options);
 	}
 	
-///////////////// ******** ----						END list_requests				------ ************ //////////////////
+///////////////// ******** ----						END load_format					------ ************ //////////////////
 
 ///////////////// ******** ----						load_messages					------ ************ //////////////////
 //////// Check the messages and loaded the view
@@ -262,7 +267,65 @@ class requests extends Common {
 		echo json_encode($resp);
 	}
 	
-///////////////// ******** ---- 				FIN send_message					------ ************ //////////////////
+///////////////// ******** ---- 					FIN send_message					------ ************ //////////////////
+
+///////////////// ******** ----						transfer_rights						------ ************ //////////////////
+//////// Transfer the request to another user
+	// The parameters that can receive are:
+		// request_id -> Request ID
+		// mail -> New user mail
+		// reason -> Reason to transfer
+		// cost -> Cost of the dependencie
+	
+	function transfer_rights($objet) {
+    // If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+    // If not, take its normal value
+		$objet = (empty($objet)) ? $_POST : $objet;
+		$resp['status'] = 1;
+		$resp['message'] = 'Todo cool';
+		
+		session_start();
+		if($objet['mail'] == $_SESSION['user']['correo']){
+			$resp['status'] = 2;
+			$resp['message'] = 'No puedes ceder los derechos a ti mismo';
+			
+			echo json_encode($resp);
+			return;
+		}
+		
+	// Validate if the new user exists
+		$exists = $this -> requestsModel -> list_users($objet);
+		
+		if($exists['total'] < 1){
+			$resp['status'] = 2;
+			$resp['message'] = 'No existe ningun usuario con el correo actual';
+			
+			echo json_encode($resp);
+			return;
+		}
+		
+	// Validate if the request exists
+		$objet_transfer['status'] = '0 OR t.status = 1';
+		$objet_transfer['request_id'] = $objet['request_id'];
+		$transfer_rights = $this -> requestsModel -> list_transfer_rights($objet_transfer);
+		
+		if($transfer_rights['total'] > 0){
+			$resp['status'] = 2;
+			$resp['message'] = 'Ya existe una solicitud similar a la actual';
+			
+			echo json_encode($resp);
+			return;
+		}
+		
+	// Save the data
+		$objet['user_id'] =  $_SESSION['user']['id'];
+		$objet['new_user_id'] =  $exists['rows'][0]['id'];
+		$resp['result'] = $this -> requestsModel -> save_transfer_rights($objet);
+		
+		echo json_encode($resp);
+	}
+	
+///////////////// ******** ---- 					FIN transfer_rights					------ ************ //////////////////
 
 }
 

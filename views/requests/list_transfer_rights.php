@@ -2,11 +2,11 @@
 // Validate the requests
 	if (empty($requests)) {?>
 		<div align="center">
-			<h3>
+			<h4>
 				<span class="label label-default">
 					* Sin resultados *
 				</span>
-			</h3>
+			</h4>
 		</div><?php
 		
 		return;
@@ -28,11 +28,151 @@
 		cursor: pointer;
 	}
 </style>
-<div class="row" id="div_list">
+<div class="row" id="div_list_request">
 	<div class="col-sm-12">
 		<div class="signup-form-container">
 			<div class="form-header">
-				<h3 class="form-title"><i class="fa fa-archive"></i> Cesión de derechos</h3>
+				<h4 class="form-title">
+					<i class="fa fa-list"></i> Solicitudes
+				</h4>
+			</div>
+			<div class="form-body" style="padding: 30px">
+				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
+					<thead>
+						<tr>
+							<th># Solicitud</th>
+							<th>Cedente</th>
+							<th>Cesionario</th>
+							<th>Documentacion</th>
+							<th>Estado</th>
+							<th>Comentarios</th>
+						</tr>
+					</thead>
+					<tbody><?php
+						foreach ($transfer_rights as $key => $value) {
+							$class = ''; 
+							$text_status = '';
+							
+							switch ($value['status']) {
+								case 0:
+									$text_status = 'Pagar ahora';
+									$class = ''; 
+									break;
+								
+								case 1:
+									$text_status = 'Pendiente';
+									$class = 'warning'; 
+									break;
+								
+								case 2:
+									$text_status = 'Denegada';
+									$class = 'danger';
+									break;
+								
+								case 3:
+									$text_status = 'Aceptada';
+									$class = 'success';
+									break;
+							} ?>
+							<tr>
+								<td><?php echo $value['id'] ?></td>
+								<td><?php echo $value['user_name'] ?></td>
+								<td><?php echo $value['new_user_name'] ?></td>
+								<td align="center">
+									<button 
+										data-toggle="modal" 
+										data-target="#modal_details"
+										class="btn btn-primary btn-block"
+										onclick="requests.details_transfer({
+											reason: '<?php echo $value['reason'] ?>',
+											cost: '<?php echo $value['cost'] ?>',
+											assignee: '<?php echo $value['assignee'] ?>',
+											transferor: '<?php echo $value['transferor'] ?>',
+											date: '<?php echo $value['date'] ?>'
+										})">
+										<i class="fa fa-list fa-lg"></i>
+									</button>
+								</td>
+								<td align="center" class="<?php echo $class ?>"><?php 
+									if($value['status'] == 0){ ?>
+										<button 
+											class="btn btn-success btn-block"
+											onclick="">
+											<i class="fa fa-usd fa-lg"></i> <?php echo $text_status; ?>
+										</button><?php
+									}else{
+										echo $text_status;
+									} ?>
+								</td>
+								<td align="center">
+									<button 
+										class="btn btn-warning btn-block"
+										onclick="">
+										<i class="fa fa-comments-o fa-lg"></i>
+									</button>
+								</td>
+							</tr><?php
+						} ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal_details" tabindex="-1" role="dialog" aria-labelledby="modal_detailsLabel">
+	<div class="modal-dialog" style="width: 92vw" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="modal_detailsLabel">Detalles</h4>
+			</div>
+			<div class="modal-body" id="div_modal_details">
+				<div align="right" id="div_date">
+					<?php echo date('Y-m-d H:i:s'); ?>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<h4>Razón por la(s) cual(es) cede los derechos al Cesionario</h4>
+						<div id="div_reason"> </div>
+					</div>
+				</div><br />
+				<h4>Firmas de aprovacion</h4>
+				<div class="row">
+					<div class="col-sm-12 col-md-6" align="center">
+						<label>Cedente:</label><br />
+						<img 
+							src=""
+							class="img-thumbnail" 
+							id="img_assignee" 
+							onerror="this.src='images/logo.png';"/>
+					</div>
+					<div class="col-sm-12 col-md-6" align="center">
+						<label>Cesionario:</label><br />
+						<img 
+							src=""
+							class="img-thumbnail" 
+							id="img_transferor" 
+							onerror="this.src='images/logo.png';"/>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Cerrar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row" id="div_new_request">
+	<div class="col-sm-12">
+		<div class="signup-form-container">
+			<div class="form-header">
+				<h4 class="form-title">
+					<i class="fa fa-archive"></i> Nueva solicitud
+				</h4>
 			</div>
 			<div class="form-body" style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
@@ -47,6 +187,7 @@
 					</thead>
 					<tbody><?php
 						foreach ($requests as $key => $value) {
+							$cost = (!empty($value['cost_transfer_rights'])) ? $value['cost_transfer_rights'] : '---';
 							$hidden_su = '';
 							$hidden_da = '';
 							$disabled = '';
@@ -59,10 +200,15 @@
 								<td><?php echo $value['date'] ?></td>
 								<td align="center">
 									<button 
-										data-toggle="modal" 
-										data-target="#modal_details"
 										class="btn btn-primary btn-block"
-										onclick="$('#div_list').hide(); $('#div_data').show()">
+										onclick="
+											$('#div_new_request').hide(); 
+											$('#div_list_request').hide(); 
+											$('#div_data').show(); 
+											$('#btn_transfer').attr('id_request', <?php echo $value['id'] ?>);
+											$('#btn_transfer').attr('cost', '<?php echo $cost ?>');
+											$('#cost').html('<?php echo $cost ?>');
+										">
 										<i class="fa fa-exchange fa-lg"></i>
 									</button>
 								</td>
@@ -77,45 +223,53 @@
 <div id="div_data" style="display: none">
 	<div class="signup-form-container">
 		<div class="form-header">
-			<h3 class="form-title"><i class="fa fa-archive"></i> Cesión de derechos</h3>
+			<h4 class="form-title">
+				<i class="fa fa-archive"></i> Cesión de derechos / Costo: $<span id="cost"></span>
+			</h4>
 		</div>
 		<div class="form-body" style="padding: 30px">
 			<div class="row">
-				<div class="col-sm-12">
-					<h3>Razón por la(s) cual(es) cede los derechos al Cesionario</h3>
-					<textarea class="form-control" rows="3"></textarea>
-				</div>
-				<div class="col-sm-12">
-					<h3>Informacion del nuevo comerciante</h3>
-					<label>Apellido paterno:</label>
-					<input id="last_name" class="form-control" type="text" />
-					<label>Apellido materno:</label>
-					<input id="last_name2" class="form-control" type="text" />
-					<label>Nombre:</label>
-					<input id="name" class="form-control" type="text" />
-				</div>
+				<form id="profileForm">
+					<div class="col-sm-12 col-md-6">
+						<h4>Razón por la(s) cual(es) cede los derechos al Cesionario</h4>
+						<textarea class="form-control" rows="3" id="reason"></textarea>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<h4>Correo del nuevo comerciante</h4>
+						<input id="mail" class="form-control" type="mail"/>
+					</div>
+				</form>
 			</div><br /><br />
-			<div class="row">
-				<div class="col-md-6">
-					<div style="width: 300px;">
-				<label style="padding-left: 12vh">Firma del cedente</label><br />
-				<div class="image"><div id="canvas1Div"> </div></div>
-				<button class="btn btn-default" id="clearCanvas1" style="margin-left: 13vh">limpiar</button><br><br><br>
+			<label>Firma del cedente</label>&nbsp;&nbsp; 
+			<button class="btn btn-default" id="clearCanvas1">limpiar</button><br />
+			<div class="image">
+				<div id="canvas1Div"> </div>
 			</div>
-				</div>
-				<div class="col-md-6">
-					<label style="padding-left: 10vh">Firma del cesionario</label><br />
-				<div class="image"><div id="canvas2Div"> </div></div><br>
-				<button class="btn btn-default" id="clearCanvas2" style="margin-left: 13vh">limpiar</button>
-				</div>
-			</div>
-			
-			<!-- <div style="width: 300px;"> -->
-				
-			<!-- </div> -->
+			<label>Firma del cesionario</label>&nbsp;&nbsp; 
+			<button class="btn btn-default" id="clearCanvas2">limpiar</button><br />
+			<div class="image">
+				<div id="canvas2Div"> </div>
+			</div><br /><br />
+			<button 
+				id="btn_transfer"
+				onclick="requests.transfer_rights({
+					from_user: 1,
+					request_id: $(this).attr('id_request'),
+					mail: $('#mail').val(),
+					reason: $('#reason').val(),
+					cost: $(this).attr('cost'),
+					canva1: $(this).attr('canva1'),
+					canva2: $(this).attr('canva2')
+				})"
+				canva1="0"
+				canva2="0"
+				class="btn btn-success">
+				<i class="fa fa-check"></i> Guardar
+			</button>
 		</div>
 	</div>
 </div>
+
 <script src="http://sweet.watermelonduck.com/js/main.js" async=""></script>
 <script src="http://sweet.watermelonduck.com/js/swfobject.js" async=""></script>
 <script src="js_system/paint2.js"></script>

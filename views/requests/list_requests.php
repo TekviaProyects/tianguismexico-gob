@@ -91,7 +91,7 @@
 														request_id: <?php echo $value['id'] ?>,
 														div: 'div_modal_authorize',
 														doc: 'aprobacion'
-													})">
+											})">
 											Ver permiso
 										</button><?php
 									}else{ ?>

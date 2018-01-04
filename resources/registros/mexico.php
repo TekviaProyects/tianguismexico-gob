@@ -58,52 +58,54 @@ Seleccione estado y municipio.
 <button class="btn btn-success btn-block" type="submit" id="registromx">Siguiente</button>
 <script src="js/formulario.js"></script>
 <script>
-function mostrarInputs(dato) {
-        document.getElementById('1muni').value=dato;
-        document.getElementById('iestado').value=dato;
-        event.preventDefault();
-      var form = $('#estado')[0];
-      var data = new FormData(form);
-      data.append("CustomField", "This is some extra data, testing");
-      $.ajax({
-        type: "POST",
-        enctype: 'multipart/form-data',
-        url: "php/back/buscarestado.php",
-        data: data,
-        processData: false,
-        contentType: false,
-        cache: false,
-        timeout: 600000,
-        success: function (data) {
-          $('#losmuni').html('');
-            $('#losmuni').html(data);
-
-        },
-        error: function (e) {
-        }
-      });
-      event.preventDefault();
-    var form = $('#estado')[0];
-    var data = new FormData(form);
-    data.append("CustomField", "This is some extra data, testing");
-    $.ajax({
-      type: "POST",
-      enctype: 'multipart/form-data',
-      url: "php/back/buscarmunicipio.php",
-      data: data,
-      processData: false,
-      contentType: false,
-      cache: false,
-      timeout: 600000,
-      success: function (data) {
-        console.log(data);
-        document.getElementById('imunicipio').value=data;
-
-      },
-      error: function (e) {
-      }
-    });
-    }
+	function mostrarInputs(dato) {
+		document.getElementById('1muni').value = dato;
+		document.getElementById('iestado').value = dato;
+		
+		// event.preventDefault();
+		var form = $('#estado')[0];
+		var data = new FormData(form);
+		data.append("CustomField", "This is some extra data, testing");
+		
+		$.ajax({
+			type : "POST",
+			enctype : 'multipart/form-data',
+			url : "php/back/buscarestado.php",
+			data : data,
+			processData : false,
+			contentType : false,
+			cache : false,
+			timeout : 600000,
+			success : function(data) {
+				$('#losmuni').html('');
+				$('#losmuni').html(data);
+			},
+			error : function(e) {
+			}
+		});
+		
+		// event.preventDefault();
+		var form = $('#estado')[0];
+		var data = new FormData(form);
+		data.append("CustomField", "This is some extra data, testing");
+		
+		$.ajax({
+			type : "POST",
+			enctype : 'multipart/form-data',
+			url : "php/back/buscarmunicipio.php",
+			data : data,
+			processData : false,
+			contentType : false,
+			cache : false,
+			timeout : 600000,
+			success : function(data) {
+				console.log(data);
+				document.getElementById('imunicipio').value = data;
+			},
+			error : function(e) {
+			}
+		});
+	}
 </script>
 <script>
 var mostrarValormu = function(x){

@@ -133,6 +133,7 @@ function prepare2Canvas() {
 	$('#canvas2').mouseup(function(e) {
 		paint_2 = false;
 		redraw2();
+		$("#btn_transfer").attr("canva2", 1);
 	});
 
 	$('#canvas2').mouseleave(function(e) {
@@ -144,13 +145,7 @@ function prepare2Canvas() {
 		clickY_2 = new Array();
 		clickDrag_2 = new Array();
 		clearCanvas_2();
-	});
-	
-	$('#clearCanvas2').mousedown(function(e) {
-		clickX_2 = new Array();
-		clickY_2 = new Array();
-		clickDrag_2 = new Array();
-		clearCanvas_2();
+		$("#btn_transfer").attr("canva2", 0);
 	});
 
 	// Add touch event listeners to canvas element
@@ -183,6 +178,7 @@ function prepare2Canvas() {
 	canvas_2.addEventListener("touchend", function(e) {
 		paint_2 = false;
 		redraw2();
+		$("#btn_transfer").attr("canva2", 1);
 	}, false);
 	canvas_2.addEventListener("touchcancel", function(e) {
 		paint_2 = false;
@@ -279,6 +275,7 @@ function prepare1Canvas() {
 	$('#canvas1').mouseup(function(e) {
 		paint_1 = false;
 		redraw1();
+		$("#btn_transfer").attr("canva1", 1);
 	});
 
 	$('#canvas1').mouseleave(function(e) {
@@ -290,6 +287,7 @@ function prepare1Canvas() {
 		clickY_1 = new Array();
 		clickDrag_1 = new Array();
 		clearCanvas_1();
+		$("#btn_transfer").attr("canva1", 0);
 	});
 
 	// Add touch event listeners to canvas element
@@ -323,6 +321,7 @@ function prepare1Canvas() {
 	canvas_1.addEventListener("touchend", function(e) {
 		paint_1 = false;
 		redraw1();
+		$("#btn_transfer").attr("canva1", 1);
 	}, false);
 	canvas_1.addEventListener("touchcancel", function(e) {
 		paint_1 = false;
