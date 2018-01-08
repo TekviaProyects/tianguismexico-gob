@@ -553,6 +553,8 @@ if (empty($_SESSION['user'])) {
 		<script type="text/javascript" src="plugins/notify.js"></script>
 	<!-- PDFJs -->
 		<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+	<!-- responsivevoice -->
+		<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 		
 	<!-- System -->
 		<script src="js_system/requests.js"></script>
