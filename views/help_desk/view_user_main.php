@@ -75,7 +75,6 @@
 	}
 	
 	function leer($objet){
-		console.log("$objet===", $objet);
 		var text = $("#"+$objet.question).val();
 		responsiveVoice.speak(text, "Spanish Female");
 		text = encodeURIComponent(text);
