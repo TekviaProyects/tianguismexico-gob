@@ -42,6 +42,7 @@
           <div class="">
           <p>IDENTIFICACION</p>
           <?php echo "<img style='height:100px; width:100px;' src='$identificacion' alt=''>"; ?>
+          <p></p>
           <input type="file" id="id" name="ife" value="">
           </div>
           <p></p>
@@ -49,10 +50,12 @@
             <p>CARTA SANIDAD Y CARTA DELEGADO</p>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$sanidad' alt=''>"; ?>
+              <p></p>
               <input type="file" id="carta_sanidad" name="carta_sanidad" value="">
             </div>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$cartadelegado' alt=''>"; ?>
+              <p></p>
               <input type="file" id="carta_delegado" name="carta_delegado" value="">
             </div>
             <p></p>
@@ -61,10 +64,12 @@
             <p>CARTA ACEPTACION Y COMPROBANTE</p>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$cartaaceptacion' alt=''>"; ?>
+              <p></p>
               <input type="file" id="carta_aceptacion" name="carta_aceptacion" value="">
             </div>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$comprobante' alt=''>"; ?>
+              <p></p>
               <input type="file" id="comprobante" name="comprobante" value="">
             </div>
           </div>
@@ -73,10 +78,12 @@
             <p>FOTOS DEL LOCAL</p>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$foto1' alt=''>"; ?>
+              <p></p>
               <input type="file" id="foto1" name="foto1" value="">
             </div>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$foto2' alt=''>"; ?>
+              <p></p>
               <input type="file" id="foto2" name="foto2" value="">
             </div>
           </div>
@@ -84,17 +91,20 @@
           <div class="row mb10">
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$foto3' alt=''>"; ?>
+              <p></p>
               <input type="file" id="foto3" name="foto3" value="">
             </div>
             <div class="col-md-3">
               <?php echo "<img style='height:100px; width:100px;' src='$foto4' alt=''>"; ?>
+              <p></p>
               <input type="file" id="foto4" name="foto4" value="">
             </div>
+            <p></p>
           </div>
+          <p></p>
+            <button id="actualizar" style="width:200px" class="btn btn-success btn-block" type="button" name="button">Capturar</button>
+          <p></p>
         </form>
-        <p></p>
-          <button id="actualizar" style="width:200px" class="btn btn-success btn-block" type="button" name="button">Capturar</button>
-        <p></p>
       </div>
     </div>
 
