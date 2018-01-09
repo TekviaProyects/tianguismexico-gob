@@ -753,8 +753,46 @@ var requests = {
 		$("#img_assignee").attr('src', $objet.assignee);
 		$("#img_transferor").attr('src', $objet.transferor);
 		
-	}
+	},
 
 ///////////////// ******** ----						END details_transfer				------ ************ //////////////////
+
+///////////////// ******** ----						view_upload_files					------ ************ //////////////////
+//////// Load the view of the upload files
+	// The parameters that can receive are:
+		// id -> Request ID
+		// div -> Div where the content is loaded
+		
+	view_upload_files : function($objet){
+		"use strict";
+		console.log('==========> $objet view_upload_files', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'views/solicitudDenegada/ejemplo.php?request_id='+$objet.id,
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			if(!$objet.div){
+				$objet.div = 'contenedor';
+			}
+			
+			$("#"+$objet.div).html(resp);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! view_upload_files', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se puede cargar la vista',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	}
+
+///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
 
 };

@@ -58,28 +58,39 @@
 								<td><?php echo $value['nombre'] ?></td>
 								<td><?php echo $value['correo'] ?></td>
 								<td><?php echo $value['date'] ?></td>
-								<td align="center">
-									<button
-										data-toggle="modal"
-										data-target="#modal_details"
-										class="btn btn-primary btn-block"
-										onclick="requests.load_info_buttons({
-											id: '<?php echo $value['id'] ?>',
-											formato: '<?php echo $value['comprobante'] ?>',
-											identificacion: '<?php echo $value['identificacion'] ?>',
-											c_salubridad: '<?php echo $value['sanidad'] ?>',
-											f1: '<?php echo $value['fotografia1'] ?>',
-											f2: '<?php echo $value['fotografia2'] ?>',
-											f3: '<?php echo $value['fotografia3'] ?>',
-											f4: '<?php echo $value['fotografia4'] ?>',
-											c_delegado: '<?php echo $value['cartadelegado'] ?>',
-											c_aceptacion: '<?php echo $value['cartaaceptacion'] ?>',
-											lat: '<?php echo $value['lat'] ?>',
-											lng: '<?php echo $value['lng'] ?>',
-											coment: '<?php echo $value['comentario'] ?>'
-										})">
-										<i class="fa fa-list fa-lg"></i>
-									</button>
+								<td align="center"><?php
+									if ($value['status'] == 2) { ?>
+										<button 
+											onclick="requests.view_upload_files({
+												id: '<?php echo $value['id'] ?>',
+												from_user: 1
+											})"
+											class="btn btn-primary btn-block">
+											<i class="fa fa-list fa-lg"></i>
+										</button><?php
+									} else { ?>
+										<button
+											data-toggle="modal"
+											data-target="#modal_details"
+											class="btn btn-primary btn-block"
+											onclick="requests.load_info_buttons({
+												id: '<?php echo $value['id'] ?>',
+												formato: '<?php echo $value['comprobante'] ?>',
+												identificacion: '<?php echo $value['identificacion'] ?>',
+												c_salubridad: '<?php echo $value['sanidad'] ?>',
+												f1: '<?php echo $value['fotografia1'] ?>',
+												f2: '<?php echo $value['fotografia2'] ?>',
+												f3: '<?php echo $value['fotografia3'] ?>',
+												f4: '<?php echo $value['fotografia4'] ?>',
+												c_delegado: '<?php echo $value['cartadelegado'] ?>',
+												c_aceptacion: '<?php echo $value['cartaaceptacion'] ?>',
+												lat: '<?php echo $value['lat'] ?>',
+												lng: '<?php echo $value['lng'] ?>',
+												coment: '<?php echo $value['comentario'] ?>'
+											})">
+											<i class="fa fa-list fa-lg"></i>
+										</button><?php
+									} ?>
 								</td>
 								<td align="center">
 									<button class="btn btn-block btn-<?php echo $class ?>" disabled>
