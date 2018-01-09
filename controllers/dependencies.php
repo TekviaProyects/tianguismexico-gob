@@ -34,9 +34,9 @@ class dependencies extends Common {
 		
 		
 	function save($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$rep['status'] = 1;
 		
 	// Save customer
@@ -46,7 +46,7 @@ class dependencies extends Common {
 		
 		rename('dep_files/'.$_SESSION['dependencie']['folder'], 'dep_files/'.$rep['result']);
 		
-		$_SESSION['dependencie'] = $_POST;
+		$_SESSION['dependencie'] = $_REQUEST;
 		$_SESSION['dependencie']['id'] = $rep['result'];
 		$_SESSION['dependencie']['folder'] = $rep['result'];
 		
@@ -81,9 +81,9 @@ class dependencies extends Common {
 		
 		
 	function update($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$rep['status'] = 1;
 		
 	// Save customer
@@ -100,9 +100,9 @@ class dependencies extends Common {
 		// div -> Div where the content is loaded
 	
 	function add($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
 		if($objet['edit'] == 1){
 			$customer = $this -> dependenciesModel -> list_dependencies($objet);
@@ -121,9 +121,9 @@ class dependencies extends Common {
 		// name -> Customer name
 	
 	function list_dependencies($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
 		$dependencies = $this -> dependenciesModel -> list_dependencies($objet);
 		$dependencies = $dependencies['rows'];
@@ -139,9 +139,9 @@ class dependencies extends Common {
 		// name -> Customer name
 	
 	function signin($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$resp['status'] = 1;
 		
 	// Check info
@@ -171,17 +171,22 @@ class dependencies extends Common {
 		// id -> Dependencie ID
 	
 	function view_config($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
 		$data = $this -> dependenciesModel -> list_dependencies($objet);
 		$data = $data['rows'][0];
 		
+		$objet['estate'] = $_SESSION['dependencie']['estadodep'];
+		$objet['municipality'] = $_SESSION['dependencie']['municipiodep'];
+		$documents = $this -> dependenciesModel -> list_documents($objet);
+		$documents = $documents['rows'];
+		
 		require ('views/dependencies/view_config.php');
 	}
 	
-///////////////// ******** ----						END list_dependencies				------ ************ //////////////////
+///////////////// ******** ----						END view_config						------ ************ //////////////////
 
 ///////////////// ******** ----						update_config						------ ************ //////////////////
 //////// Update the dependencie configuration
@@ -191,7 +196,7 @@ class dependencies extends Common {
 		// id -> Dependencie ID
 	
 	function update_config($objet) {
-	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$resp['status'] = 1;
@@ -203,6 +208,89 @@ class dependencies extends Common {
 	}
 	
 ///////////////// ******** ----						END update_config					------ ************ //////////////////
+
+///////////////// ******** ----						save_document						------ ************ //////////////////
+//////// Save the document of the dependency
+	// The parameters that can receive are:
+		// estate -> Estate ID
+		// municipality -> Name of the municipality
+		// name -> Label with the name
+	
+	function save_document($objet) {
+	// If the object is empty (called from the ajax) it assigns $_REQUEST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		$resp['status'] = 1;
+		session_start();
+		
+	// Save document in the DB
+		$objet['estate'] = $_SESSION['dependencie']['estadodep'];
+		$objet['municipality'] = $_SESSION['dependencie']['municipiodep'];
+		$resp['result'] = $this -> dependenciesModel -> save_document($objet);
+		
+		echo json_encode($resp);
+	}
+	
+///////////////// ******** ----						END save_document					------ ************ //////////////////
+
+///////////////// ******** ----						delete_document						------ ************ //////////////////
+//////// Delete document from disk and DB
+	// The parameters that can receive are:
+		// id -> Document ID
+		// url -> Document URL
+	
+	function delete_document($objet) {
+	// If the object is empty (called from the ajax) it assigns $_REQUEST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		$resp['status'] = 1;
+		session_start();
+		
+	// Delete document from disk
+		unlink($objet['url']);
+		
+	// Delete document from DB
+		$resp['result'] = $this -> dependenciesModel -> delete_document($objet);
+		
+		echo json_encode($resp);
+	}
+	
+///////////////// ******** ----						END delete_document					------ ************ //////////////////
+
+///////////////// ******** ----						list_documents						------ ************ //////////////////
+//////// Check the documents and return into array
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+		// estate -> Estate ID
+		// municipality -> Name of the municipality
+	
+	function list_documents($objet) {
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		
+		$documents = $this -> dependenciesModel -> list_documents($objet);
+		$documents = $documents['rows'];
+		
+		require ('views/dependencies/list_documents.php');
+	}
+	
+///////////////// ******** ----						END list_documents					------ ************ //////////////////
+
+///////////////// ******** ----						view_documets						------ ************ //////////////////
+//////// Loaded the view of the documents
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+	
+	function view_documets($objet) {
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		
+		require ('views/dependencies/view_documents.php');
+	}
+	
+///////////////// ******** ----						END view_documets					------ ************ //////////////////
 
 }
 

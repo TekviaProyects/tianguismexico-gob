@@ -753,7 +753,7 @@ var requests = {
 		$("#img_assignee").attr('src', $objet.assignee);
 		$("#img_transferor").attr('src', $objet.transferor);
 		
-	},
+	}
 
 ///////////////// ******** ----						END details_transfer				------ ************ //////////////////
 

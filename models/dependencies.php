@@ -106,11 +106,11 @@ class dependenciesModel extends Connection {
 ///////////////// ******** ----						END update							------ ************ //////////////////
 
 ///////////////// ******** ----						update_config						------ ************ //////////////////
-//////// Update the dependencie configuration
+//////// Update the dependency configuration
 	// The parameters that can receive are:
 		// column -> Column to update
 		// val -> Value of the column
-		// id -> Dependencie ID
+		// id -> dependency ID
 	
 	function update_config($objet) {
 		$sql = "UPDATE 
@@ -126,6 +126,70 @@ class dependenciesModel extends Connection {
 	}
 	
 ///////////////// ******** ----						END update_config					------ ************ //////////////////
+
+///////////////// ******** ----						save_document						------ ************ //////////////////
+//////// Save the document of the dependency in the DB
+	// The parameters that can receive are:
+		// estate -> Estate ID
+		// municipality -> Name of the municipality
+		// name -> Label with the name
+	
+	function save_document($objet) {
+		$sql = "INSERT INTO
+					documents(estate, municipality, name, url)
+				VALUES
+					(".$objet['estate'].", '".$objet['municipality']."', '".$objet['name']."', '".$objet['url']."')";
+		// return $sql;
+		$result = $this -> query($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END save_document					------ ************ //////////////////
+
+///////////////// ******** ----						list_documents						------ ************ //////////////////
+//////// Check tha documents and return into array
+	// The parameters that can receive are:
+		// estate -> Estate ID
+		// municipality -> Name of the municipality
+	
+	function list_documents($objet) {
+	// Filter by the estate if exists
+		$condition .= (!empty($objet['estate'])) ? ' AND estate = '.$objet['estate'] : '' ;
+	// Filter by the municipality if exists
+		$condition .= (!empty($objet['municipality'])) ? ' AND municipality = \''.$objet['municipality'].'\'' : '' ;
+		
+		$sql = "SELECT 
+					*
+				FROM
+					documents
+				WHERE
+					1 = 1".$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END list_documents					------ ************ //////////////////
+
+///////////////// ******** ----						delete_document						------ ************ //////////////////
+//////// Delete document from DB
+	// The parameters that can receive are:
+		// id -> Document ID
+	
+	function delete_document($objet) {
+		$sql = "DELETE FROM
+					documents
+				WHERE
+					id = ".$objet['id'];
+		// return $sql;
+		$result = $this -> query($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END delete_document					------ ************ //////////////////
 
 }
 

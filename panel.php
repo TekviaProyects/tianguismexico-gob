@@ -251,31 +251,17 @@ if (empty($_SESSION['user'])) {
 								<span>Perfil unico</span>
 							</a>
 						</li>
-						<li class="nav-parent">
+						<li>
 							<a 
-								style="cursor: pointer"
-								class="btn-orange btn-block">
+								onclick="dependencies.view_documets({
+									div: 'contenedor',
+									from_user: 1
+								})"
+								class="btn-orange btn-block"
+								href="#contenedor">
 								<i class="fa fa-book"></i> 
 								<span>Manuales</span>
 							</a>
-							<ul class="children">
-								<li>
-									<a 
-										class="btn-orange btn-block"
-										href="#contenedor">
-										<i class="fa fa-book"></i> 
-										<span>Manual de limpieza</span>
-									</a>
-								</li>
-								<li>
-									<a 
-										class="btn-orange btn-block"
-										href="#contenedor">
-										<i class="fa fa-book"></i> 
-										<span>Manual de imagen urbana</span>
-									</a>
-								</li>
-							</ul>
 						</li>
 						<li>
 							<a
@@ -560,6 +546,7 @@ if (empty($_SESSION['user'])) {
 		<script src="js_system/requests.js"></script>
 		<script src="js_system/help_desk.js"></script>
 		<script src="js_system/users.js"></script>
+		<script src="js_system/dependencies.js"></script>
 		
 <!-- /////////////////// ===================			END JS						=================== /////////////////// -->
 		

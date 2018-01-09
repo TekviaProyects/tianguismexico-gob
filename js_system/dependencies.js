@@ -291,8 +291,215 @@ var dependencies = {
 				type : 'error'
 			});
 		});
-	}
+	},
 
 ///////////////// ******** ----						END update_config					------ ************ //////////////////
+
+///////////////// ******** ----							save_document					------ ************ //////////////////
+//////// Save the info of the documento on the DB
+	// The parameters that can receive are:
+		// name -> Title name
+		// url -> Document URL
+		
+	save_document : function($objet){
+		"use strict";
+		console.log('==========> $objet save_document', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=dependencies&f=save_document',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> done save_document', resp);
+			
+			swal({
+				title : 'Datos guardados',
+				text : 'Los datos se han guardado con exito',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'success'
+			});
+			
+			dependencies.view_config({
+				div: 'contenedor',
+				id: $objet.dependency_id
+			});
+		}).fail(function(resp) {
+			console.log('==========> fail !!! save_document', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se puede guardar el document',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END save_document					------ ************ //////////////////
+
+///////////////// ******** ----						delete_document						------ ************ //////////////////
+//////// Delete document from disk and DB
+	// The parameters that can receive are:
+		// id -> Document ID
+		// url -> Document URL
+		// dependency_id -> Dependency ID
+		
+	delete_document : function($objet){
+		"use strict";
+		console.log('==========> $objet delete_document', $objet);
+		
+	// Validation
+		if(!confirm("¿Eliminar documento?")){
+			return;
+		}
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=dependencies&f=delete_document',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> done delete_document', resp);
+			
+			swal({
+				title : 'Documento eliminado',
+				text : 'El documento se ha eliminado con exito',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'success'
+			});
+			
+			dependencies.view_config({
+				div: 'contenedor',
+				id: $objet.dependency_id
+			});
+		}).fail(function(resp) {
+			console.log('==========> fail !!! delete_document', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se puede eliminar el documento',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END delete_document					------ ************ //////////////////
+
+///////////////// ******** ----							load_pdf						------ ************ //////////////////
+//////// Load a PDF
+	// The parameters that can receive are:
+		// url -> PDF URL
+		
+	load_pdf : function($objet){
+		"use strict";
+		console.log('==========> $objet load_pdf', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		var url = folder+$objet.url;
+			
+		$.ajax({
+			data : {url: url},
+			url : folder+'pdfjs.php?url='+url,
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp_html) {
+			console.log('==========> done load_pdf', resp_html);
+			
+			$("#div_format").html(resp_html);
+			
+			$("#btn_dowload_document").attr("href", url);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! load_pdf', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se puede cargar el documento',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END load_pdf						------ ************ //////////////////
+
+///////////////// ******** ----						view_documets						------ ************ //////////////////
+//////// Loaded the view of the documents
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+		
+	view_documets : function($objet){
+		"use strict";
+		console.log('==========> $objet view_documets', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=dependencies&f=view_documets',
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			$("#"+$objet.div).html(resp);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! view_config', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se puede cargar la vista',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END view_documets					------ ************ //////////////////
+
+///////////////// ******** ----						list_documents						------ ************ //////////////////
+//////// Check the documents and load the view
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+		// estate -> Estate to search
+		// municipality -> Municipality to search
+		
+	list_documents : function($objet){
+		"use strict";
+		console.log('==========> $objet list_documents', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=dependencies&f=list_documents',
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			$("#"+$objet.div).html(resp);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! view_config', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se puede cargar la vista',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	}
+
+///////////////// ******** ----						END list_documents					------ ************ //////////////////
 
 };
