@@ -30,7 +30,7 @@
 	$cambio = "	UPDATE 
 	  				registros 
 	  			SET 
-	  				status = 1
+	  				status = 0
 	  			WHERE 
 	  				id = " . $_REQUEST['request_id'];
 	echo mysqli_query($conexion, $cambio);
