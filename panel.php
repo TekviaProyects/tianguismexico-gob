@@ -2,7 +2,7 @@
 session_start();
 
 if (empty($_SESSION['user'])) {
-	echo "<script>location.href='index.php'</script>";	
+	echo "<script>location.href='index.php'</script>";
 }
 
 ?>
@@ -31,10 +31,10 @@ if (empty($_SESSION['user'])) {
 		<link rel="stylesheet" href="plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<!-- sweetalert -->
 		<link rel="stylesheet" href="plugins/sweetalert-master/dist/sweetalert.css" />
-		
+
 	<!-- Sytem -->
 		<link rel="stylesheet" href="css/signup-form.css" type="text/css" />
-		
+
 		<style>
 			a {
 				color: white !important;
@@ -72,9 +72,9 @@ if (empty($_SESSION['user'])) {
 				background-color: grey !important;
 			}a{
 				color: white !important;
-				
+
 			}
-			a:hover { 
+			a:hover {
 				background-color: orange !important;
 			}
 			.nav-parent, .nav-active {
@@ -84,9 +84,9 @@ if (empty($_SESSION['user'])) {
 				background-color: orange !important;
 			}
 		</style>
-		
+
 <!-- /////////////////// ===================			END CSS						=================== /////////////////// -->
-		
+
 	</head>
 	<body>
 		<div id="preloader">
@@ -112,7 +112,7 @@ if (empty($_SESSION['user'])) {
 						<h5 class="sidebartitle actitle">Cuenta</h5>
 						<ul class="nav nav-pills nav-stacked nav-bracket mb30">
 							<li>
-								<a href="profile.html"><i class="fa fa-user"></i> <span>Perfil</span></a>
+								<a href="profile.html"><i class="fa fa-user"></i> <span>Editar Perfil</span></a>
 							</li>
 							<li>
 								<a href=""><i class="fa fa-cog"></i> <span>Configuracion</span></a>
@@ -127,14 +127,6 @@ if (empty($_SESSION['user'])) {
 					</div>
 					<h5 class="sidebartitle">Herramientas-Menu</h5>
 					<ul class="nav nav-pills nav-stacked nav-bracket">
-						<li>
-							<a
-								href="panel.php"
-							 	class="btn-orange btn-block" 
-							 	href="panel.php">
-							 	<i class="fa fa-home"></i> <span>Inicio</span>
-							</a>
-						</li>
 						<li>
 							<a
 								id="btn_new_request"
@@ -166,14 +158,14 @@ if (empty($_SESSION['user'])) {
 						<li>
 							<a
 								href="#contenedor"
-							 	class="btn-orange btn-block" 
+							 	class="btn-orange btn-block"
 								onclick="help_desk.view_user_main({
 									div: 'contenedor',
 									mail: '<?php echo $_SESSION['user']['correo'] ?>',
 									from_user: 1
 								})">
-								<i class="glyphicon glyphicon-info-sign"></i> 
-								<span>Atencion a quejas</span>
+								<i class="glyphicon glyphicon-info-sign"></i>
+								<span>Atención a quejas</span>
 							</a>
 						</li>
 						<li>
@@ -203,7 +195,7 @@ if (empty($_SESSION['user'])) {
 									from_user: 1
 								})">
 								<i class="fa fa-address-card" aria-hidden="true"></i>
-								<span>Carta de registro en padron de tianguis</span>
+								<span>Carta de registro en padrón de comerciantes</span>
 							</a>
 						</li>
 						<li>
@@ -211,7 +203,7 @@ if (empty($_SESSION['user'])) {
 								href="#contenedor"
 							 	class="btn-orange btn-block">
 								<i class="fa fa-shopping-basket" aria-hidden="true"></i>
-								<span>Modificacion al padron de comerciantes de tianguis</span>
+								<span>Modificación al padrón de comerciantes</span>
 							</a>
 						</li>
 						<li>
@@ -219,15 +211,7 @@ if (empty($_SESSION['user'])) {
 								href="#contenedor"
 							 	class="btn-orange btn-block" >
 								<i class="fa fa-lock" aria-hidden="true"></i>
-								<span>Permiso por ausencia</span>
-							</a>
-						</li>
-						<li>
-							<a
-								href="#contenedor"
-							 	class="btn-orange btn-block" >
-								<i class="fa fa-user-times" aria-hidden="true"></i>
-								<span>Suplencias en tianguis</span>
+								<span>Permiso por ausencia y Suplencias</span>
 							</a>
 						</li>
 						<li>
@@ -235,31 +219,31 @@ if (empty($_SESSION['user'])) {
 								href="#contenedor"
 							 	class="btn-orange btn-block" >
 								<i class="fa fa-map-marker" aria-hidden="true"></i>
-								<span>Asignacion de espacio en tianguis</span>
+								<span>Asignacion de espacio</span>
 							</a>
 						</li>
 						<li>
-							<a 
+							<a
 								onclick="users.view_profile({
 									div: 'contenedor',
 									mail: '<?php echo $_SESSION['user']['correo'] ?>',
 									from_user: 1
-								})" 
+								})"
 								href="#contenedor"
 							 	class="btn-orange btn-block" >
 								<i class="fa fa-user" aria-hidden="true"></i>
-								<span>Perfil unico</span>
+								<span>Perfil único</span>
 							</a>
 						</li>
 						<li>
-							<a 
+							<a
 								onclick="dependencies.view_documets({
 									div: 'contenedor',
 									from_user: 1
 								})"
 								class="btn-orange btn-block"
 								href="#contenedor">
-								<i class="fa fa-book"></i> 
+								<i class="fa fa-book"></i>
 								<span>Manuales</span>
 							</a>
 						</li>
@@ -269,11 +253,11 @@ if (empty($_SESSION['user'])) {
 									div: 'contenedor',
 									mail: '<?php echo $_SESSION['user']['correo'] ?>',
 									from_user: 1
-								})" 
+								})"
 								href="#contenedor"
 							 	class="btn-orange btn-block" >
 								<i class="fa fa-shield" aria-hidden="true"></i>
-								<span>Poliza de seguro</span>
+								<span>Póliza de seguro</span>
 							</a>
 						</li>
 						<li>
@@ -291,7 +275,7 @@ if (empty($_SESSION['user'])) {
 				<div class="headerbar">
 					<a class="menutoggle"><i class="fa fa-bars"></i></a>
 					<div class="searchform" action="#" method="post">
-						<input 
+						<input
 							onchange="if($(this).val().length > 0){
 								requests.list_requests({
 									search: $(this).val(),
@@ -305,9 +289,9 @@ if (empty($_SESSION['user'])) {
 								$('#search_expedients').focus();
 							}"
 							id="search_expedients"
-							type="search" 
-							class="form-control" 
-							name="keyword" 
+							type="search"
+							class="form-control"
+							name="keyword"
 							placeholder="Buscar Expedientes..." /><br>
 						<div id="div_search_results"></div>
 					</div>
@@ -349,37 +333,37 @@ if (empty($_SESSION['user'])) {
 							<li>
 								<div class="btn-group">
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-										<img 
-											src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png" 
+										<img
+											src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png"
 											onerror="this.src='images/photos/loggeduser.png';" />
-										
+
 										<?php echo $_SESSION['user']['nombre'] ?>
 										<span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
 										<li>
-											<a 
+											<a
 												onclick="users.view_profile({
 													div: 'contenedor',
 													mail: '<?php echo $_SESSION['user']['correo'] ?>',
 													from_user: 1
-												})" 
+												})"
 												href="#contenedor">
-												<i class="glyphicon glyphicon-user"></i> Perfil
+												<i class="glyphicon glyphicon-user"></i>Ediar Perfil
 											</a>
 										</li>
 										<li>
 											<a href="#"><i class="glyphicon glyphicon-cog"></i> Configuracion</a>
 										</li>
 										<li>
-											<a 
+											<a
 												onclick="help_desk.view_user_main({
 													div: 'contenedor',
 													mail: '<?php echo $_SESSION['user']['correo'] ?>',
 													from_user: 1
-												})" 
+												})"
 												href="#contenedor">
-												<i class="glyphicon glyphicon-question-sign"></i> 
+												<i class="glyphicon glyphicon-question-sign"></i>
 												Ayuda
 											</a>
 										</li>
@@ -410,15 +394,15 @@ if (empty($_SESSION['user'])) {
 				<div class="contentpanel" id="contenedor">
 					<div class="row">
 						<div class="col-sm-6 col-md-3">
-							<div 
+							<div
 								onclick="requests.list_requests({
 									div: 'contenedor',
 									status: 1,
 									mail: '<?php echo $_SESSION['user']['correo'] ?>',
 									view: 'list_user_requests',
 									from_user: 1
-								})" 
-								style="cursor: pointer" 
+								})"
+								style="cursor: pointer"
 								class="panel panel-success panel-stat">
 								<div class="panel-heading">
 									<div class="stat">
@@ -437,15 +421,15 @@ if (empty($_SESSION['user'])) {
 							</div><!-- panel -->
 						</div><!-- col-sm-6 -->
 						<div class="col-sm-6 col-md-3">
-							<div 
+							<div
 								onclick="requests.list_requests({
 									div: 'contenedor',
 									status: 2,
 									mail: '<?php echo $_SESSION['user']['correo'] ?>',
 									view: 'list_user_requests',
 									from_user: 1
-								})" 
-								style="cursor: pointer" 
+								})"
+								style="cursor: pointer"
 								class="panel panel-danger panel-stat">
 								<div class="panel-heading">
 									<div class="stat">
@@ -470,8 +454,8 @@ if (empty($_SESSION['user'])) {
 									mail: '<?php echo $_SESSION['user']['correo'] ?>',
 									view: 'list_user_requests',
 									from_user: 1
-								})" 
-								style="cursor: pointer" 
+								})"
+								style="cursor: pointer"
 								class="panel panel-primary panel-stat">
 								<div class="panel-heading">
 									<div class="stat">
@@ -493,7 +477,7 @@ if (empty($_SESSION['user'])) {
 				</div><!-- contentpanel -->
 			</div><!-- mainpanel -->
 		</section>
-		
+
 		<script src="plugins/jquery-1.11.2.min.js"></script>
 		<script src="js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="js/jquery-ui-1.10.3.min.js"></script>
@@ -503,16 +487,16 @@ if (empty($_SESSION['user'])) {
 		<script src="js/toggles.min.js"></script>
 		<script src="js/retina.min.js"></script>
 		<script src="js/jquery.cookies.js"></script>
-		
+
 		<script src="js/flot/jquery.flot.min.js"></script>
 		<script src="js/flot/jquery.flot.resize.min.js"></script>
 		<script src="js/flot/jquery.flot.spline.min.js"></script>
 		<script src="js/morris.min.js"></script>
 		<script src="js/raphael-2.1.0.min.js"></script>
-		
+
 		<script src="js/custom.js"></script>
 		<script src="js/dashboard.js"></script>
-		
+
 <!-- /////////////////// ===================				JS						=================== /////////////////// -->
 	<!-- dataTables  -->
 		<script src="plugins/dataTable/js/datatables.min.js"></script>
@@ -541,15 +525,15 @@ if (empty($_SESSION['user'])) {
 		<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
 	<!-- responsivevoice -->
 		<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
-		
+
 	<!-- System -->
 		<script src="js_system/requests.js"></script>
 		<script src="js_system/help_desk.js"></script>
 		<script src="js_system/users.js"></script>
 		<script src="js_system/dependencies.js"></script>
-		
+
 <!-- /////////////////// ===================			END JS						=================== /////////////////// -->
-		
+
 		<script>
 			requests.main_user_requests({
 				mail: '<?php echo $_SESSION['user']['correo'] ?>'

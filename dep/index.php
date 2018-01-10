@@ -1,9 +1,8 @@
 <?php
 session_start();
-
-if (empty($_SESSION['dependencie'])) {
-	echo "<script>location.href='signin.php'</script>";	
-}
+	if (empty($_SESSION['dependencie'])) {
+			echo "<script>location.href='signin.php'</script>";
+		}
 
 ?>
 <!DOCTYPE html>
@@ -33,10 +32,10 @@ if (empty($_SESSION['dependencie'])) {
 		<link rel="stylesheet" href="../plugins/sweetalert-master/dist/sweetalert.css" />
 	<!-- PDFJs -->
 		<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-		
+
 	<!-- Sytem -->
 		<link rel="stylesheet" href="../css/signup-form.css" type="text/css" />
-		
+
 		<style>
 			.personalize_scroll::-webkit-scrollbar {
 				width: 12px;
@@ -60,9 +59,9 @@ if (empty($_SESSION['dependencie'])) {
 			}
 			a{
 				color: white !important;
-				
+
 			}
-			a:hover { 
+			a:hover {
 				background-color: orange !important;
 			}
 			.nav-parent, .nav-active {
@@ -72,7 +71,7 @@ if (empty($_SESSION['dependencie'])) {
 				background-color: orange !important;
 			}
 		</style>
-		
+
 <!-- /////////////////// ===================			END CSS						=================== /////////////////// -->
 
 	</head>
@@ -81,11 +80,13 @@ if (empty($_SESSION['dependencie'])) {
 			<div id="status">
 				<i class="fa fa-spinner fa-spin"></i>
 			</div>
-		</div>	
+		</div>
 		<section>
 			<div class="leftpanel">
 				<div class="logopanel" align="center">
-					<img src="../images/logo.png" style="max-width: 138px" />
+					<a href="index.php">
+						<img src="../images/logo.png" style="max-width: 138px" />
+					</a>
 				</div><!-- logopanel -->
 				<div class="leftpanelinner">
 					<!-- This is only visible to small devices -->
@@ -115,15 +116,8 @@ if (empty($_SESSION['dependencie'])) {
 					</div>
 					<h5 class="sidebartitle">Herramientas-Menu</h5>
 					<ul class="nav nav-pills nav-stacked nav-bracket">
-						<li>
-							<a 
-								class="btn-orange btn-block" 
-								href="index.php">
-								<i class="fa fa-home"></i> <span>Inicio</span>
-							</a>
-						</li>
 						<li class="nav-parent">
-							<a 
+							<a
 								class="btn-orange btn-block"
 								href="#contenedor"
 								onclick="requests.list_requests({
@@ -135,7 +129,7 @@ if (empty($_SESSION['dependencie'])) {
 							</a>
 							<ul class="children">
 								<li>
-									<a 
+									<a
 										class="btn-orange btn-block"
 										href="#contenedor"
 										onclick="requests.list_requests({
@@ -147,7 +141,7 @@ if (empty($_SESSION['dependencie'])) {
 										<i class="glyphicon glyphicon-ok"></i> <span>Aceptadas</span></a>
 								</li>
 								<li>
-									<a 
+									<a
 										class="btn-orange btn-block"
 										href="#contenedor"
 										onclick="requests.list_requests({
@@ -161,7 +155,7 @@ if (empty($_SESSION['dependencie'])) {
 							</ul>
 						</li>
 						<li class="nav-parent">
-							<a 
+							<a
 								class="btn-orange btn-block"
 								href="#contenedor"
 								onclick="requests.list_requests({
@@ -171,12 +165,12 @@ if (empty($_SESSION['dependencie'])) {
 									state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 									municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
 								})">
-								<i class="glyphicon glyphicon-info-sign"></i> 
+								<i class="glyphicon glyphicon-info-sign"></i>
 								<span>Mesa de Ayuda</span>
 							</a>
 							<ul class="children">
 								<li>
-									<a 
+									<a
 										class="btn-orange btn-block"
 										href="#contenedor"
 										onclick="help_desk.view_main({
@@ -184,45 +178,45 @@ if (empty($_SESSION['dependencie'])) {
 											state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 											municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
 										})">
-										<i class="glyphicon glyphicon-info-sign"></i> 
+										<i class="glyphicon glyphicon-info-sign"></i>
 										<span>Preguntas frecuentes</span>
 									</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a 
+							<a
 								onclick="requests.list_requests({
 									div: 'contenedor',
 									view: 'list_records',
 									state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 									municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
 								})"
-								class="btn-orange btn-block" 
+								class="btn-orange btn-block"
 								href="#contenedodr">
 								<i class="fa fa-home"></i> <span>Expedientes</span>
 							</a>
 						</li>
 						<li class="nav-parent">
-							<a 
+							<a
 								class="btn-orange btn-block"
 								href="#contenedor"
 								onclick="admon.list_requests({
 									div: 'contenedor',
 									id_dependencie: '<?php echo $_SESSION['dependencie']['id'] ?>'
 								})">
-								<i class="glyphicon glyphicon-info-sign"></i> 
+								<i class="glyphicon glyphicon-info-sign"></i>
 								<span>Soporte tecnico</span>
 							</a>
 							<ul class="children">
 								<li>
-									<a 
+									<a
 										class="btn-orange btn-block"
 										href="#contenedor"
 										onclick="admon.list_questions({
 											div: 'contenedor'
 										})">
-										<i class="glyphicon glyphicon-info-sign"></i> 
+										<i class="glyphicon glyphicon-info-sign"></i>
 										<span>Preguntas frecuentes</span>
 									</a>
 								</li>
@@ -235,7 +229,7 @@ if (empty($_SESSION['dependencie'])) {
 				<div class="headerbar">
 					<a class="menutoggle"><i class="fa fa-bars"></i></a>
 					<div class="searchform" action="#" method="post">
-						<input 
+						<input
 							onchange="if($(this).val().length > 0){
 								requests.list_requests({
 									search: $(this).val(),
@@ -249,9 +243,9 @@ if (empty($_SESSION['dependencie'])) {
 								$('#search_expedients').focus();
 							}"
 							id="search_expedients"
-							type="search" 
-							class="form-control" 
-							name="keyword" 
+							type="search"
+							class="form-control"
+							name="keyword"
 							placeholder="Buscar Expedientes..." /><br>
 						<div id="div_search_results"></div>
 					</div>
@@ -302,7 +296,7 @@ if (empty($_SESSION['dependencie'])) {
 											<a href="profile.html"><i class="glyphicon glyphicon-user"></i> Perfil</a>
 										</li>
 										<li>
-											<a 
+											<a
 												onclick="dependencies.view_config({
 													div: 'contenedor',
 													id: <?php echo $_SESSION['dependencie']['id'] ?>
@@ -358,14 +352,14 @@ if (empty($_SESSION['dependencie'])) {
 											</div>
 										</div><!-- row -->
 										<div class="mb15 collapse" id="div_fixed">
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Fijo',
 													div: 'contenedor',
 													status: 1,
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
+												})"
 												class="panel panel-success">
 												<div class="panel-heading">
 													<div class="stat">
@@ -380,15 +374,15 @@ if (empty($_SESSION['dependencie'])) {
 													</div>
 												</div>
 											</div>
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Fijo',
 													div: 'contenedor',
 													status: 2,
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
-												class="panel panel-success" 
+												})"
+												class="panel panel-success"
 												id="div_fixed">
 												<div class="panel-heading">
 													<div class="stat">
@@ -403,14 +397,14 @@ if (empty($_SESSION['dependencie'])) {
 													</div>
 												</div>
 											</div>
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Fijo',
 													div: 'contenedor',
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
-												class="panel panel-success" 
+												})"
+												class="panel panel-success"
 												id="div_fixed">
 												<div class="panel-heading">
 													<div class="stat">
@@ -448,14 +442,14 @@ if (empty($_SESSION['dependencie'])) {
 											</div>
 										</div><!-- row -->
 										<div class="mb15 collapse" id="div_semi_fixed">
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Semi-fijo',
 													div: 'contenedor',
 													status: 1,
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
+												})"
 												class="panel panel-primary">
 												<div class="panel-heading">
 													<div class="stat">
@@ -470,15 +464,15 @@ if (empty($_SESSION['dependencie'])) {
 													</div>
 												</div>
 											</div>
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Semi-fijo',
 													div: 'contenedor',
 													status: 2,
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
-												class="panel panel-primary" 
+												})"
+												class="panel panel-primary"
 												id="div_fixed">
 												<div class="panel-heading">
 													<div class="stat">
@@ -493,14 +487,14 @@ if (empty($_SESSION['dependencie'])) {
 													</div>
 												</div>
 											</div>
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Semi-fijo',
 													div: 'contenedor',
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
-												class="panel panel-primary" 
+												})"
+												class="panel panel-primary"
 												id="div_fixed">
 												<div class="panel-heading">
 													<div class="stat">
@@ -538,14 +532,14 @@ if (empty($_SESSION['dependencie'])) {
 											</div>
 										</div><!-- row -->
 										<div class="mb15 collapse" id="div_walking">
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Ambulante',
 													div: 'contenedor',
 													status: 1,
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
+												})"
 												class="panel panel-success">
 												<div class="panel-heading">
 													<div class="stat">
@@ -560,15 +554,15 @@ if (empty($_SESSION['dependencie'])) {
 													</div>
 												</div>
 											</div>
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Ambulante',
 													div: 'contenedor',
 													status: 2,
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
-												class="panel panel-success" 
+												})"
+												class="panel panel-success"
 												id="div_fixed">
 												<div class="panel-heading">
 													<div class="stat">
@@ -583,14 +577,14 @@ if (empty($_SESSION['dependencie'])) {
 													</div>
 												</div>
 											</div>
-											<div 
+											<div
 												onclick="requests.list_requests({
 													estado: 'Ambulante',
 													div: 'contenedor',
 													state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 													municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
-												})" 
-												class="panel panel-success" 
+												})"
+												class="panel panel-success"
 												id="div_fixed">
 												<div class="panel-heading">
 													<div class="stat">
@@ -614,7 +608,7 @@ if (empty($_SESSION['dependencie'])) {
 				</div><!-- contentpanel -->
 			</div><!-- mainpanel -->
 		</section>
-		
+
 		<script src="../plugins/jquery-1.11.2.min.js"></script>
 		<script src="../js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="../js/jquery-ui-1.10.3.min.js"></script>
@@ -624,16 +618,16 @@ if (empty($_SESSION['dependencie'])) {
 		<script src="../js/toggles.min.js"></script>
 		<script src="../js/retina.min.js"></script>
 		<script src="../js/jquery.cookies.js"></script>
-		
+
 		<script src="../js/flot/jquery.flot.min.js"></script>
 		<script src="../js/flot/jquery.flot.resize.min.js"></script>
 		<script src="../js/flot/jquery.flot.spline.min.js"></script>
 		<script src="../js/morris.min.js"></script>
 		<script src="../js/raphael-2.1.0.min.js"></script>
-		
+
 		<script src="../js/custom.js"></script>
 		<script src="../js/dashboard.js"></script>
-		
+
 <!-- /////////////////// ===================				JS						=================== /////////////////// -->
 
 	<!-- dataTables  -->
@@ -659,15 +653,15 @@ if (empty($_SESSION['dependencie'])) {
 		<script type="text/javascript" src="../plugins/jsPDF-1.3.2/dist/jspdf.min.js"></script>
 	<!-- pdf.js -->
 		<!-- <script src="../plugins/pdfjs/build/pdf.js"></script> -->
-		
+
 	<!-- System -->
 		<script src="../js_system/requests.js"></script>
 		<script src="../js_system/help_desk.js"></script>
 		<script src="../js_system/admon.js"></script>
 		<script src="../js_system/dependencies.js"></script>
-		
+
 <!-- /////////////////// ===================			END JS						=================== /////////////////// -->
-		
+
 		<script>
 			requests.main_requests({
 				state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',

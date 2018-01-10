@@ -1,5 +1,5 @@
-<?php 
-	session_start(); 
+<?php
+	session_start();
 	$_SESSION['user']['folder'] = date('Y-m-d--H-i-s');
 ?>
 <html lang="en">
@@ -9,7 +9,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="images/favicon.png" type="image/png">
-		<title>Bienvenido- Nueva Solicitud.</title>
+		<title>Bienvenido - Nueva Solicitud.</title>
 		<link href="css/style.default.css" rel="stylesheet">
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/sweetalert/dist/sweetalert2.min.css">
@@ -23,16 +23,17 @@
 							<div class="logopanel">
 								<h1><span></span>Registra una nueva solicitud, o si ya tienes alguna
 								<br>
-								<a href="signin.php"><strong>Inicia Sesion</strong></a><span></span></h1>
+								<p></p>
+								<a href="signin.php" style="color:white;"><strong style="color: orange;">Inicia Sesión</strong></a><span></span></h1>
 							</div>
 							<div class="mb20"></div>
-							<h5><strong>Si necesitas infomracion adicional, revisa la documentación.</strong></h5>
+							<h5><strong>Si necesitas infomración adicional, revisa la documentación.</strong></h5>
 							<p>
-								El registro es en un solo paso, si no cuenta con la informacion solicitada, 
-								revisela antes ya que esta se revisara.
+								El registro es en un solo paso, si no cuenta con la información solicitada,
+								revísela antes ya que esta se revisara.
 							</p>
 							<p>
-								Puede que su registro no se acepte si esta incompleto o sus datos no son proporcionados 
+								Puede que su registro no se acepte si esta incompleto o sus datos no son proporcionados
 								correctamente.
 							</p>
 							<h5><strong>Requisitos Generales:</strong></h5>
@@ -42,14 +43,14 @@
 							<br>
 							Permiso de Sanidad *Alimentos
 							<br>
-							Ubicacion Exacta
+							Ubicación Exacta
 							<br>
-							Carta de Aceptacion Presidente Colonos
+							Carta de Aceptación Presidente Colonos
 							<br>
-							Carta de Aceptacion Vecinos
+							Carta de Aceptación Vecinos
 							<br>
 							<h5><strong>Si no cuenta con todos estos requisitos, favor de registrar cuando los tenga a la mano
-							ya que de lo contrario no podra finalizar el tramite o su solicitud sera rechazada.</strong></h5>
+							ya que de lo contrario no podrá finalizar el tramite o su solicitud sera rechazada.</strong></h5>
 
 							<div class="mb20"></div>
 						</div>
@@ -71,10 +72,10 @@
 		</section>
 		<div class="notoy">
 			<form method="post" id="todof" enctype="multipart/form-data">
-				<input name="nombre" type="text" id="1r" value="<?php echo $_SESSION['user']['name'] ?>"/>
-				<input name="paterno" type="text" id="2r" value="<?php echo $_SESSION['user']['last_name'] ?>">
-				<input name="materno" type="text" id="3r" value="<?php echo $_SESSION['user']['last_name2'] ?>">
-				<input name="correo" type="text" id="4r" value="<?php echo $_SESSION['user']['mail'] ?>">
+					<input style="visibility: hidden;" name="nombre" type="text" id="1r" value="<?php echo $_SESSION['user']['name'] ?>"/>
+					<input name="paterno" type="text" id="2r" value="<?php echo $_SESSION['user']['last_name'] ?>">
+					<input name="materno" type="text" id="3r" value="<?php echo $_SESSION['user']['last_name2'] ?>">
+					<input name="correo" type="text" id="4r" value="<?php echo $_SESSION['user']['mail'] ?>">
 				<input name="domicilio" type="text" id="5r">
 				<input name="colonia1" type="text" id="6r">
 				<input name="municipio1" type="text" id="7r">
@@ -133,11 +134,11 @@
 					width : '100%',
 					minimumResultsForSearch : -1
 				});
-				
+
 				jQuery(".select2-2").select2({
 					width : '100%'
 				});
-				
+
 				var c = jQuery.cookie('change-skin');
 				if (c && c == 'greyjoy') {
 					jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
@@ -154,9 +155,9 @@
 						lng : 0
 					};
 					coordenates.lat = position.coords.latitude, coordenates.lng = position.coords.longitude;
-					
+
 					console.log("========> Coordenates", coordenates);
-					
+
 					document.getElementById("lat").value = coordenates.lat;
 					document.getElementById("lng").value = coordenates.lng;
 				});
