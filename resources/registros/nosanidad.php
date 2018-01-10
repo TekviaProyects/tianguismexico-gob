@@ -13,12 +13,12 @@ de tu celular para completar el registro.
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -61,18 +61,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -84,11 +84,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -104,6 +104,7 @@ de tu celular para completar el registro.
 										</div>
 									</div>
 									<div class="col-md-3">
+										<button class="btn btn-success btn-block" type="submit" id="return4"> regresar </button>
 										<button type="submit" class="btn btn-primary btn-block avatar-save">
 											Guardar
 										</button>
@@ -118,11 +119,11 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________				END crop-ine 				________________===================== -->
 
 <!-- =====================________________				crop-comprobante			________________===================== -->
-	
+
 	<label class="control-label">Copia de comprobante de domicilio actualizado (luz, agua, cable o teléfono).</label>
 	<div id="crop-comprobante">
 		<!-- Current avatar -->
@@ -130,12 +131,12 @@ de tu celular para completar el registro.
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -178,18 +179,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -201,11 +202,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -235,25 +236,25 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________				END crop-comprobante		________________===================== -->
 
 	<label class="control-label">4 Fotografías del puesto panorámicas del punto a instalarse..</label>
-	
+
 <!-- =====================________________					crop-F1					________________===================== -->
-	
+
 	<div id="crop-f1">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen">
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -296,18 +297,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -319,11 +320,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -353,23 +354,23 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________					END f1					________________===================== -->
 
 <!-- =====================________________					crop-f2					________________===================== -->
-	
+
 	<div id="crop-f2">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen">
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -412,18 +413,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -435,11 +436,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -469,24 +470,24 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________					END f2					________________===================== -->
 
-	
+
 <!-- =====================________________					crop-f3					________________===================== -->
-	
+
 	<div id="crop-f3">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen">
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -529,18 +530,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -552,11 +553,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -586,23 +587,23 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________					END f3					________________===================== -->
 
 <!-- =====================________________					crop-f4					________________===================== -->
-	
+
 	<div id="crop-f4">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen">
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -645,18 +646,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -668,11 +669,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -702,7 +703,7 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________					END f4					________________===================== -->
 
 <!-- =====================________________				crop-cdelegado				________________===================== -->
@@ -714,12 +715,12 @@ de tu celular para completar el registro.
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -762,18 +763,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -785,11 +786,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -819,7 +820,7 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________				END crop-cdelegado			________________===================== -->
 
 <!-- =====================________________				crop-caceptacion			________________===================== -->
@@ -831,12 +832,12 @@ de tu celular para completar el registro.
 			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
 		</div>
 		<!-- Cropping modal -->
-		<div 
-			class="modal fade" 
-			id="avatar-modal" 
-			aria-hidden="true" 
-			aria-labelledby="avatar-modal-label" 
-			role="dialog" 
+		<div
+			class="modal fade"
+			id="avatar-modal"
+			aria-hidden="true"
+			aria-labelledby="avatar-modal-label"
+			role="dialog"
 			tabindex="-1">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -879,18 +880,18 @@ de tu celular para completar el registro.
 								<div class="row avatar-btns">
 									<div class="col-md-9">
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="-90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="-90"
 												title="Rotate -90 degrees">
 												<i class="fa fa-undo"></i>
 											</button>
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
@@ -902,11 +903,11 @@ de tu celular para completar el registro.
 											</button>
 										</div>
 										<div class="btn-group">
-											<button 
-												type="button" 
-												class="btn btn-primary" 
-												data-method="rotate" 
-												data-option="90" 
+											<button
+												type="button"
+												class="btn btn-primary"
+												data-method="rotate"
+												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
@@ -936,7 +937,7 @@ de tu celular para completar el registro.
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-	
+
 <!-- =====================________________				END crop-caceptacion		________________===================== -->
 
 

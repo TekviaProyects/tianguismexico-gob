@@ -57,19 +57,41 @@ Domingo
 </select>
 <br>
 <br>
+<button class="btn btn-success btn-block" type="submit" id="return3"> regresar </button>
 <button class="btn btn-success btn-block" type="submit" id="registro3">
 	Siguiente
 </button>
 <script src="js/formulario.js"></script>
+<script type="text/javascript">
+
+	var Calle = $("#12r").val();
+	$("#calle").val(Calle);
+
+	var Num = $("#13r").val();
+	$("#numerolocal").val(Num);
+
+	var entre = $("#14r").val();
+	$("#calles").val(entre);
+
+	var colonia = $("#15r").val();
+	$("#colonia2").val(colonia);
+
+	var ref = $("#16r").val();
+	$("#referencia").val(ref);
+
+	var giro = $("#campo17r").val();
+	$("#giro").val(giro);
+
+</script>
 <script>
 	var mostrarValor2 = function(x) {
 		document.getElementById('campo17r').value = x;
-	}; 
+	};
 </script>
 <script>
 	var mostrarValor3 = function(x) {
 		document.getElementById('campo21r').value = x;
-	}; 
+	};
 </script>
 <script>
 	function seleccionar() {

@@ -55,18 +55,24 @@ Seleccione estado y municipio.
 </form>
 </div>
 <br><br>
+<button class="btn btn-success btn-block" type="submit" id="return"> regresar </button>
 <button class="btn btn-success btn-block" type="submit" id="registromx">Siguiente</button>
 <script src="js/formulario.js"></script>
 <script>
+
+  //boton regresar
+
+
+
 	function mostrarInputs(dato) {
 		document.getElementById('1muni').value = dato;
 		document.getElementById('iestado').value = dato;
-		
+
 		// event.preventDefault();
 		var form = $('#estado')[0];
 		var data = new FormData(form);
 		data.append("CustomField", "This is some extra data, testing");
-		
+
 		$.ajax({
 			type : "POST",
 			enctype : 'multipart/form-data',
@@ -83,12 +89,12 @@ Seleccione estado y municipio.
 			error : function(e) {
 			}
 		});
-		
+
 		// event.preventDefault();
 		var form = $('#estado')[0];
 		var data = new FormData(form);
 		data.append("CustomField", "This is some extra data, testing");
-		
+
 		$.ajax({
 			type : "POST",
 			enctype : 'multipart/form-data',
@@ -108,7 +114,16 @@ Seleccione estado y municipio.
 	}
 </script>
 <script>
+
+
+
 var mostrarValormu = function(x){
      document.getElementById('imunicipio').value=x;
 };
+
+  var estados = $("#iestado").val();
+  $("#mexico").val(estados);
+
+  var municipio = $("#imunicipio").val();
+  $("#losmuni").val(municipio);
 </script>

@@ -12,24 +12,34 @@ Selecciona el tipo de espacio que necesitas. <label class="control-label">Fijo, 
 
 </div>
 
+<button class="btn btn-success btn-block" type="submit" id="return2"> regresar </button>
 <button class="btn btn-success btn-block" type="submit" id="registro2">
 	Siguiente
 </button>
 <script src="js/formulario.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsZOvqzL9c7_O7Fj7t3FDt77nejjwbZXw&libraries=places,geometry&callback=init" async defer></script>
 <script>
+
+	var valor = $("#campo11r").val();
+	$("#estados").val(valor);
+
 	var coordenates = {
-		lat : 20.6739383,
-		lng : -103.405454
+		lat : Number($("#lat").val()),
+		lng : Number($("#lng").val())
 	},
 	zoom = 15;
-	
+
+	if(coordenates.lat === 0) coordenates.lat = 20.6739383;
+	if(coordenates.lng === 0) coordenates.lng = -103.405454;
+
+
+	console.log("===========coordenates", coordenates);
 	if ("geolocation" in navigator) {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			coordenates.lat = position.coords.latitude, coordenates.lng = position.coords.longitude;
 
 			console.log("========> Coordenates", coordenates);
-			
+
 			document.getElementById("lat").value = coordenates.lat;
 			document.getElementById("lng").value = coordenates.lng;
 		});
@@ -38,7 +48,7 @@ Selecciona el tipo de espacio que necesitas. <label class="control-label">Fijo, 
 ///////////////// ******** -------						init						------ ************ //////////////////
 //////// Load a Google map
 	// The parameters can receive:
-	
+
 	function init() {
 		if (coordenates.lat === 20.6739383 || coordenates.lng === -103.405454) {
 			zoom = 7;
@@ -48,12 +58,12 @@ Selecciona el tipo de espacio que necesitas. <label class="control-label">Fijo, 
 			lat : coordenates.lat,
 			lng : coordenates.lng
 		};
-			
+
 		var map = new google.maps.Map(document.getElementById('google_map'), {
 			zoom : zoom,
 			center : myLatlng
 		});
-		
+
 		var marker = new google.maps.Marker({
 			position : myLatlng,
 			draggable : true,
@@ -64,7 +74,7 @@ Selecciona el tipo de espacio que necesitas. <label class="control-label">Fijo, 
 		google.maps.event.addListener(marker, "dragend", function(event) {
 			var lat = event.latLng.lat();
 			var lng = event.latLng.lng();
-			
+
 			document.getElementById("lat").value = lat;
 			document.getElementById("lng").value = lng;
 		});
@@ -74,5 +84,5 @@ Selecciona el tipo de espacio que necesitas. <label class="control-label">Fijo, 
 
 	var mostrarValor1 = function(x) {
 		document.getElementById('campo11r').value = x;
-	}; 
+	};
 </script>

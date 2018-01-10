@@ -87,3 +87,22 @@
 	Siguiente
 </button>
 <script src="js/formulario.js"></script>
+
+<script type="text/javascript">
+
+		var domicilio = $("#5r").val();
+		$("#domicilio").val(domicilio);
+
+		var colonia = $("#6r").val();
+		$("#colonia1").val(colonia);
+
+		var municipio = $("#7r").val();
+		$("#municipio1").val(municipio);
+
+		var cp = $("#8r").val();
+		$("#postal").val(cp);
+
+		var telefono = $("#9r").val();
+		$("#telefono").val(telefono);
+
+</script>
