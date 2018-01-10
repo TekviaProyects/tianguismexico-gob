@@ -60,7 +60,7 @@
 			<option value="San Francisco de los Romo">San Francisco de los Romo</option>
 		</select>
 	</div>
-	<div class="col-sm-12 col-md-2">
+	<div class="col-sm-12 col-md-2" style="padding-top: 20px">
 		<button 
 			onclick="dependencies.list_documents({
 				div: 'div_documents',
@@ -73,4 +73,4 @@
 		</button>
 	</div>
 </div>
-<div id="div_documents"> </div>
+<div id="div_documents" style="padding-top: 20px"> </div>
