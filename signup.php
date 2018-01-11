@@ -1,8 +1,8 @@
 <?php
 	session_start();
-	
+
 	$_SESSION['user'] = '';
-	
+
 	session_destroy();
 ?>
 
@@ -24,23 +24,28 @@
 					<div class="col-md-6">
 						<div class="signup-info">
 							<div class="logopanel">
-								<h1><span></span> Formulario de registro. <span></span></h1>
+								<img src="images/logo.png" style="max-width: 138px" />
+								<h2><span></span> Formulario de registro. <span></span></h2>
 							</div>
 							<div class="mb20"></div>
+							<p></p>
+							<p style="font-size:20px;">Llena los campos que se requieren y recuerda que Los
+								 que son marcados con (*) son obligatorios. Para continuar
+								 selecciona REGISTRAR.</p>
 							<div class="mb20"></div>
 						</div>
 					</div>
 					<div class="col-md-6">
-						<!-- onsubmit="return forM(this)" --> 
-						<form 
-							method="post" 
-							id="formulario" 
+						<!-- onsubmit="return forM(this)" -->
+						<form
+							method="post"
+							id="formulario"
 							onsubmit="event.preventDefault();  validate()"
 							enctype="multipart/form-data" >
 							<h3 class="nomargin">Registro</h3>
 							<p class="mt5 mb20">
-								¿Ya eres miembro? Accede a tu panel 
-								<a href="index.php"><strong>Inicia Sesion</strong></a>
+								¿Ya eres miembro? Accede a tu panel
+								<a href="index.php"><strong>Inicia Sesión</strong></a>
 							</p>
 							<div class="mb10">
 								<label class="control-label">Nombre</label>
@@ -54,15 +59,15 @@
 								<label class="control-label">Correo</label>
 								<input required="1" type="email" class="form-control" name="Correo" id="mail"/>
 								<label class="control-label">Estado</label>
-								<select 
+								<select
 									onchange="dependencies.list_municipalities({
 										div: 'municipiodep',
 										from_user: 1,
 										estado: $(this).val()
 									})"
-									required="1" 
-									class="form-control" 
-									name="estadodep" 
+									required="1"
+									class="form-control"
+									name="estadodep"
 									id="estadodep">
 									<option value="1">Aguascalientes</option>
 									<option value="2">Baja California</option>
@@ -124,7 +129,7 @@
 								<label class="control-label">Confirmar contraseña</label>
 								<input required="1" type="password" class="form-control" name="Confirmar" id="pass2"/>
 							</div><br />
-							<input type="checkbox" id="check_confirm" /> He leído y aceptado los términos y condiciones de uso, 
+							<input type="checkbox" id="check_confirm" /> He leído y aceptado los términos y condiciones de uso,
 							así como el Aviso de privacidad
 							<button class="btn btn-success btn-block" type="submit" id="btnSubir" disabled="true">
 								Registrar
@@ -144,7 +149,7 @@
 				</div>
 			</div>
 		</section>
-		
+
 		<script src="js/jquery-1.11.2.min.js"></script>
 		<script src="js/jquery-migrate-1.2.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -157,14 +162,14 @@
 		<script src="js/custom.js"></script>
 		<script src="assets/sweetalert/dist/sweetalert2.min.js"></script>
 		<!-- <script src="js/subir.js"></script> -->
-		
+
 	<!-- System -->
 		<script src="js_system/dependencies.js"></script>
-		
+
 		<script>
 			enable_cb();
 			$("#check_confirm").click(enable_cb);
-			
+
 			function enable_cb() {
 				if (this.checked) {
 					$("#btnSubir").removeAttr("disabled");
@@ -172,7 +177,7 @@
 					$("#btnSubir").attr("disabled", true);
 				}
 			}
-			
+
 			jQuery(document).ready(function() {
 				jQuery(".select2").select2({
 					width : '100%',
@@ -190,25 +195,25 @@
 					jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
 				}
 			});
-			
+
 			function validate () {
 				var data = {},
 					$required = [],
 					message = 'Debes llenar los siguientes campos: \n',
-					error = 0, 
+					error = 0,
 					count = 0,
 					$function  =  'save';
-				
-				
+
+
 				$("#formulario").find(':input').each(function(key, value){
 					var required = $(this).attr('required'),
 						valor = $(this).val(),
 						id = this.id;
-					
+
 				// Validate that the required input not are empty
 					if (required === '1' && valor.length <= 0) {
 						error = 1;
-		
+
 						$required.push($(this).attr("name"));
 					}else{
 						if(id){
@@ -216,20 +221,20 @@
 						}
 					}
 				});
-				
+
 			// Build the error message
 				if ($required.length > 0) {
 					$.each($required, function(index, value) {
 						message += '-->' + this + ' \n';
 					});
 				}
-				
+
 			// Invalid CURP
 				if (data.curp.length < 18) {
 					error = 1;
 					message += '-->CURP no valida \n';
 				}
-				
+
 			// Error
 				if (error === 1) {
 					swal({
@@ -239,10 +244,10 @@
 						showConfirmButton : true,
 						type : 'warning'
 					});
-					
+
 					return;
 				}
-			
+
 			// Invalid pass
 				if (data.pass !== data.pass2) {
 					swal({
@@ -252,14 +257,14 @@
 						showConfirmButton : true,
 						type : 'warning'
 					});
-					
+
 					return;
 				}
-				
+
 				console.log('==========> done DATA', data);
-				
+
 				$("#btnSubir").prop('disabled', true);
-				
+
 				$.ajax({
 					data : data,
 					url : 'ajax.php?c=users&f='+$function,
@@ -267,9 +272,9 @@
 					dataType : 'json'
 				}).done(function(resp) {
 					console.log('==========> done save_user', resp);
-					
+
 					$("#btnSubir").prop('disabled', false);
-					
+
 					if(resp.status === 2){
 						swal({
 							title : 'Usuario existente',
@@ -278,10 +283,10 @@
 							showConfirmButton : true,
 							type : 'warning'
 						});
-						
+
 						return;
 					}
-					
+
 					swal({
 						title : 'Datos guardados',
 						text : 'Los datos se han guardado con exito',
@@ -289,11 +294,11 @@
 						showConfirmButton : true,
 						type : 'success'
 					});
-					
+
 					location.href="panel.php";
 				}).fail(function(resp) {
 					console.log('==========> fail !!! save', resp);
-					
+
 					$("#btnSubir").prop('disabled', false);
 					swal({
 						title : 'Error',
@@ -304,7 +309,7 @@
 					});
 				});
 			}
-			
+
 			var mostrarValor1 = function(x) {
 				document.getElementById('campo11r').value = x;
 			};
