@@ -239,7 +239,12 @@
 									<option value="32">Zacatecas</option>
 								</select>
 								<label class="control-label">Municipio</label>
-								<select required="1" class="form-control" name="municipality" id="municipality">
+								<select 
+									value="<?php echo $user['municipality'] ?>" 
+									required="1" 
+									class="form-control" 
+									name="municipality" 
+									id="municipality">
 									<option value="Aguascalientes">Aguascalientes</option>
 									<option value="Asientos">Asientos</option>
 									<option value="Calvillo">Calvillo</option>
@@ -320,6 +325,17 @@
 		<script src="js_system/dependencies.js"></script>
 		
 		<script>
+			$("#state").val(<?php echo $user['state'] ?>);
+			dependencies.list_municipalities({
+				div: 'municipality',
+				from_user: 1,
+				estado: <?php echo $user['state'] ?>
+			});
+			
+			setTimeout(function(){
+				$("#municipality").val('<?php echo $user['municipality'] ?>');
+			}, 500);
+			
 			function validate () {
 				var data = {},
 					$required = [],
