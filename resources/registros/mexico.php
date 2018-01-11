@@ -123,7 +123,11 @@ var mostrarValormu = function(x){
 
   var estados = $("#iestado").val();
   $("#mexico").val(estados);
+  mostrarInputs(estados);
+  setTimeout(function(){
+    var muni = $("#imunicipio").val();
+    $("#losmuni").val(''+muni);
+    console.log(muni);  
+  }, 1000);
 
-  var municipio = $("#imunicipio").val();
-  $("#losmuni").val(municipio);
 </script>

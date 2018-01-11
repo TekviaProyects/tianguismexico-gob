@@ -104,7 +104,6 @@ de tu celular para completar el registro.
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button class="btn btn-success btn-block" type="submit" id="return4"> regresar </button>
 										<button type="submit" class="btn btn-primary btn-block avatar-save">
 											Guardar
 										</button>
