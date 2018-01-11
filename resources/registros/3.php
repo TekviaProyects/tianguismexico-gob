@@ -82,6 +82,18 @@ Domingo
 	var giro = $("#campo17r").val();
 	$("#giro").val(giro);
 
+	var m2 = $("#18r").val();
+	$("#mts2").val(m2);
+
+	var h1 = $("#19r").val();
+	$("#inicio").val(h1);
+
+	var h2 = $("#20r").val();
+	$("#fin").val(h2);
+
+	var siono = $("#21r").val();
+	$("#propiedad").val(siono);
+
 </script>
 <script>
 	var mostrarValor2 = function(x) {
