@@ -70,6 +70,12 @@ session_start();
 			.nav-bracket > li.nav-active > a{
 				background-color: orange !important;
 			}
+			.footer{
+				position: relative;
+				right: 0;
+				bottom: 0;
+				text-align: right;
+			}
 		</style>
 
 <!-- /////////////////// ===================			END CSS						=================== /////////////////// -->
@@ -195,6 +201,22 @@ session_start();
 								class="btn-orange btn-block"
 								href="#contenedodr">
 								<i class="fa fa-home"></i> <span>Expedientes</span>
+							</a>
+						</li>
+						<li>
+							<a
+								href="#contenedor"
+							 	class="btn-orange btn-block">
+								<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+								<span>Modificación al padrón de comerciantes</span>
+							</a>
+						</li>
+						<li>
+							<a
+								href="#contenedor"
+							 	class="btn-orange btn-block" >
+								<i class="fa fa-map-marker" aria-hidden="true"></i>
+								<span>Asignación de espacio</span>
 							</a>
 						</li>
 						<li class="nav-parent">
@@ -669,4 +691,8 @@ session_start();
 			});
 		</script>
 	</body>
+	<div class="footer">
+		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> / 
+		<a href="aviso.html" style="color: grey !important;">Aviso de privacidad</a>
+	</div>
 </html>

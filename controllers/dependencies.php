@@ -177,6 +177,7 @@ class dependencies extends Common {
 		
 		$data = $this -> dependenciesModel -> list_dependencies($objet);
 		$data = $data['rows'][0];
+		if($data['cost_request'] < 49) $data['cost_request'] = 49;
 		
 		$objet['estate'] = $_SESSION['dependencie']['estadodep'];
 		$objet['municipality'] = $_SESSION['dependencie']['municipiodep'];

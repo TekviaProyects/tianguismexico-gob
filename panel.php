@@ -65,14 +65,14 @@ if (empty($_SESSION['user'])) {
 					background-color: #FCF8E3;
 				}
 			}
-			.nav-tabs > li > a{
+			.nav-tabs > li > a {
 				color: orange !important;
 			}
-			.nav-tabs > li > a:hover{
+			.nav-tabs > li > a:hover {
 				background-color: grey !important;
-			}a{
+			}
+			a {
 				color: white !important;
-
 			}
 			a:hover {
 				background-color: orange !important;
@@ -80,8 +80,14 @@ if (empty($_SESSION['user'])) {
 			.nav-parent, .nav-active {
 				background-color: orange !important;
 			}
-			.nav-bracket > li.nav-active > a{
+			.nav-bracket > li.nav-active > a {
 				background-color: orange !important;
+			}
+			.footer{
+				position: relative;
+				right: 0;
+				bottom: 0;
+				text-align: right;
 			}
 		</style>
 
@@ -201,38 +207,9 @@ if (empty($_SESSION['user'])) {
 						<li>
 							<a
 								href="#contenedor"
-							 	class="btn-orange btn-block">
-								<i class="fa fa-shopping-basket" aria-hidden="true"></i>
-								<span>Modificación al padrón de comerciantes</span>
-							</a>
-						</li>
-						<li>
-							<a
-								href="#contenedor"
 							 	class="btn-orange btn-block" >
 								<i class="fa fa-lock" aria-hidden="true"></i>
 								<span>Permiso por ausencia y Suplencias</span>
-							</a>
-						</li>
-						<li>
-							<a
-								href="#contenedor"
-							 	class="btn-orange btn-block" >
-								<i class="fa fa-map-marker" aria-hidden="true"></i>
-								<span>Asignacion de espacio</span>
-							</a>
-						</li>
-						<li>
-							<a
-								onclick="users.view_profile({
-									div: 'contenedor',
-									mail: '<?php echo $_SESSION['user']['correo'] ?>',
-									from_user: 1
-								})"
-								href="#contenedor"
-							 	class="btn-orange btn-block" >
-								<i class="fa fa-user" aria-hidden="true"></i>
-								<span>Perfil único</span>
 							</a>
 						</li>
 						<li>
@@ -540,4 +517,8 @@ if (empty($_SESSION['user'])) {
 			});
 		</script>
 	</body>
+	<div class="footer">
+		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> / 
+		<a href="aviso.html" style="color: grey !important;">Aviso de privacidad</a>
+	</div>
 </html>

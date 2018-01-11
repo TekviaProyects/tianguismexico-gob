@@ -65,11 +65,16 @@ session_destroy();
 								class="form-control pword" 
 								placeholder="Password" 
 								name="contrasena" 
-								id="contrasena"/>
-							<a href=""><small>Olvidaste tu contraseña?</small></a>
-							<button class="btn btn-success btn-block" type="submit" id="btnSubir">
+								id="contrasena"/><br />
+							<input type="checkbox" id="check_confirm" /> He leído y aceptado los términos y condiciones de uso, 
+							así como el Aviso de privacidad
+							<button class="btn btn-success btn-block" type="submit" id="btnSubir" disabled="true">
 								Iniciar
-							</button>
+							</button><br />
+							<div align="center">
+								<a href="terminos.html">Términos y condiciones</a><br />
+								<a href="aviso.html">Aviso de privacidad</a>
+							</div>
 						</form>
 						<div class="row">
 							<div class="col-sm-12" align="center">
@@ -119,6 +124,17 @@ session_destroy();
 		<script src="js/custom.js"></script>
 		<script src="js/sesion.js"></script>
 		<script>
+			enable_cb();
+			$("#check_confirm").click(enable_cb);
+			
+			function enable_cb() {
+				if (this.checked) {
+					$("#btnSubir").removeAttr("disabled");
+				} else {
+					$("#btnSubir").attr("disabled", true);
+				}
+			}
+
 			jQuery(document).ready(function() {
 			// Please do not use the code below
 			// This is for demo purposes only

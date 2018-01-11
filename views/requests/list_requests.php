@@ -27,6 +27,7 @@
 							<th># Solicitud</th>
 							<th>Nombre</th>
 							<th>Mail</th>
+							<th>Fecha</th>
 							<th>Documentacion</th>
 							<th>Aprobar</th>
 							<th>Denegar</th>
@@ -56,6 +57,7 @@
 								<td><?php echo $value['id'] ?></td>
 								<td><?php echo $value['nombre'] ?></td>
 								<td><?php echo $value['correo'] ?></td>
+								<td><?php echo $value['date'] ?></td>
 								<td align="center">
 									<button 
 										data-toggle="modal" 

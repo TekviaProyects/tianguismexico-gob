@@ -123,10 +123,14 @@
 								<input required="1" type="password" class="form-control" name="Contraseña" id="pass"/>
 								<label class="control-label">Confirmar contraseña</label>
 								<input required="1" type="password" class="form-control" name="Confirmar" id="pass2"/>
-							</div>
-							<button class="btn btn-success btn-block" type="submit" id="btnSubir">
+							</div><br />
+							<input type="checkbox" id="check_confirm" /> He leído y aceptado los términos y condiciones de uso, 
+							así como el Aviso de privacidad
+							<button class="btn btn-success btn-block" type="submit" id="btnSubir" disabled="true">
 								Registrar
 							</button>
+							Al registrarte aceptas nuestros <a href="terminos.html">Terminos y condiciones</a>. <br />
+							Aqui puedes revisar nuestro <a href="aviso.html">Aviso de privacidad</a>.
 						</form>
 					</div>
 				</div>
@@ -158,6 +162,17 @@
 		<script src="js_system/dependencies.js"></script>
 		
 		<script>
+			enable_cb();
+			$("#check_confirm").click(enable_cb);
+			
+			function enable_cb() {
+				if (this.checked) {
+					$("#btnSubir").removeAttr("disabled");
+				} else {
+					$("#btnSubir").attr("disabled", true);
+				}
+			}
+			
 			jQuery(document).ready(function() {
 				jQuery(".select2").select2({
 					width : '100%',

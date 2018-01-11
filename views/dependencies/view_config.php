@@ -44,6 +44,71 @@
 								aria-describedby="basic-addon2">
 						</div>
 					</div>
+				</div>
+				<div class="row" style="padding-top: 10px">
+					<div class="col-md-6 col-sm-12">
+						<label>Costo de solicitud:</label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon3">
+								<i class="fa fa-usd "></i>
+							</span>
+							<input 
+							 	id="cost_request"
+								onchange="dependencies.update_config({
+									id: <?php echo $data['id'] ?>,
+									column: 'cost_request',
+									val: $(this).val()
+								})"
+								value="<?php echo $data['cost_request'] ?>"
+								type="number" 
+								min="49"
+								class="form-control" 
+								aria-describedby="basic-addon3">
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12">
+						<label>Costo m2:</label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon3">
+								<i class="fa fa-usd "></i>
+							</span>
+							<input 
+							 	id="cost_m2"
+								onchange="dependencies.update_config({
+									id: <?php echo $data['id'] ?>,
+									column: 'cost_m2',
+									val: $(this).val()
+								})"
+								value="<?php echo $data['cost_m2'] ?>"
+								type="number" 
+								min="49"
+								class="form-control" 
+								aria-describedby="basic-addon3">
+						</div>
+					</div>
+				</div>
+				<div class="row" style="padding-top: 10px">
+					<div class="col-sm12 col-md-6">
+						<label>Costo pago de los derechos:</label>
+						<div class="input-group">
+							<span class="input-group-addon" id="basic-addon3">
+								<i class="fa fa-usd "></i>
+							</span>
+							<input 
+							 	id="cost_payment_rights"
+								onchange="dependencies.update_config({
+									id: <?php echo $data['id'] ?>,
+									column: 'cost_payment_rights',
+									val: $(this).val()
+								})"
+								value="<?php echo $data['cost_payment_rights'] ?>"
+								type="number"
+								class="form-control" 
+								aria-describedby="basic-addon3">
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-sm-12" style="padding-top: 20px">
 						<h4 class="form-title"><i class="fa fa-file-o"></i> Documentos</h4>
 					</div>

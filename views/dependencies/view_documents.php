@@ -4,7 +4,8 @@
 		<select 
 			onchange="dependencies.list_municipalities({
 				div: 'municipiodep',
-				estado: $(this).val()
+				estado: $(this).val(),
+				from_user: 1
 			})"
 			required="1" 
 			class="form-control" 

@@ -76,11 +76,11 @@
 	
 	function leer($objet){
 		var text = $("#"+$objet.question).val();
-		responsiveVoice.speak(text, "Spanish Female");
+		responsiveVoice.speak(text, "Spanish Latin American Female");
 		text = encodeURIComponent(text);
 		
 		text = $("#"+$objet.answer).html();
-		responsiveVoice.speak(text, "Spanish Female");
+		responsiveVoice.speak(text, "Spanish Latin American Female");
 		text = encodeURIComponent(text);
 	}
 	
