@@ -31,22 +31,24 @@ session_destroy();
 								<img src="images/logo.png" style="max-width: 138px" />
 							</div><!-- logopanel -->
 							<div class="mb20"></div>
-							<h5><strong>Bienvenido!</strong></h5>
+							<h4><strong>Bienvenido!</strong></h4>
+							<h5> <strong>Al ingresar a tu panel de usuario podrás:</strong> </h5>
 							<ul>
 								<li>
-									<i class="fa fa-arrow-circle-o-right mr5"></i> Registra una solicitud.
+									<i class="fa fa-arrow-circle-o-right mr5"></i> Crear solicitud para establecer tu comercio: </br>
+									Fijo, semifijo o ambulante.
 								</li>
 								<li>
-									<i class="fa fa-arrow-circle-o-right mr5"></i> Sube tu documentación.
+									<i class="fa fa-arrow-circle-o-right mr5"></i> Tener atención directa.
 								</li>
 								<li>
-									<i class="fa fa-arrow-circle-o-right mr5"></i> Seguimiento en linea.
+									<i class="fa fa-arrow-circle-o-right mr5"></i> Ceder derechos de tu comercio.
 								</li>
 								<li>
-									<i class="fa fa-arrow-circle-o-right mr5"></i> Aprovación en tiempo real.
+									<i class="fa fa-arrow-circle-o-right mr5"></i> solicitar permisos.
 								</li>
 								<li>
-									<i class="fa fa-arrow-circle-o-right mr5"></i> Mesa de Ayuda.
+									<i class="fa fa-arrow-circle-o-right mr5"></i> Acceder a Manuales.
 								</li>
 							</ul>
 							<div class="mb20"></div>
@@ -55,18 +57,18 @@ session_destroy();
 					</div><!-- col-sm-7 -->
 					<div class="col-md-5">
 						<form method="post" id="sesion" onsubmit="return forM(this)" enctype="multipart/form-data">
-							<h4 class="nomargin">Iniciar Sesion</h4>
+							<h4 class="nomargin">Iniciar Sesión</h4>
 							<p class="mt5 mb20">
 								Haz seguimiento de tu tramite en linea.
 							</p>
-							<input type="text" class="form-control uname" placeholder="Correo" name="correo" id="correo"/>
-							<input 
-								type="password" 
-								class="form-control pword" 
-								placeholder="Password" 
-								name="contrasena" 
+							<input type="text" class="form-control uname" placeholder="Correo Electrónico" name="correo" id="correo"/>
+							<input
+								type="password"
+								class="form-control pword"
+								placeholder="Contraseña"
+								name="contrasena"
 								id="contrasena"/><br />
-							<input type="checkbox" id="check_confirm" /> He leído y aceptado los términos y condiciones de uso, 
+							<input type="checkbox" id="check_confirm" /> He leído y aceptado los términos y condiciones de uso,
 							así como el Aviso de privacidad
 							<button class="btn btn-success btn-block" type="submit" id="btnSubir" disabled="true">
 								Iniciar
@@ -86,11 +88,11 @@ session_destroy();
 								<form id="form_recovery" onsubmit="event.preventDefault();  validate()">
 									<h4>Recuperar contraseña</h4>
 									<input class="form-control" id="mail" type="email" placeholder="Correo" required="1" />
-									<input 
-										class="form-control" 
-										id="pass" 
-										type="password" 
-										placeholder="Nueva contraseña" 
+									<input
+										class="form-control"
+										id="pass"
+										type="password"
+										placeholder="Nueva contraseña"
 										required="1" />
 									<input class="form-control" id="pass2" type="password" placeholder="Repetir" required="1" />
 									<button id="btn_send_recovery" class="btn btn-success btn-block">
@@ -126,7 +128,7 @@ session_destroy();
 		<script>
 			enable_cb();
 			$("#check_confirm").click(enable_cb);
-			
+
 			function enable_cb() {
 				if (this.checked) {
 					$("#btnSubir").removeAttr("disabled");
@@ -147,39 +149,39 @@ session_destroy();
 					jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
 				}
 			});
-			
-			
+
+
 			function validate () {
 				var data = {},
 					$required = [],
 					message = 'Debes llenar los siguientes campos: \n',
-					error = 0, 
+					error = 0,
 					count = 0;
-				
+
 				$("#form_recovery").find(':input').each(function(key, value){
 					var required = $(this).attr('required'),
 						valor = $(this).val(),
 						id = this.id;
-					
+
 				// Validate that the required input not are empty
 					if (required === '1' && valor.length <= 0) {
 						error = 1;
-		
+
 						$required.push(id);
 					}
-					
+
 					if(id){
 						data[id] = $(this).val();
 					}
 				});
-				
+
 			// Build the error message
 				if ($required.length > 0) {
 					$.each($required, function(index, value) {
 						message += '-->' + this + ' \n';
 					});
 				}
-				
+
 			// Error
 				if (error === 1) {
 					swal({
@@ -189,7 +191,7 @@ session_destroy();
 						showConfirmButton : true,
 						type : 'warning'
 					});
-					
+
 					return;
 				}
 				if(data.pass !== data.pass2){
@@ -200,15 +202,15 @@ session_destroy();
 						showConfirmButton : true,
 						type : 'warning'
 					});
-					
+
 					return;
 				}
-				
-				
+
+
 				console.log('==========> done DATA', data);
-				
+
 				$("#btn_send_recovery").button('loading');
-		
+
 				$.ajax({
 					data : data,
 					url : 'ajax.php?c=users&f=send_recovery',
@@ -216,9 +218,9 @@ session_destroy();
 					dataType : 'json'
 				}).done(function(resp) {
 					console.log('==========> done recovery', resp);
-					
+
 					$("#btn_send_recovery").button('reset');
-				
+
 					if(resp.status === 1){
 						swal({
 							title : 'Revisa tu correo',
@@ -238,9 +240,9 @@ session_destroy();
 					}
 				}).fail(function(resp) {
 					console.log('==========> fail !!! save', resp);
-					
+
 					$("#btn_send_recovery").button('reset');
-				
+
 					swal({
 						title : 'Error',
 						text : 'A ocurrido un problema al guardar los datos',
@@ -249,7 +251,7 @@ session_destroy();
 						type : 'error'
 					});
 				});
-				
+
 			}
 		</script>
 	</body>

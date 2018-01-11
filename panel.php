@@ -314,7 +314,7 @@ if (empty($_SESSION['user'])) {
 											</a>
 										</li>
 										<li>
-											<a href="#"><i class="glyphicon glyphicon-cog"></i> Configuracion</a>
+											<a href="#"><i class="glyphicon glyphicon-cog"></i> Configuración</a>
 										</li>
 										<li>
 											<a
@@ -329,7 +329,7 @@ if (empty($_SESSION['user'])) {
 											</a>
 										</li>
 										<li>
-											<a href="index.php"><i class="glyphicon glyphicon-log-out"></i> Salir</a>
+											<a href="index.php"><i class="glyphicon glyphicon-log-out"></i>Salir</a>
 										</li>
 									</ul>
 								</div>
@@ -341,7 +341,7 @@ if (empty($_SESSION['user'])) {
 				<div class="pageheader">
 					<h2><i class="fa fa-home"></i> Usuario <span>Panel de solicitudes.</span></h2>
 					<div class="breadcrumb-wrapper">
-						<span class="label">Tu estas a qui:</span>
+						<span class="label">Tu estas aqui:</span>
 						<ol class="breadcrumb">
 							<li>
 								<a href="index.php">Inicio</a>
@@ -372,6 +372,7 @@ if (empty($_SESSION['user'])) {
 												<i class="fa fa-check fa-3x"></i>
 											</div>
 											<div class="col-xs-8">
+												<small class="stat-label">SOLICITUDES</small>
 												<small class="stat-label">Aceptadas</small>
 												<h1 id="sum_aceppted">0</h1>
 											</div>
@@ -399,6 +400,7 @@ if (empty($_SESSION['user'])) {
 												<i class="fa fa-times fa-3x"></i>
 											</div>
 											<div class="col-xs-8">
+												<small class="stat-label">SOLICITUDES</small>
 												<small class="stat-label">Rechazadas</small>
 												<h1 id="sum_rejected">0</h1>
 											</div>
@@ -425,6 +427,7 @@ if (empty($_SESSION['user'])) {
 												<i class="fa fa-user fa-3x"></i>
 											</div>
 											<div class="col-xs-8">
+												<small class="stat-label">SOLICITUDES</small>
 												<small class="stat-label">Pendientes</small>
 												<h1 id="sum_requests">0</h1>
 											</div>
@@ -502,7 +505,7 @@ if (empty($_SESSION['user'])) {
 		</script>
 	</body>
 	<div class="footer">
-		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> / 
+		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> /
 		<a href="aviso.html" style="color: grey !important;">Aviso de privacidad</a>
 	</div>
 </html>

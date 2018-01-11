@@ -27,31 +27,30 @@
 								<a href="signin.php" style="color:white;"><strong style="color: orange;">Inicia Sesión</strong></a><span></span></h1>
 							</div>
 							<div class="mb20"></div>
-							<h5><strong>Si necesitas infomración adicional, revisa la documentación.</strong></h5>
-							<p>
-								El registro es en un solo paso, si no cuenta con la información solicitada,
-								revísela antes ya que esta se revisara.
-							</p>
-							<p>
-								Puede que su registro no se acepte si esta incompleto o sus datos no son proporcionados
-								correctamente.
-							</p>
-							<h5><strong>Requisitos Generales:</strong></h5>
-							Identificación Oficial
-							<br>
-							Comprobante de Domicilio
-							<br>
-							Permiso de Sanidad *Alimentos
-							<br>
-							Ubicación Exacta
-							<br>
-							Carta de Aceptación Presidente Colonos
-							<br>
-							Carta de Aceptación Vecinos
-							<br>
-							<h5><strong>Si no cuenta con todos estos requisitos, favor de registrar cuando los tenga a la mano
-							ya que de lo contrario no podrá finalizar el tramite o su solicitud sera rechazada.</strong></h5>
+							<h5><strong>El registro de la presente solicitud deberá de hacerse durante la sesión activa,
+													en un solo paso.</strong></h5>
+							<h5> <strong>*Si no cuentas con alguno de los siguientes requisitos,</br> tu solicitud será desechada
+													 automanticamente:</strong> </h5>
 
+							<h5> <strong>
+									- Identificación Oficial. </br>
+									- Comprobante de domicilio. </br>
+									- Constancia de manejo de alimentos. (En caso de venta de alimentos). </br>
+									- Ubicación exacta del comercio y calles con las que cruza. </br>
+									- Carta de acepación de Presidente de Colonos / Vecinos. (En caso de ser requerida por el Municipio).
+							 </strong> </h5>
+
+							 <h5> <strong>*Una vez que la solicitud ha sido llenada de manera correcta, pasará a un panel adminsitrativo
+							  						mismo que determinará la viabilidad así como la veracidad de la informacíon vertida.</strong> </h5>
+
+							 <h5> <strong>*Si necesitas información adicional o soporte técnico, ingresa a nuestra sección de preguntas
+								 y respuestas </strong> </h5>
+
+							 <h5> <strong>*En la Sección de Estado de Solicitudes <a href="#">Click aqui</a>, podrás revisar el estatus de tu
+							  						solicitud, así como su aprobación o rechazo.</strong> </h5>
+
+							 <h5> <strong>*Si no cuentas con todos estos requisitos, favor de registrarte una vez que los tengas a la mano, ya
+								 						que </br> de lo contrario no podrás finalizar el trámite de Nueva Solicitud. </strong> </h5>
 							<div class="mb20"></div>
 						</div>
 					</div>
@@ -140,7 +139,7 @@
 				});
 
 				var c = jQuery.cookie('change-skin');
-				
+
 				if (c && c == 'greyjoy') {
 					jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
 				} else if (c && c == 'dodgerblue') {

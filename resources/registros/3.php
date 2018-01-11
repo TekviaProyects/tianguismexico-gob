@@ -4,7 +4,7 @@ ya que si falta alguno, el tramite se puede anular por falta de datos.
 <br>
 <label class="control-label">Calle</label>
 <input type="text" class="form-control" name="calle" id="calle" autocomplete="off" required="1"/>
-<label class="control-label">Numero</label>
+<label class="control-label">Número</label>
 <input type="number" class="form-control" name="numerolocal" id="numerolocal" autocomplete="off" required="1"/>
 <label class="control-label">Entre Calles</label>
 <input type="text" class="form-control" name="calles" id="calles" autocomplete="off" required="1"/>
@@ -15,14 +15,14 @@ ya que si falta alguno, el tramite se puede anular por falta de datos.
 <label class="control-label">Giro que solicita</label>
 <form method="post" enctype="multipart/form-data" id="giro">
 	<select name="giro" id="giro" onchange="mostrarValor2(this.value);">
-		<option value="Electronico">Electronico</option>
+		<option value="Electronico">Electrónico</option>
 		<option value="Comercio">Comercio</option>
 		<option value="Comida">Comida</option>
 	</select>
 </form>
 <label class="control-label">Espacio que solicita en MTS2</label>
 <input type="number" class="form-control" name="mts2" id="mts2" autocomplete="off" required="1"/>
-<label class="control-label">Dias que Labora</label>
+<label class="control-label">Días que Labora</label>
 <br>
 <input type="checkbox" name="dia" value="Lunes<br>" id="dia1" onClick="seleccionar()">
 Lunes
@@ -31,7 +31,7 @@ Lunes
 Martes
 <br>
 <input type="checkbox" name="dia" value="Miercoles<br>" id="dia3">
-Miercoles
+Miércoles
 <br>
 <input type="checkbox" name="dia" value="Jueves<br>" id="dia4">
 Jueves
@@ -40,7 +40,7 @@ Jueves
 Viernes
 <br>
 <input type="checkbox" name="dia" value="Sabado<br>" id="dia6">
-Sabado
+Sábado
 <br>
 <input type="checkbox" name="dia" value="Domingo" id="dia7">
 Domingo
@@ -77,23 +77,23 @@ Domingo
 
 	var ref = $("#16r").val();
 	$("#referencia").val(ref);
-	
+
 	var giro = $("#campo17r").val();
-	giro = giro.substring(0, 1).toUpperCase() + giro.substring(1); 
+	giro = giro.substring(0, 1).toUpperCase() + giro.substring(1);
 	$("[name=giro]").val(giro);
-	
+
 	var mts2 = $("#18r").val();
 	$("#mts2").val(mts2);
-	
+
 	var inicio = $("#19r").val();
 	$("#inicio").val(inicio);
-	
+
 	var fin = $("#20r").val();
 	$("#fin").val(fin);
-	
+
 	var propiedad = $("#campo21r").val();
 	$("#propiedad").val(propiedad);
-	
+
 	var dias = $("#dias").val();
 	var lu = dias.indexOf("1"),
 		ma = dias.indexOf("2"),
@@ -102,7 +102,7 @@ Domingo
 		vi = dias.indexOf("5"),
 		sa = dias.indexOf("6"),
 		dom = dias.indexOf("7");
-	
+
 	if(lu !== -1) $("#dia1").prop("checked", true);
 	if(ma !== -1) $("#dia2").prop("checked", true);
 	if(mi !== -1) $("#dia3").prop("checked", true);
