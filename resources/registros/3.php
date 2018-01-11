@@ -63,7 +63,6 @@ Domingo
 </button>
 <script src="js/formulario.js"></script>
 <script type="text/javascript">
-
 	var Calle = $("#12r").val();
 	$("#calle").val(Calle);
 
@@ -78,13 +77,43 @@ Domingo
 
 	var ref = $("#16r").val();
 	$("#referencia").val(ref);
-
+	
 	var giro = $("#campo17r").val();
-	$("#giro").val(giro);
-
+	giro = giro.substring(0, 1).toUpperCase() + giro.substring(1); 
+	$("[name=giro]").val(giro);
+	
+	var mts2 = $("#18r").val();
+	$("#mts2").val(mts2);
+	
+	var inicio = $("#19r").val();
+	$("#inicio").val(inicio);
+	
+	var fin = $("#20r").val();
+	$("#fin").val(fin);
+	
+	var propiedad = $("#campo21r").val();
+	$("#propiedad").val(propiedad);
+	
+	var dias = $("#dias").val();
+	var lu = dias.indexOf("1"),
+		ma = dias.indexOf("2"),
+		mi = dias.indexOf("3"),
+		ju = dias.indexOf("4"),
+		vi = dias.indexOf("5"),
+		sa = dias.indexOf("6"),
+		dom = dias.indexOf("7");
+	
+	if(lu !== -1) $("#dia1").prop("checked", true);
+	if(ma !== -1) $("#dia2").prop("checked", true);
+	if(mi !== -1) $("#dia3").prop("checked", true);
+	if(ju !== -1) $("#dia4").prop("checked", true);
+	if(vi !== -1) $("#dia5").prop("checked", true);
+	if(sa !== -1) $("#dia6").prop("checked", true);
+	if(dom !== -1) $("#dia7").prop("checked", true);
 </script>
 <script>
 	var mostrarValor2 = function(x) {
+		console.log("=====> mostrar", x);
 		document.getElementById('campo17r').value = x;
 	};
 </script>
@@ -95,7 +124,6 @@ Domingo
 </script>
 <script>
 	function seleccionar() {
-
 		var chk = document.getElementById('dia1');
 
 		if (chk.checked) {
@@ -103,7 +131,5 @@ Domingo
 		} else {
 			document.getElementById('dias').style.display = '';
 		}
-
 	}
-
 </script>

@@ -553,28 +553,10 @@ var requests = {
 		
 		var folder = ($objet.from_user === 1) ? '' : '../';
 		
-		$.ajax({
-			data : $objet,
-			url : folder+'new.php',
-			type : 'post',
-			dataType : 'html'
-		}).done(function(resp) {
-			swal.close();
-			$("#"+$objet.div).html(resp);
-			$("#btn_new_request").prop("disabled", false);
-		}).fail(function(resp) {
-			console.log('==========> fail !!! new_request', resp);
-			
-			swal.close();
-			$("#btn_new_request").prop("disabled", false);
-			swal({
-				title : 'Error',
-				text : 'No se pueden cargar la vista',
-				timer : 5000,
-				showConfirmButton : true,
-				type : 'error'
-			});
-		});
+		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'new.php?'+'&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
+		
+		$("#btn_new_request").prop("disabled", false);
+		swal.close();
 	},
 
 ///////////////// ******** ----						END new_request						------ ************ //////////////////

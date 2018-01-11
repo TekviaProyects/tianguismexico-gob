@@ -1105,6 +1105,9 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 		<br>
 	</div>
 </div>
+<button class="btn btn-success btn-block" type="submit" id="registro2">
+	Regresar
+</button>
 <button class="btn btn-success btn-block" type="submit" id="registrar2">
 	Enviar Solicitud
 </button>

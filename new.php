@@ -72,10 +72,10 @@
 		</section>
 		<div class="notoy">
 			<form method="post" id="todof" enctype="multipart/form-data">
-					<input style="visibility: hidden;" name="nombre" type="text" id="1r" value="<?php echo $_SESSION['user']['name'] ?>"/>
-					<input name="paterno" type="text" id="2r" value="<?php echo $_SESSION['user']['last_name'] ?>">
-					<input name="materno" type="text" id="3r" value="<?php echo $_SESSION['user']['last_name2'] ?>">
-					<input name="correo" type="text" id="4r" value="<?php echo $_SESSION['user']['mail'] ?>">
+				<input style="visibility: hidden;" name="nombre" type="text" id="1r" value="<?php echo $_SESSION['user']['name'] ?>"/>
+				<input name="paterno" type="text" id="2r" value="<?php echo $_SESSION['user']['last_name'] ?>">
+				<input name="materno" type="text" id="3r" value="<?php echo $_SESSION['user']['last_name2'] ?>">
+				<input name="correo" type="text" id="4r" value="<?php echo $_SESSION['user']['mail'] ?>">
 				<input name="domicilio" type="text" id="5r">
 				<input name="colonia1" type="text" id="6r">
 				<input name="municipio1" type="text" id="7r">
@@ -140,6 +140,7 @@
 				});
 
 				var c = jQuery.cookie('change-skin');
+				
 				if (c && c == 'greyjoy') {
 					jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
 				} else if (c && c == 'dodgerblue') {

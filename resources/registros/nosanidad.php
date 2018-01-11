@@ -981,7 +981,9 @@ de tu celular para completar el registro.
 	<br>
  </div>
 </div>
-
+<button class="btn btn-success btn-block" type="submit" id="registro2">
+	Regresar
+</button>
 <button class="btn btn-success btn-block" type="submit" id="registrar1">
 	Enviar Solicitud
 </button>
