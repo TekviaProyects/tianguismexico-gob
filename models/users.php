@@ -160,6 +160,8 @@ class usersModel extends Connection {
 					colony = '".$objet['colony']."', 
 					addres = '".$objet['addres']."', 
 					num = '".$objet['num']."', 
+					state = '".$objet['state']."', 
+					municipality = '".$objet['municipality']."', 
 					num_int = '".$objet['num_int']."' 
 				WHERE
 					id = ".$objet['id'];

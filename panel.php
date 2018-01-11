@@ -111,25 +111,9 @@ if (empty($_SESSION['user'])) {
 						<div class="media userlogged">
 							<img alt="" src="images/photos/loggeduser.png" class="media-object">
 							<div class="media-body">
-								<h4>Guadalajara</h4>
-								<span>"Jalisco"</span>
+								<h4><?php echo $_SESSION['user']['nombre'] ?></h4>
 							</div>
 						</div>
-						<h5 class="sidebartitle actitle">Cuenta</h5>
-						<ul class="nav nav-pills nav-stacked nav-bracket mb30">
-							<li>
-								<a href="profile.html"><i class="fa fa-user"></i> <span>Editar Perfil</span></a>
-							</li>
-							<li>
-								<a href=""><i class="fa fa-cog"></i> <span>Configuracion</span></a>
-							</li>
-							<li>
-								<a href=""><i class="fa fa-question-circle"></i> <span>Ayuda</span></a>
-							</li>
-							<li>
-								<a href="index.php"><i class="fa fa-sign-out"></i> <span>Salir</span></a>
-							</li>
-						</ul>
 					</div>
 					<h5 class="sidebartitle">Herramientas-Menu</h5>
 					<ul class="nav nav-pills nav-stacked nav-bracket">
@@ -250,16 +234,16 @@ if (empty($_SESSION['user'])) {
 			</div><!-- leftpanel -->
 			<div class="mainpanel">
 				<div class="headerbar">
-					<a class="menutoggle"><i class="fa fa-bars"></i></a>
+					<a class="menutoggle" style="background-color: orange !important"><i class="fa fa-bars"></i></a>
 					<div class="searchform" action="#" method="post">
 						<input
 							onchange="if($(this).val().length > 0){
 								requests.list_requests({
 									search: $(this).val(),
 									from_user: 1,
-									view: 'search_user_results',
+									view: 'list_user_requests',
 									div: 'div_search_results',
-									mail: '<?php echo $_SESSION['user']['correo'] ?>',
+									mail: '<?php echo $_SESSION['user']['correo'] ?>'
 								});
 							} else{
 								$('#div_search_results').html('');

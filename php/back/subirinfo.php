@@ -43,17 +43,32 @@
 	$archivo8 = $_POST['archivo8'];
 	$archivo9 = $_POST['archivo9'];
 	
+	$mostrar = "	SELECT 
+	  					cost_request 
+	  				FROM 
+	  					dependencies 
+	  				WHERE 
+	  					estadodep = $iestado
+	  				AND 
+	  					municipiodep = '$imunicipio'";
+	$resultado = mysqli_query($conexion, $mostrar);
+	
+	while ($row = mysqli_fetch_array($resultado)) {
+		$cost_request = $row['cost_request'];
+	}
+	
 	$insertar = "INSERT INTO 
 					registros(nombre, paterno, materno, correo, domicilio, colonia1, municipio1, postal, telefono, 
 								password, estado, calle, numerolocal, colonia2, calles, referencia, giro, mts2, inicio, 
 								fin, propiedad, estadomx, municipiomx, identificacion, comprobante, fotografia1, fotografia2, 
-								fotografia3, fotografia4, cartadelegado, cartaaceptacion, sanidad, dias, lat, lng, date) 
+								fotografia3, fotografia4, cartadelegado, cartaaceptacion, sanidad, dias, lat, lng, date,
+								cost_request) 
 					VALUES('$nombre', '$paterno', '$materno', '$correo', '$domicilio', '$colonia1', '$municipio1', '$postal', 
 							'$telefono', '$password', '$estados', '$calle', '$numerolocal', '$colonia2', '$calles', 
 							'$referencia', '$giro', '$mts2', '$inicio', '$fin', '$propiedad', '$iestado', '$imunicipio', 
 							'../../$archivo1', '../../$archivo2', '../../$archivo3', '../../$archivo4', 
 							'../../$archivo5', '../../$archivo9', '../../$archivo6', '../../$archivo7', '../../$archivo8', '$dia', 
-							'$lat', '$lng', '$date')";
+							'$lat', '$lng', '$date', '$cost_request')";
 	mysqli_query($conexion,$insertar);
 
 ?>

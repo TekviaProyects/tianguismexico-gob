@@ -28,6 +28,7 @@
 							<th>Nombre</th>
 							<th>Mail</th>
 							<th>Fecha</th>
+							<th>Costo</th>
 							<th>Documentacion</th>
 							<th>Estado</th>
 						</tr>
@@ -58,6 +59,7 @@
 								<td><?php echo $value['nombre'] ?></td>
 								<td><?php echo $value['correo'] ?></td>
 								<td><?php echo $value['date'] ?></td>
+								<td><?php echo $value['cost_request'] ?></td>
 								<td align="center"><?php
 									if ($value['status'] == 2) { ?>
 										<button 

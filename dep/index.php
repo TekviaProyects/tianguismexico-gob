@@ -100,25 +100,9 @@ session_start();
 						<div class="media userlogged">
 							<img alt="" src="../images/photos/loggeduser.png" class="media-object">
 							<div class="media-body">
-								<h4>Guadalajara</h4>
-								<span>"Jalisco"</span>
+								<h4><?php echo $_SESSION['dependencie']['nombredep'] ?></h4>
 							</div>
 						</div>
-						<h5 class="sidebartitle actitle">Account</h5>
-						<ul class="nav nav-pills nav-stacked nav-bracket mb30">
-							<li>
-								<a href="../profile.html"><i class="fa fa-user"></i> <span>Perfil</span></a>
-							</li>
-							<li>
-								<a href=""><i class="fa fa-cog"></i> <span>Configuracion</span></a>
-							</li>
-							<li>
-								<a href=""><i class="fa fa-question-circle"></i> <span>Ayuda</span></a>
-							</li>
-							<li>
-								<a href="signout.html"><i class="fa fa-sign-out"></i> <span>Salir</span></a>
-							</li>
-						</ul>
 					</div>
 					<h5 class="sidebartitle">Herramientas-Menu</h5>
 					<ul class="nav nav-pills nav-stacked nav-bracket">
@@ -249,7 +233,7 @@ session_start();
 			</div><!-- leftpanel -->
 			<div class="mainpanel">
 				<div class="headerbar">
-					<a class="menutoggle"><i class="fa fa-bars"></i></a>
+					<a class="menutoggle" style="background-color: orange !important"><i class="fa fa-bars"></i></a>
 					<div class="searchform" action="#" method="post">
 						<input
 							onchange="if($(this).val().length > 0){
