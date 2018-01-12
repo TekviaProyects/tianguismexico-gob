@@ -443,6 +443,19 @@ var dependencies = {
 		"use strict";
 		console.log('==========> $objet view_documets', $objet);
 		
+	// Hide menu on mobile
+		var body = jQuery('body');
+		function adjustmainpanelheight() {
+			var docHeight = jQuery(document).height();
+			if (docHeight > jQuery('.mainpanel').height())
+				jQuery('.mainpanel').height(docHeight);
+		}
+		if (body.hasClass('leftpanel-show'))
+			body.removeClass('leftpanel-show');
+		else
+			body.addClass('leftpanel-show');
+		adjustmainpanelheight();
+		
 		var folder = ($objet.from_user === 1) ? '' : '../';
 		
 		$.ajax({

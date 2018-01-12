@@ -83,11 +83,20 @@ if (empty($_SESSION['user'])) {
 			.nav-bracket > li.nav-active > a {
 				background-color: orange !important;
 			}
-			.footer{
+			.footer {
 				position: relative;
 				right: 0;
 				bottom: 0;
 				text-align: right;
+			}
+			.mobileShow {
+				display: none !important;
+			}
+			/* Smartphone Portrait and Landscape */
+			@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+				.mobileShow {
+					display: inline !important;
+				}
 			}
 		</style>
 
@@ -100,8 +109,8 @@ if (empty($_SESSION['user'])) {
 				<i class="fa fa-spinner fa-spin"></i>
 			</div>
 		</div>
-		<section>
-			<div class="leftpanel">
+		<section style="max-height: 98vh !important; overflow-y: scroll; padding-top: 70px">
+			<div class="leftpanel" style=" padding-top: 70px">
 				<div class="logopanel" align="center" onclick="window.location='panel.php'" style="cursor: pointer">
 					<img src="images/logo.png" style="max-width: 138px" />
 				</div><!-- logopanel -->
@@ -232,111 +241,134 @@ if (empty($_SESSION['user'])) {
 					</ul>
 				</div><!-- leftpanelinner -->
 			</div><!-- leftpanel -->
-			<div class="mainpanel">
+			<div class="mainpanel" style="min-height: 0px !important; max-height: 88vh !important">
 				<div class="headerbar">
-					<a class="menutoggle" style="background-color: orange !important"><i class="fa fa-bars"></i></a>
-					<div class="searchform" action="#" method="post">
-						<input
-							onchange="if($(this).val().length > 0){
-								requests.list_requests({
-									search: $(this).val(),
-									from_user: 1,
-									view: 'list_user_requests',
-									div: 'div_search_results',
-									mail: '<?php echo $_SESSION['user']['correo'] ?>'
-								});
-							} else{
-								$('#div_search_results').html('');
-								$('#search_expedients').focus();
-							}"
-							id="search_expedients"
-							type="search"
-							class="form-control"
-							name="keyword"
-							placeholder="Buscar Expedientes..." /><br>
-						<div id="div_search_results"></div>
-					</div>
-					<div class="header-right">
-						<ul class="headermenu">
-							<li>
-								<div class="btn-group">
-									<button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
-										<i class="glyphicon glyphicon-user"></i>
-										<span class="badge">2</span>
-									</button>
-									<div class="dropdown-menu dropdown-menu-head pull-right">
-										<h5 class="title">Nuevas Solicitudes</h5>
-										<ul class="dropdown-list user-list">
-											<li class="new">
-												<div class="thumb">
-													<a href=""><img src="images/photos/user1.png" alt="" /></a>
-												</div>
-												<div class="desc">
-													<h5><a href="">Quiñones</a><span class="badge badge-success">Ver</span></h5>
-												</div>
-											</li>
-											<li class="new">
-												<div class="thumb">
-													<a href=""><img src="images/photos/user2.png" alt="" /></a>
-												</div>
-												<div class="desc">
-													<h5><a href="">Jorge</a><span class="badge badge-success">Ver</span></h5>
-												</div>
-											</li>
-											<li class="new">
-												<a href="">Ver Todas</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-							<li></li>
-							<li>
-								<div class="btn-group">
-									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-										<img
-											src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png"
-											onerror="this.src='images/photos/loggeduser.png';" />
-
-										<?php echo $_SESSION['user']['nombre'] ?>
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-										<li>
-											<a
-												onclick="users.view_profile({
-													div: 'contenedor',
-													mail: '<?php echo $_SESSION['user']['correo'] ?>',
-													from_user: 1
-												})"
-												href="#contenedor">
-												<i class="glyphicon glyphicon-user"></i>Ediar Perfil
-											</a>
-										</li>
-										<li>
-											<a href="#"><i class="glyphicon glyphicon-cog"></i> Configuración</a>
-										</li>
-										<li>
-											<a
-												onclick="help_desk.view_user_main({
-													div: 'contenedor',
-													mail: '<?php echo $_SESSION['user']['correo'] ?>',
-													from_user: 1
-												})"
-												href="#contenedor">
-												<i class="glyphicon glyphicon-question-sign"></i>
-												Ayuda
-											</a>
-										</li>
-										<li>
-											<a href="index.php"><i class="glyphicon glyphicon-log-out"></i>Salir</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li></li>
-						</ul>
-					</div><!-- header-right -->
+					<nav class="navbar navbar-default navbar-fixed-top">
+						<div class="container">
+							<a class="menutoggle" style="background-color: orange !important"><i class="fa fa-bars"></i></a>
+							<div class="searchform" action="#" method="post">
+								<input
+									onchange="if($(this).val().length > 0){
+										requests.list_requests({
+											search: $(this).val(),
+											from_user: 1,
+											view: 'list_user_requests',
+											div: 'div_search_results',
+											mail: '<?php echo $_SESSION['user']['correo'] ?>'
+										});
+									} else{
+										$('#div_search_results').html('');
+										$('#search_expedients').focus();
+									}"
+									id="search_expedients"
+									type="search"
+									class="form-control"
+									name="keyword"
+									placeholder="Buscar Expedientes..." /><br>
+								<div id="div_search_results"></div>
+							</div>
+							<div class="header-right">
+								<ul class="headermenu">
+									<li>
+										<div class="btn-group">
+											<button class="btn btn-default dropdown-toggle tp-icon" data-toggle="dropdown">
+												<i class="glyphicon glyphicon-user"></i>
+												<span class="badge">2</span>
+											</button>
+											<div class="dropdown-menu dropdown-menu-head pull-right">
+												<h5 class="title">Nuevas Solicitudes</h5>
+												<ul class="dropdown-list user-list">
+													<li class="new">
+														<div class="thumb">
+															<a href=""><img src="images/photos/user1.png" alt="" /></a>
+														</div>
+														<div class="desc">
+															<h5>
+																<a href="">Quiñones</a>
+																<span class="badge badge-success">Ver</span>
+															</h5>
+														</div>
+													</li>
+													<li class="new">
+														<div class="thumb">
+															<a href=""><img src="images/photos/user2.png" alt="" /></a>
+														</div>
+														<div class="desc">
+															<h5>
+																<a href="">Jorge</a>
+																<span class="badge badge-success">Ver</span>
+															</h5>
+														</div>
+													</li>
+													<li class="new">
+														<a href="">Ver Todas</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li></li>
+									<li>
+										<div class="btn-group">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+												<img
+													src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png"
+													onerror="this.src='images/photos/loggeduser.png';" />
+		
+												<?php echo $_SESSION['user']['nombre'] ?>
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+												<li>
+													<a
+														onclick="users.view_profile({
+															div: 'contenedor',
+															mail: '<?php echo $_SESSION['user']['correo'] ?>',
+															from_user: 1
+														})"
+														href="#contenedor">
+														<i class="glyphicon glyphicon-user"></i>Ediar Perfil
+													</a>
+												</li>
+												<li>
+													<a href="#"><i class="glyphicon glyphicon-cog"></i> Configuración</a>
+												</li>
+												<li>
+													<a
+														onclick="help_desk.view_user_main({
+															div: 'contenedor',
+															mail: '<?php echo $_SESSION['user']['correo'] ?>',
+															from_user: 1
+														})"
+														href="#contenedor">
+														<i class="glyphicon glyphicon-question-sign"></i>
+														Ayuda
+													</a>
+												</li>
+												<li>
+													<a
+														onclick="help_desk.view_user_main({
+															div: 'contenedor',
+															mail: '<?php echo $_SESSION['user']['correo'] ?>',
+															from_user: 1
+														})"
+														class="mobileShow"
+														href="#contenedor">
+														<i class="glyphicon glyphicon-question-sign"></i>
+														Ayuda
+													</a>
+												</li>
+												<li>
+													<a href="index.php"><i class="glyphicon glyphicon-log-out"></i>Salir</a>
+												</li>
+											</ul>
+										</div>
+									</li>
+									<li></li>
+								</ul>
+							</div><!-- header-right -->
+						</div>
+					</nav>
 				</div><!-- headerbar -->
 				<div class="pageheader">
 					<h2><i class="fa fa-home"></i> Usuario <span>Panel de solicitudes.</span></h2>
@@ -352,7 +384,7 @@ if (empty($_SESSION['user'])) {
 						</ol>
 					</div>
 				</div>
-				<div class="contentpanel" id="contenedor">
+				<div class="contentpanel" id="contenedor" style="max-height: 78vh !important; overflow: scroll">
 					<div class="row">
 						<div class="col-sm-6 col-md-3">
 							<div
