@@ -82,6 +82,7 @@ var requests = {
 		$("#div_360").html('');
 		$('#div_format').html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').hide();
 		
 	// Quests
@@ -132,6 +133,7 @@ var requests = {
 		$('#div_format').html('');
 		$("#div_360").html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').hide();
 		$("#image_view").attr("src", $objet.archive);
 		$("#btn_dowload_document").attr("href", $objet.archive);
@@ -250,6 +252,7 @@ var requests = {
 		$("#div_360").html('');
 		$('#div_format').html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').show();
 		
 		var folder = ($objet.from_user === 1) ? '' : '../';
@@ -601,6 +604,7 @@ var requests = {
 		$('#div_format').html('');
 		$("#div_360").html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').hide();
 		$("#image_view").attr("src", "");
 		$("#btn_dowload_document").attr("href", '');

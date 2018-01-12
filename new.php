@@ -59,14 +59,6 @@
 						<div class="panelR" id="panelR"></div>
 					</div>
 				</div>
-				<div class="signup-footer">
-					<div class="pull-left">
-						&copy; 2017 Todos los derechos reservados
-					</div>
-					<div class="pull-right">
-						Created By: <a href="http://tekvia.com.mx/" target="_blank">LDV APP</a>
-					</div>
-				</div>
 			</div>
 		</section>
 		<div class="notoy">
