@@ -8,10 +8,10 @@
 				</span>
 			</h3>
 		</div><?php
-		
+
 		return;
-	} 
-	
+	}
+
 	session_start();
 ?>
 <div class="row">
@@ -39,7 +39,7 @@
 							$hidden_da = '';
 							$disabled = '';
 							$class = '';
-							
+
 							switch ($value['status']) {
 								case 1:
 									$hidden_da = ' style="display: none"';
@@ -52,15 +52,15 @@
 									$hidden_da = '';
 									break;
 							} ?>
-							
+
 							<tr>
 								<td><?php echo $value['id'] ?></td>
 								<td><?php echo $value['nombre'] ?></td>
 								<td><?php echo $value['correo'] ?></td>
 								<td><?php echo $value['date'] ?></td>
 								<td align="center">
-									<button 
-										data-toggle="modal" 
+									<button
+										data-toggle="modal"
 										data-target="#modal_details"
 										class="btn btn-primary btn-block"
 										onclick="requests.load_info_buttons({
@@ -84,9 +84,9 @@
 								</td>
 								<td align="center"><?php
 									if($value['status'] == 1){ ?>
-										<button 
+										<button
 											id="btn_approved_<?php echo $value['id'] ?>"
-											data-toggle="modal" 
+											data-toggle="modal"
 											data-target="#modal_details"
 											class="btn btn-success btn-block"
 											onclick="requests.load_format({
@@ -97,11 +97,11 @@
 											Ver permiso
 										</button><?php
 									}else{ ?>
-										<button 
+										<button
 											<?php echo $hidden_su ?>
 											<?php echo $disabled ?>
 											id="btn_approved_<?php echo $value['id'] ?>"
-											data-toggle="modal" 
+											data-toggle="modal"
 											data-target="#modal_authorize"
 											class="btn btn-success btn-block"
 											onclick="requests.authorize({
@@ -113,11 +113,11 @@
 									} ?>
 								</td>
 								<td align="center">
-									<button 
+									<button
 										<?php echo $hidden_da ?>
 										<?php echo $disabled ?>
 										id="btn_denied_<?php echo $value['id'] ?>"
-										data-toggle="modal" 
+										data-toggle="modal"
 										data-target="#modal_authorize"
 										class="btn btn-danger btn-block"
 										onclick="requests.authorize({
@@ -147,53 +147,53 @@
 			<div class="modal-body">
 				<div class="row">
 					<div class="col-sm-12" align="center">
-						<button 
+						<button
 							request_id=""
 							id="btn_formato"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="requests.load_format({
 								request_id: $(this).attr('request_id')
 							})">
 							Formato
 						</button>
-						<button 
+						<button
 							archive=""
 							request_id=""
 							id="btn_identificacion"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="requests.load_document({
 								archive: $(this).attr('archive'),
 								request_id: $(this).attr('request_id')
 							})">
 							Identificacion
 						</button>
-						<button 
+						<button
 							archive=""
 							request_id=""
 							id="btn_c_salubridad"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="requests.load_document({
 								archive: $(this).attr('archive'),
 								request_id: $(this).attr('request_id')
 							})">
 							C. Salubridad
 						</button>
-						<button 
+						<button
 							lat=""
 							lng=""
 							id="btn_croquis"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="init({
 								lat: $(this).attr('lat'),
 								lng: $(this).attr('lng')
 							})">
 							Croquis
 						</button>
-						<button 
+						<button
 							archive=""
 							request_id=""
 							id="btn_fotos"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="requests.covert_360({
 								f1: $(this).attr('f1'),
 								f2: $(this).attr('f2'),
@@ -203,32 +203,32 @@
 							})">
 							Fotos
 						</button>
-						<button 
+						<button
 							archive=""
 							request_id=""
 							id="btn_c_delegado"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="requests.load_document({
 								archive: $(this).attr('archive'),
 								request_id: $(this).attr('request_id')
 							})">
 							C. Delegado
 						</button>
-						<button 
+						<button
 							archive=""
 							request_id=""
 							id="btn_c_aceptacion"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="requests.load_document({
 								archive: $(this).attr('archive'),
 								request_id: $(this).attr('request_id')
 							})">
 							C. Aceptacion
 						</button>
-						<button 
+						<button
 							coment=""
 							id="btn_coment"
-							class="btn btn-default" 
+							class="btn btn-default"
 							onclick="$('#image_view').attr('src', ''); $('#div_write_coment').html($(this).attr('coment'));">
 							Comentario
 						</button>
@@ -254,7 +254,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a 
+				<a
 					href=""
 					download=""
 					id="btn_dowload_document"
@@ -286,7 +286,7 @@
 					id="btn_authorize"
 					status=""
 					request_id=""
-					type="button" 
+					type="button"
 					class="btn btn-info"
 					onclick="requests.update_authorize({
 						status: $(this).attr('status'),
@@ -329,11 +329,11 @@
 			}
 		}
 	});
-	
+
 ///////////////// ******** -------						init						------ ************ //////////////////
 //////// Load a Google map
 	// The parameters can receive:
-	
+
 	function init($objet) {
 		if(!$objet)
 			$objet = {
@@ -341,7 +341,7 @@
 				lng: 0
 			}
 		console.log("==============> Objet init:", $objet);
-		
+
 		$("#image_view").attr("src", '');
 		$('#div_write_coment').html('');
 		$('#div_format').html('');
@@ -349,13 +349,13 @@
 		$('#google_map').show();
 		$('#google_street').show();
 		$('#div_format').hide();
-		
+
 		var coordenates ={},
 			zoom = 15;
-		
+
 		coordenates.lat = parseFloat($objet.lat) || 0;
 		coordenates.lng = parseFloat($objet.lng) || 0;
-		
+
 		if (coordenates.lat === 0 || coordenates.lng === 0) {
 			zoom = 2;
 		}
@@ -364,31 +364,31 @@
 			lat : coordenates.lat,
 			lng : coordenates.lng
 		};
-			
+
 		var map = new google.maps.Map(document.getElementById('google_map'), {
 			zoom : zoom,
 			center : myLatlng
 		});
-		
+
 		var geocoder = new google.maps.Geocoder();
-		
+
 		geocoder.geocode({'location': myLatlng}, function(results, status) {
 			console.log("====== results", results);
 			var infowindow = new google.maps.InfoWindow({
 				content: results[0].formatted_address
 			});
-	  
+
 			var marker = new google.maps.Marker({
 				position : myLatlng,
 				map : map,
 				title : 'Local'
 			});
-			
+
 			infowindow.open(map, marker);
 			marker.addListener('click', function() {
 				infowindow.open(map, marker);
 			});
-			
+
 			var panorama = new google.maps.StreetViewPanorama(
 					document.getElementById('google_street'), {
 						position: myLatlng,
@@ -399,7 +399,7 @@
 					});
 				map.setStreetView(panorama);
         });
-		
+
 		setTimeout(function(){
 			$('#google_map').css('width', '45vw');
 			$('#google_street').css('width', '45vw');

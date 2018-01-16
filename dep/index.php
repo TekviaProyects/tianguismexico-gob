@@ -142,6 +142,18 @@ session_start();
 										})">
 										<i class="glyphicon glyphicon-remove-circle"></i> <span>Rechazadas</span></a>
 								</li>
+								<li>
+									<a
+										class="btn-orange btn-block"
+										href="#contenedor"
+										onclick="requests.list_requests({
+											div: 'contenedor',
+											status: 3,
+											state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
+											municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
+										})">
+										<i class="glyphicon glyphicon-credit-card"></i> <span>Pagadas</span></a>
+								</li>
 							</ul>
 						</li>
 						<li class="nav-parent">
@@ -675,7 +687,7 @@ session_start();
 		</script>
 	</body>
 	<div class="footer">
-		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> / 
+		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> /
 		<a href="aviso.html" style="color: grey !important;">Aviso de privacidad</a>
 	</div>
 </html>
