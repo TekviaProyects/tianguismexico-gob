@@ -156,6 +156,17 @@ session_start();
 								</li>
 							</ul>
 						</li>
+						<li>
+							<a
+								onclick="help_desk.view_dating({
+									div: 'contenedor',
+									view: 'view_dating_dep'
+								})"
+								class="btn-orange btn-block"
+								href="#contenedodr">
+								<i class="fa fa-calendar-o"></i> <span>Citas</span>
+							</a>
+						</li>
 						<li class="nav-parent">
 							<a
 								class="btn-orange btn-block"

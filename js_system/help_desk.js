@@ -23,28 +23,6 @@ var help_desk = {
 		console.log('==========> $objet view_main', str);
 		
 		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'ajax.php?'+str+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
-		
-		
-		return;
-		
-		$.ajax({
-			data : $objet,
-			url : folder+'ajax.php?c=help_desk&f=view_main',
-			type : 'post',
-			dataType : 'html'
-		}).done(function(resp) {
-			$("#"+$objet.div).html(resp);
-		}).fail(function(resp) {
-			console.log('==========> fail !!! view_main', resp);
-			
-			swal({
-				title : 'Error',
-				text : 'No se puede cargar la vista',
-				timer : 5000,
-				showConfirmButton : true,
-				type : 'error'
-			});
-		});
 	},
 
 ///////////////// ******** ----						END view_main						------ ************ //////////////////
@@ -60,19 +38,18 @@ var help_desk = {
 		console.log('==========> $objet view_user_main', $objet);
 		
 	// Hide menu on mobile
-		var body = jQuery('body');
+		var body = jQuery('body'),
+			folder = ($objet.from_user === 1) ? '' : '../';
 		function adjustmainpanelheight() {
 			var docHeight = jQuery(document).height();
 			if (docHeight > jQuery('.mainpanel').height())
-				jQuery('.mainpanel').height(docHeight);
+				{jQuery('.mainpanel').height(docHeight);}
 		}
 		if (body.hasClass('leftpanel-show'))
-			body.removeClass('leftpanel-show');
+			{body.removeClass('leftpanel-show');}
 		else
-			body.addClass('leftpanel-show');
+			{body.addClass('leftpanel-show');}
 		adjustmainpanelheight();
-		
-		var folder = ($objet.from_user === 1) ? '' : '../';
 		
 		$.ajax({
 			data : $objet,
@@ -313,8 +290,140 @@ var help_desk = {
 				type : 'error'
 			});
 		});
-	}
+	},
 
 ///////////////// ******** ----					END delete_question						------ ************ //////////////////
+
+///////////////// ******** ----						view_dating							----- ************ //////////////////
+//////// Loaded the view dating
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+		// mail -> User mail
+		
+	view_dating : function($objet){
+		"use strict";
+		
+		$objet.c = "help_desk";
+		$objet.f = "view_dating";
+		var str = Object.keys($objet).map(function(key){
+				return encodeURIComponent(key) + '=' + encodeURIComponent($objet[key]); 
+			}).join('&'),
+			body = jQuery('body'),
+			folder = ($objet.from_user === 1) ? '' : '../';
+			
+		console.log('==========> $objet view_dating', $objet);
+		
+	// Hide menu on mobile
+		function adjustmainpanelheight() {
+			var docHeight = jQuery(document).height();
+			if (docHeight > jQuery('.mainpanel').height())
+				{jQuery('.mainpanel').height(docHeight);}
+		}
+		if (body.hasClass('leftpanel-show'))
+			{body.removeClass('leftpanel-show');}
+		else
+			{body.addClass('leftpanel-show');}
+		adjustmainpanelheight();
+	
+		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'ajax.php?'+str+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
+	},
+
+///////////////// ******** ----						END view_dating						------ ************ //////////////////
+
+///////////////// ******** ----						save_dating							------ ************ //////////////////
+//////// Save the dating on the DB
+	// The parameters that can receive are:
+		// title -> Title dating
+		// f_ini -> Dating start
+		// f_end -> Dating end
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	save_dating : function($objet){
+		"use strict";
+		console.log('==========> $objet save_dating', $objet);
+		
+								
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=help_desk&f=save_dating',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> done save_dating', resp);
+			
+			if(resp.status === 1){
+				swal({
+					title : 'Cita guardada',
+					text : 'La cita se ha guardado correctamente',
+					timer : 5000,
+					showConfirmButton : true,
+					type : 'success'
+				});
+			}else{
+				swal({
+					title : 'Error',
+					text : 'No se pudo guardar la cita',
+					timer : 5000,
+					showConfirmButton : true,
+					type : 'warning'
+				});
+			}
+		}).fail(function(resp) {
+			console.log('==========> fail !!! save_dating', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'No se pudo guardar la cita',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END save_dating						------ ************ //////////////////
+
+///////////////// ******** ----						list_datings						------ ************ //////////////////
+//////// Check the datings and return into array
+	// The parameters that can receive are:
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	list_datings : function($objet){
+		"use strict";
+		console.log('==========> $objet list_datings', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=help_desk&f=list_datings',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> done list_datings', resp);
+			
+		// Update calendar
+			$('#calendar').fullCalendar('removeEvents');
+			$.each(resp, function(index, value) {
+				$('#calendar').fullCalendar('renderEvent', value, true);
+			});
+		}).fail(function(resp) {
+			console.log('==========> fail !!! list_datings', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'Error al cargar las citas',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	}
+
+///////////////// ******** ----						END list_datings					------ ************ //////////////////
 
 };
