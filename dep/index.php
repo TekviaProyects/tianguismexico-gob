@@ -239,7 +239,6 @@ session_start();
 							onchange="if($(this).val().length > 0){
 								requests.list_requests({
 									search: $(this).val(),
-									view: 'search_results',
 									div: 'div_search_results',
 									state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 									municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'

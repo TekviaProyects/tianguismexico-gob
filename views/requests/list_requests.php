@@ -347,6 +347,7 @@
 		$('#div_format').html('');
 		$("#div_360").html('');
 		$('#google_map').show();
+		$('#google_street').show();
 		$('#div_format').hide();
 		
 		var coordenates ={},

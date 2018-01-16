@@ -19,6 +19,19 @@ var requests = {
 		console.log('==========> $objet list_requests', $objet);
 		
 		var folder = ($objet.from_user === 1) ? '' : '../';
+	
+	// Hide menu on mobile
+		var body = jQuery('body');
+		function adjustmainpanelheight() {
+			var docHeight = jQuery(document).height();
+			if (docHeight > jQuery('.mainpanel').height())
+				jQuery('.mainpanel').height(docHeight);
+		}
+		if (body.hasClass('leftpanel-show'))
+			body.removeClass('leftpanel-show');
+		else
+			body.addClass('leftpanel-show');
+		adjustmainpanelheight();
 		
 		$.ajax({
 			data : $objet,
@@ -69,6 +82,7 @@ var requests = {
 		$("#div_360").html('');
 		$('#div_format').html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').hide();
 		
 	// Quests
@@ -119,6 +133,7 @@ var requests = {
 		$('#div_format').html('');
 		$("#div_360").html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').hide();
 		$("#image_view").attr("src", $objet.archive);
 		$("#btn_dowload_document").attr("href", $objet.archive);
@@ -237,6 +252,7 @@ var requests = {
 		$("#div_360").html('');
 		$('#div_format').html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').show();
 		
 		var folder = ($objet.from_user === 1) ? '' : '../';
@@ -544,6 +560,19 @@ var requests = {
 		
 		$("#btn_new_request").prop("disabled", true);
 		
+	// Hide menu on mobile
+		var body = jQuery('body');
+		function adjustmainpanelheight() {
+			var docHeight = jQuery(document).height();
+			if (docHeight > jQuery('.mainpanel').height())
+				jQuery('.mainpanel').height(docHeight);
+		}
+		if (body.hasClass('leftpanel-show'))
+			body.removeClass('leftpanel-show');
+		else
+			body.addClass('leftpanel-show');
+		adjustmainpanelheight();
+		
 		swal({
 			title : '',
 			imageUrl : 'resources/images/spiner.gif',
@@ -575,6 +604,7 @@ var requests = {
 		$('#div_format').html('');
 		$("#div_360").html('');
 		$('#google_map').hide();
+		$('#google_street').hide();
 		$('#div_format').hide();
 		$("#image_view").attr("src", "");
 		$("#btn_dowload_document").attr("href", '');
