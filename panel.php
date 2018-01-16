@@ -31,6 +31,9 @@ if (empty($_SESSION['user'])) {
 		<link rel="stylesheet" href="plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<!-- sweetalert -->
 		<link rel="stylesheet" href="plugins/sweetalert-master/dist/sweetalert.css" />
+	<!-- fullcalendar -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.print.css" />
 
 	<!-- Sytem -->
 		<link rel="stylesheet" href="css/signup-form.css" type="text/css" />
@@ -152,6 +155,19 @@ if (empty($_SESSION['user'])) {
 								})">
 								<i class="fa fa-address-card" aria-hidden="true"></i>
 								<span>Estado de solicitudes</span>
+							</a>
+						</li>
+						<li>
+							<a
+								href="#contenedor"
+							 	class="btn-orange btn-block"
+								onclick="help_desk.view_dating({
+									div: 'contenedor',
+									mail: '<?php echo $_SESSION['user']['correo'] ?>',
+									from_user: 1
+								})">
+								<i class="fa fa-calendar-o"></i>
+								<span>Citas en dependencia</span>
 							</a>
 						</li>
 						<li>
@@ -521,6 +537,8 @@ if (empty($_SESSION['user'])) {
 		<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
 	<!-- responsivevoice -->
 		<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	<!-- fullcalendar -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js"></script>
 
 	<!-- System -->
 		<script src="js_system/requests.js"></script>

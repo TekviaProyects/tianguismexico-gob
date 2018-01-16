@@ -100,6 +100,58 @@ class help_deskModel extends Connection {
 	
 ///////////////// ******** ----					END delete_question						------ ************ //////////////////
 
+///////////////// ******** ----						save_dating							------ ************ //////////////////
+//////// Save the dating on the DB
+	// The parameters that can receive are:
+		// f_ini -> Dating start
+		// f_end -> Dating end
+		// title -> Title dating
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	function save_dating($objet) {
+		$date = date("Y-m-d H:i:s");
+		
+		$sql = "INSERT INTO
+					 datings(user_id, state, municipality, title, date, f_ini, f_end)
+				VALUES
+					(".$objet['user_id'].", '".$objet['state']."', '".$objet['municipality']."', '".$objet['title']."', 
+					'".$date."', '".$objet['f_ini']."', '".$objet['f_end']."')";
+		// return $sql;
+		$result = $this -> query($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END save_dating						------ ************ //////////////////
+
+///////////////// ******** ----						list_datings						------ ************ //////////////////
+//////// Check the datings and return into array
+	// The parameters that can receive are:
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	function list_datings($objet) {
+	// Filter by state
+		$condition .= (!empty($objet['state'])) ? ' AND state = '.$objet['state'] : '' ;
+	// Filter by municipality
+		$condition .= (!empty($objet['municipality'])) ? ' AND municipality = \''.$objet['municipality'].'\'' : '' ;
+		
+		$sql = "SELECT 
+					*, f_ini AS start, f_end AS end 
+				FROM
+					 datings
+				WHERE
+					1 = 1".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END list_datings					------ ************ //////////////////
+
 }
 
 ?>

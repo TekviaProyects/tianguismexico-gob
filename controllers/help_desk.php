@@ -202,7 +202,73 @@ class help_desk extends Common {
 		require ('views/help_desk/view_user_main.php');
 	}
 	
-///////////////// ******** ----					END view_user_main					------ ************ //////////////////
+///////////////// ******** ----						END view_user_main					------ ************ //////////////////
+
+///////////////// ******** ----						view_dating							----- ************ //////////////////
+//////// Loaded the view dating
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+		// mail -> User mail
+		
+	function view_dating($objet) {
+	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_POST : $objet;
+		
+		require ('views/help_desk/view_dating.php');
+	}
+	
+///////////////// ******** ----						END view_dating						------ ************ //////////////////
+
+///////////////// ******** ----						save_dating							------ ************ //////////////////
+//////// Save the dating on the DB
+	// The parameters that can receive are:
+		// f_ini -> Dating start
+		// f_end -> Dating end
+		// title -> Title dating
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	function save_dating($objet) {
+	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_POST : $objet;
+		session_start();
+		$resp['status'] = 1;
+		
+	// Save the dating on the DB
+		$objet['user_id'] = $_SESSION['user']['id'];
+		$resp['result'] = $this -> help_deskModel -> save_dating($objet);
+		
+		echo json_encode($resp);
+	}
+	
+///////////////// ******** ----						END save_dating						------ ************ //////////////////
+
+///////////////// ******** ----						list_datings						------ ************ //////////////////
+//////// Check the datings and return into array
+	// The parameters that can receive are:
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	function list_datings($objet) {
+	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_POST : $objet;
+		
+	// Save the dating on the DB
+		$datings = $this -> help_deskModel -> list_datings($objet);
+		$datings = $datings['rows'];
+		
+		foreach ($datings as $key => $value) {
+			$datings[$key]['start'] = str_replace(' ', 'T', $value['start']);
+			$datings[$key]['end'] = str_replace(' ', 'T', $value['end']);
+		}
+		
+		echo json_encode($datings);
+	}
+	
+///////////////// ******** ----						END list_datings					------ ************ //////////////////
 
 }
 
