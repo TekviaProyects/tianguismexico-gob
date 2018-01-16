@@ -133,14 +133,18 @@ class help_deskModel extends Connection {
 		
 	function list_datings($objet) {
 	// Filter by state
-		$condition .= (!empty($objet['state'])) ? ' AND state = '.$objet['state'] : '' ;
+		$condition .= (!empty($objet['state'])) ? ' AND d.state = '.$objet['state'] : '' ;
 	// Filter by municipality
-		$condition .= (!empty($objet['municipality'])) ? ' AND municipality = \''.$objet['municipality'].'\'' : '' ;
+		$condition .= (!empty($objet['municipality'])) ? ' AND d.municipality = \''.$objet['municipality'].'\'' : '' ;
 		
 		$sql = "SELECT 
-					*, f_ini AS start, f_end AS end 
+					d.*, d.f_ini AS start, d.f_end AS end, u.name 
 				FROM
-					 datings
+					 datings d
+				LEFT JOIN
+						users u
+					ON
+						u.id = d.user_id
 				WHERE
 					1 = 1".
 				$condition;

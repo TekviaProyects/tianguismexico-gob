@@ -19,7 +19,7 @@ class help_desk extends Common {
 	function create_question($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$resp['status'] = 1;
 		session_start();
 		
@@ -121,7 +121,7 @@ class help_desk extends Common {
 	function update_question($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$resp['status'] = 1;
 		
 	// Update question information
@@ -143,7 +143,7 @@ class help_desk extends Common {
 	function delete_question($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		$resp['status'] = 1;
 		
 	// Delete the question from the DB
@@ -194,7 +194,7 @@ class help_desk extends Common {
 	function view_user_main($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
 		$questions = $this -> help_deskModel -> list_questions($objet);
 		$questions = $questions['rows'];
@@ -213,9 +213,11 @@ class help_desk extends Common {
 	function view_dating($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
-		require ('views/help_desk/view_dating.php');
+		$view = (!empty($objet['view'])) ? $objet['view'] : 'view_dating' ;
+		
+		require ('views/help_desk/'.$view.'.php');
 	}
 	
 ///////////////// ******** ----						END view_dating						------ ************ //////////////////
@@ -232,7 +234,7 @@ class help_desk extends Common {
 	function save_dating($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		session_start();
 		$resp['status'] = 1;
 		
@@ -254,7 +256,7 @@ class help_desk extends Common {
 	function list_datings($objet) {
 	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
 	// If not, take its normal value
-		$objet = (empty($objet)) ? $_POST : $objet;
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
 	// Save the dating on the DB
 		$datings = $this -> help_deskModel -> list_datings($objet);

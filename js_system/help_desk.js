@@ -302,11 +302,18 @@ var help_desk = {
 		
 	view_dating : function($objet){
 		"use strict";
+		
+		$objet.c = "help_desk";
+		$objet.f = "view_dating";
+		var str = Object.keys($objet).map(function(key){
+				return encodeURIComponent(key) + '=' + encodeURIComponent($objet[key]); 
+			}).join('&'),
+			body = jQuery('body'),
+			folder = ($objet.from_user === 1) ? '' : '../';
+			
 		console.log('==========> $objet view_dating', $objet);
 		
 	// Hide menu on mobile
-		var body = jQuery('body'),
-			folder = ($objet.from_user === 1) ? '' : '../';
 		function adjustmainpanelheight() {
 			var docHeight = jQuery(document).height();
 			if (docHeight > jQuery('.mainpanel').height())
@@ -317,8 +324,8 @@ var help_desk = {
 		else
 			{body.addClass('leftpanel-show');}
 		adjustmainpanelheight();
-		
-		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'ajax.php?c=help_desk&f=view_dating" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
+	
+		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'ajax.php?'+str+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
 	},
 
 ///////////////// ******** ----						END view_dating						------ ************ //////////////////

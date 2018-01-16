@@ -146,15 +146,13 @@ session_start();
 						</li>
 						<li>
 							<a
-								onclick="requests.view_dating({
+								onclick="help_desk.view_dating({
 									div: 'contenedor',
-									view: 'view_dating_dep',
-									state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
-									municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
+									view: 'view_dating_dep'
 								})"
 								class="btn-orange btn-block"
 								href="#contenedodr">
-								<i class="fa fa-home"></i> <span>Expedientes</span>
+								<i class="fa fa-calendar-o"></i> <span>Citas</span>
 							</a>
 						</li>
 						<li class="nav-parent">
