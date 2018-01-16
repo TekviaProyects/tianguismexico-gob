@@ -46,7 +46,13 @@
 							 <h5> <strong>*Si necesitas información adicional o soporte técnico, ingresa a nuestra sección de preguntas
 								 y respuestas </strong> </h5>
 
-							 <h5> <strong>*En la Sección de Estado de Solicitudes <a href="#">Click aqui</a>, podrás revisar el estatus de tu
+							 <h5> <strong>*En la Sección de Estado de Solicitudes <a
+								 							href="#contenedor"
+							 								onclick="requests.list_requests({
+							 									div: 'contenedor',
+							 									view: 'list_user_requests',
+							 									from_user: 1
+							 								})">Click aquí</a>, podrás revisar el estatus de tu
 							  						solicitud, así como su aprobación o rechazo.</strong> </h5>
 
 							 <h5> <strong>*Si no cuentas con todos estos requisitos, favor de registrarte una vez que los tengas a la mano, ya

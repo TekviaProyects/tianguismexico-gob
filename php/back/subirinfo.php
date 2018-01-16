@@ -1,11 +1,11 @@
 <?php
 	date_default_timezone_set('America/Mexico_City');
 	include("../conection/conection.php");
-	
+
 	$fecha = date("Y-m-d");
 	$hora = date ("h-i-s");
 	$date = date("Y-m-d H:i:s");
-	
+
 	$nombre = $_POST['nombre'];
 	$paterno = $_POST['paterno'];
 	$materno = $_POST['materno'];
@@ -32,7 +32,7 @@
 	$dia = $_POST['dia'];
 	$lat = $_POST['lat'];
 	$lng = $_POST['lng'];
-	
+
 	$archivo1 = $_POST['archivo1'];
 	$archivo2 = $_POST['archivo2'];
 	$archivo3 = $_POST['archivo3'];
@@ -42,33 +42,36 @@
 	$archivo7 = $_POST['archivo7'];
 	$archivo8 = $_POST['archivo8'];
 	$archivo9 = $_POST['archivo9'];
-	
-	$mostrar = "	SELECT 
-	  					cost_request 
-	  				FROM 
-	  					dependencies 
-	  				WHERE 
+
+	$mostrar = "	SELECT
+	  					cost_request, cost_m2
+	  				FROM
+	  					dependencies
+	  				WHERE
 	  					estadodep = $iestado
-	  				AND 
+	  				AND
 	  					municipiodep = '$imunicipio'";
 	$resultado = mysqli_query($conexion, $mostrar);
-	
+
 	while ($row = mysqli_fetch_array($resultado)) {
 		$cost_request = $row['cost_request'];
+		$cost_m2 = $row['cost_m2'];
 	}
-	
-	$insertar = "INSERT INTO 
-					registros(nombre, paterno, materno, correo, domicilio, colonia1, municipio1, postal, telefono, 
-								password, estado, calle, numerolocal, colonia2, calles, referencia, giro, mts2, inicio, 
-								fin, propiedad, estadomx, municipiomx, identificacion, comprobante, fotografia1, fotografia2, 
+
+	$operacion = $cost_m2 * $mts2;
+
+	$insertar = "INSERT INTO
+					registros(nombre, paterno, materno, correo, domicilio, colonia1, municipio1, postal, telefono,
+								password, estado, calle, numerolocal, colonia2, calles, referencia, giro, mts2, inicio,
+								fin, propiedad, estadomx, municipiomx, identificacion, comprobante, fotografia1, fotografia2,
 								fotografia3, fotografia4, cartadelegado, cartaaceptacion, sanidad, dias, lat, lng, date,
-								cost_request) 
-					VALUES('$nombre', '$paterno', '$materno', '$correo', '$domicilio', '$colonia1', '$municipio1', '$postal', 
-							'$telefono', '$password', '$estados', '$calle', '$numerolocal', '$colonia2', '$calles', 
-							'$referencia', '$giro', '$mts2', '$inicio', '$fin', '$propiedad', '$iestado', '$imunicipio', 
-							'../../$archivo1', '../../$archivo2', '../../$archivo3', '../../$archivo4', 
-							'../../$archivo5', '../../$archivo9', '../../$archivo6', '../../$archivo7', '../../$archivo8', '$dia', 
-							'$lat', '$lng', '$date', '$cost_request')";
+								cost_request, costo_m2)
+					VALUES('$nombre', '$paterno', '$materno', '$correo', '$domicilio', '$colonia1', '$municipio1', '$postal',
+							'$telefono', '$password', '$estados', '$calle', '$numerolocal', '$colonia2', '$calles',
+							'$referencia', '$giro', '$mts2', '$inicio', '$fin', '$propiedad', '$iestado', '$imunicipio',
+							'../../$archivo1', '../../$archivo2', '../../$archivo3', '../../$archivo4',
+							'../../$archivo5', '../../$archivo9', '../../$archivo6', '../../$archivo7', '../../$archivo8', '$dia',
+							'$lat', '$lng', '$date', '$cost_request', '$operacion')";
 	mysqli_query($conexion,$insertar);
 
 ?>
