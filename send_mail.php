@@ -4,9 +4,6 @@
 // Si no conserva su valor normal
 	$objet = $_REQUEST;
 	
-	// echo json_encode($objet);
-	// return;
-	
 // Valida si viene del local host
 	$url = 'http://municiapp.com/';
 	

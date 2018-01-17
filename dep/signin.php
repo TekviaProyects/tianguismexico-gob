@@ -244,9 +244,6 @@ session_destroy();
 		
 		<script>
 			jQuery(document).ready(function() {
-
-				// Please do not use the code below
-				// This is for demo purposes only
 				var c = jQuery.cookie('change-skin');
 				if (c && c == 'greyjoy') {
 					jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
@@ -257,15 +254,11 @@ session_destroy();
 				}
 				
 				var url = $("#the_frame").attr('src');
-    
-			    /* Assign empty url value to the iframe src attribute when
-			    modal hide, which stop the video playing */
+				
 			    $("#modal_video").on('hide.bs.modal', function(){
 			        $("#the_frame").attr('src', '');
 			    });
 			    
-			    /* Assign the initially stored url back to the iframe src
-			    attribute when modal is displayed again */
 			    $("#modal_video").on('show.bs.modal', function(){
 			        $("#the_frame").attr('src', url);
 			    });
@@ -347,9 +340,7 @@ session_destroy();
 						type : 'error'
 					});
 				});
-				
 			}
-			
 			
 			function info () {
 				var data = {},
@@ -398,7 +389,7 @@ session_destroy();
 				data.message = $('#info_message').val();
 				data.state = $('#estadodep option:selected').text();
 				
-				console.log('==========> done DATA', data);
+				console.log('==========> DATA', data);
 				
 				$("#btn_send").button('loading');
 				
@@ -438,7 +429,6 @@ session_destroy();
 						type : 'error'
 					});
 				});
-				
 			}
 			
 			$("#modal_video").modal('show');

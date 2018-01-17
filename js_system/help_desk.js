@@ -37,19 +37,10 @@ var help_desk = {
 		"use strict";
 		console.log('==========> $objet view_user_main', $objet);
 		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
 	// Hide menu on mobile
-		var body = jQuery('body'),
-			folder = ($objet.from_user === 1) ? '' : '../';
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				{jQuery('.mainpanel').height(docHeight);}
-		}
-		if (body.hasClass('leftpanel-show'))
-			{body.removeClass('leftpanel-show');}
-		else
-			{body.addClass('leftpanel-show');}
-		adjustmainpanelheight();
+		$("#wrapper").removeClass("toggled");
 		
 		$.ajax({
 			data : $objet,
@@ -314,18 +305,26 @@ var help_desk = {
 		console.log('==========> $objet view_dating', $objet);
 		
 	// Hide menu on mobile
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				{jQuery('.mainpanel').height(docHeight);}
-		}
-		if (body.hasClass('leftpanel-show'))
-			{body.removeClass('leftpanel-show');}
-		else
-			{body.addClass('leftpanel-show');}
-		adjustmainpanelheight();
-	
-		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'ajax.php?'+str+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
+		$("#wrapper").removeClass("toggled");
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=help_desk&f=view_dating',
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			$("#"+$objet.div).html(resp);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! view_dating', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'Error al cargar la vista',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
 	},
 
 ///////////////// ******** ----						END view_dating						------ ************ //////////////////

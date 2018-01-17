@@ -21,17 +21,7 @@ var requests = {
 		var folder = ($objet.from_user === 1) ? '' : '../';
 	
 	// Hide menu on mobile
-		var body = jQuery('body');
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				jQuery('.mainpanel').height(docHeight);
-		}
-		if (body.hasClass('leftpanel-show'))
-			body.removeClass('leftpanel-show');
-		else
-			body.addClass('leftpanel-show');
-		adjustmainpanelheight();
+		$("#wrapper").removeClass("toggled");
 		
 		$.ajax({
 			data : $objet,
@@ -561,17 +551,7 @@ var requests = {
 		$("#btn_new_request").prop("disabled", true);
 		
 	// Hide menu on mobile
-		var body = jQuery('body');
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				jQuery('.mainpanel').height(docHeight);
-		}
-		if (body.hasClass('leftpanel-show'))
-			body.removeClass('leftpanel-show');
-		else
-			body.addClass('leftpanel-show');
-		adjustmainpanelheight();
+		$("#wrapper").removeClass("toggled");
 		
 		swal({
 			title : '',
@@ -803,6 +783,34 @@ var requests = {
 				type : 'error'
 			});
 		});
+	},
+
+///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
+
+///////////////// ******** ----						search								------ ************ //////////////////
+//////// Searchs requests
+	// The parameters that can receive are:
+		// sears -> String to search
+		// mail -> User mail
+		
+	search : function($objet){
+		"use strict";
+		console.log('==========> $objet search', $objet);
+		
+		var algo = $('#search_expedients').val();
+		
+		if(algo.length > 0){
+			requests.list_requests({
+				search: $objet.search,
+				from_user: 1,
+				view: 'list_user_requests',
+				div: 'div_search_results',
+				mail: $objet.mail
+			});
+		} else{
+			$('#div_search_results').html('');
+			$('#search_expedients').focus();
+		}
 	}
 
 ///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
