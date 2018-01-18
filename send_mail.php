@@ -4,14 +4,11 @@
 // Si no conserva su valor normal
 	$objet = $_REQUEST;
 	
-// Valida si viene del local host
-	$url = 'http://municiapp.com/';
-	
 	require ("plugins/phpmailerlibs/class.phpmailer.php");
 	require ("plugins/phpmailerlibs/class.smtp.php");
 	
-	// $correom = 'abogados3@biagsa.com';
-	$correom = 'fertekvia@gmail.com';
+	$correom = 'abogados3@biagsa.com';
+	// $correom = 'fertekvia@gmail.com';
 	
 	$mail = new PHPMailer();
 	$mail -> IsSMTP();
@@ -47,7 +44,6 @@
 					Estado: " . $_REQUEST['state'] . "<br />
 					Municipio: " . $_REQUEST['municipiodep'] . "<br />
 					Dirección: " . $_REQUEST['address'] . "<br />
-					Mensaje: " .$_REQUEST['info_message']. "<br />
 					Mensaje: " .$_REQUEST['info_message']. "<br />
 				</div>
 			</body>

@@ -152,7 +152,7 @@ function prepare2Canvas() {
 	canvas_2.addEventListener("touchstart", function(e) {
 		// Mouse down location
 		var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
-		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop -120;
+		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop -70;
 		    
 		// var ClientRect = canvas_1.getBoundingClientRect();
 		// var mouseX = Math.round(e.clientX - ClientRect.left),
@@ -164,7 +164,7 @@ function prepare2Canvas() {
 	}, false);
 	canvas_2.addEventListener("touchmove", function(e) {
 		var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
-		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop -120;
+		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop -70;
 		// var ClientRect = canvas_1.getBoundingClientRect();
 		// var mouseX = Math.round(e.clientX - ClientRect.left),
 			// mouseY = Math.round(e.clientY - ClientRect.top);
@@ -294,7 +294,7 @@ function prepare1Canvas() {
 	canvas_1.addEventListener("touchstart", function(e) {
 		// Mouse down location
 		var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
-		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop -120;
+		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop  -70;
 		
 		// var ClientRect = canvas_1.getBoundingClientRect();
 		// var mouseX = Math.round(e.clientX - ClientRect.left),
@@ -306,7 +306,7 @@ function prepare1Canvas() {
 	}, false);
 	canvas_1.addEventListener("touchmove", function(e) {
 		var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft,
-		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop -120;
+		    mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop  -70;
 		
 		// var ClientRect = canvas_1.getBoundingClientRect();
 		// var mouseX = Math.round(e.clientX - ClientRect.left),
