@@ -127,13 +127,27 @@ session_destroy();
 								onsubmit="event.preventDefault();  info()" 
 								enctype="multipart/form-data">
 								<h4 class="nomargin">Solicitar informacion</h4>
-								<label>Nombre:</label>
+								<label>Nombre del presidente:</label>
 								<input 
 									required="1" 
 									type="text" 
 									class="form-control uname"
 									name="name" 
 									id="name"/>
+								<label>Periodo de ejercicio:</label>
+								<input 
+									required="1" 
+									type="text" 
+									class="form-control uname"
+									name="period" 
+									id="period"/>
+								<label>Oficina de:</label>
+								<input 
+									required="1" 
+									type="text" 
+									class="form-control uname"
+									name="office" 
+									id="office"/>
 								<label>Correo:</label>
 								<input 
 									required="1" 
@@ -148,6 +162,13 @@ session_destroy();
 									class="form-control pword" 
 									name="telefono" 
 									id="telefono"/>
+								<label>Celular:</label>
+								<input 
+									required="1" 
+									type="tel" 
+									class="form-control pword" 
+									name="cel" 
+									id="cel"/>
 								<label class="control-label">Estado</label>
 								<select 
 									onchange="dependencies.list_municipalities({
@@ -205,6 +226,13 @@ session_destroy();
 									<option value="El Llano">El Llano</option>
 									<option value="San Francisco de los Romo">San Francisco de los Romo</option>
 								</select>
+								<label class="control-label">Dirección</label>
+								<input 
+									required="1" 
+									type="text" 
+									class="form-control uname"
+									name="address" 
+									id="address"/>
 								Mensaje:<br />
 								<textarea id="info_message" class="form-control" required="1"></textarea>
 								<button class="btn btn-success btn-block" type="submit" id="btn_send" style="margin-top: 20px">

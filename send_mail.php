@@ -10,8 +10,8 @@
 	require ("plugins/phpmailerlibs/class.phpmailer.php");
 	require ("plugins/phpmailerlibs/class.smtp.php");
 	
-	$correom = 'abogados3@biagsa.com';
-	// $correom = 'fertekvia@gmail.com';
+	// $correom = 'abogados3@biagsa.com';
+	$correom = 'fertekvia@gmail.com';
 	
 	$mail = new PHPMailer();
 	$mail -> IsSMTP();
@@ -38,11 +38,16 @@
 			<body>
 				<h1>Solicitud de información</h1>
 				<div> 
-					Nombre: " . $_REQUEST['name'] . "<br />
+					Nombre de presidente: " . $_REQUEST['name'] . "<br />
+					Oficina de: " . $_REQUEST['office'] . "<br />
+					Periodo de ejercicio: " . $_REQUEST['period'] . "<br />
 					Correo: " . $_REQUEST['mail'] . "<br />
 					Teléfono: " . $_REQUEST['telefono'] . "<br />
+					Celular: " . $_REQUEST['cel'] . "<br />
 					Estado: " . $_REQUEST['state'] . "<br />
 					Municipio: " . $_REQUEST['municipiodep'] . "<br />
+					Dirección: " . $_REQUEST['address'] . "<br />
+					Mensaje: " .$_REQUEST['info_message']. "<br />
 					Mensaje: " .$_REQUEST['info_message']. "<br />
 				</div>
 			</body>

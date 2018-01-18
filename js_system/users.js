@@ -12,6 +12,8 @@ var users = {
 		"use strict";
 		console.log('==========> $objet view_profile', $objet);
 		
+		$("#collapseExample").removeClass("show");
+		
 		$("#"+$objet.div).html('<iframe id="the_frame" src="ajax.php?c=users&f=view_profile&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
 	},
 
