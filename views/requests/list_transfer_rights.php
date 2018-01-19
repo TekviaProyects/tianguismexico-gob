@@ -2,27 +2,20 @@
 // Validate the requests
 	if (empty($requests)) {?>
 		<div align="center">
-			<h4>
+			<h5>
 				<span class="label label-default">
 					* Sin resultados *
 				</span>
-			</h4>
+			</h5>
 		</div><?php
 		
 		return;
 	}
 	
-	
-	// echo "<pre>", print_r($requests), "</pre>";
-	
-	
 	session_start();
 ?>
 <style>
 	canvas {
-		/*display: block;*/
-		/*margin: 0 auto;*/
-		/*background: #fff;*/
 		border-radius: 3px;
 		box-shadow: 0px 0px 15px 3px #ccc;
 		cursor: pointer;
@@ -30,13 +23,13 @@
 </style>
 <div class="row" id="div_list_request">
 	<div class="col-sm-12">
-		<div class="signup-form-container">
-			<div class="form-header">
-				<h4 class="form-title">
+		<div>
+			<div>
+				<h5>
 					<i class="fa fa-list"></i> Solicitudes
-				</h4>
+				</h5>
 			</div>
-			<div class="form-body" style="padding: 30px">
+			<div style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
 					<thead>
 						<tr>
@@ -126,7 +119,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<h4 class="modal-title" id="modal_detailsLabel">Detalles</h4>
+				<h5 class="modal-title" id="modal_detailsLabel">Detalles</h5>
 			</div>
 			<div class="modal-body" id="div_modal_details">
 				<div align="right" id="div_date">
@@ -134,11 +127,11 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<h4>Razón por la(s) cual(es) cede los derechos al Cesionario</h4>
+						<h5>Razón por la(s) cual(es) cede los derechos al Cesionario</h5>
 						<div id="div_reason"> </div>
 					</div>
 				</div><br />
-				<h4>Firmas de aprovacion</h4>
+				<h5>Firmas de aprovacion</h5>
 				<div class="row">
 					<div class="col-sm-12 col-md-6" align="center">
 						<label>Cedente:</label><br />
@@ -168,13 +161,13 @@
 </div>
 <div class="row" id="div_new_request">
 	<div class="col-sm-12">
-		<div class="signup-form-container">
-			<div class="form-header">
-				<h4 class="form-title">
+		<div >
+			<div>
+				<h5>
 					<i class="fa fa-archive"></i> Nueva solicitud
-				</h4>
+				</h5>
 			</div>
-			<div class="form-body" style="padding: 30px">
+			<div style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
 					<thead>
 						<tr>
@@ -221,21 +214,21 @@
 	</div>
 </div>
 <div id="div_data" style="display: none">
-	<div class="signup-form-container">
-		<div class="form-header">
-			<h4 class="form-title">
+	<div>
+		<div>
+			<h5>
 				<i class="fa fa-archive"></i> Cesión de derechos / Costo: $<span id="cost"></span>
-			</h4>
+			</h5>
 		</div>
-		<div class="form-body" style="padding: 30px">
+		<div style="padding: 30px">
 			<div class="row">
 				<form id="profileForm">
 					<div class="col-sm-12 col-md-6">
-						<h4>Razón por la(s) cual(es) cede los derechos al Cesionario</h4>
+						<h5>Razón por la(s) cual(es) cede los derechos al Cesionario</h5>
 						<textarea class="form-control" rows="3" id="reason"></textarea>
 					</div>
 					<div class="col-sm-12 col-md-6">
-						<h4>Correo del nuevo comerciante</h4>
+						<h5>Correo del nuevo comerciante</h5>
 						<input id="mail" class="form-control" type="mail"/>
 					</div>
 				</form>

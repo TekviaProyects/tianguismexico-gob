@@ -21,6 +21,7 @@ var requests = {
 		var folder = ($objet.from_user === 1) ? '' : '../';
 
 	// Hide menu on mobile
+<<<<<<< HEAD
 		var body = jQuery('body');
 		function adjustmainpanelheight() {
 			var docHeight = jQuery(document).height();
@@ -33,6 +34,10 @@ var requests = {
 			body.addClass('leftpanel-show');
 		adjustmainpanelheight();
 
+=======
+		$("#wrapper").removeClass("toggled");
+		
+>>>>>>> c99e37519011a278b3a03a76ad4b5a0d2798b8c0
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=list_requests',
@@ -572,6 +577,7 @@ var requests = {
 		$("#btn_new_request").prop("disabled", true);
 
 	// Hide menu on mobile
+<<<<<<< HEAD
 		var body = jQuery('body');
 		function adjustmainpanelheight() {
 			var docHeight = jQuery(document).height();
@@ -584,6 +590,10 @@ var requests = {
 			body.addClass('leftpanel-show');
 		adjustmainpanelheight();
 
+=======
+		$("#wrapper").removeClass("toggled");
+		
+>>>>>>> c99e37519011a278b3a03a76ad4b5a0d2798b8c0
 		swal({
 			title : '',
 			imageUrl : 'resources/images/spiner.gif',
@@ -814,6 +824,34 @@ var requests = {
 				type : 'error'
 			});
 		});
+	},
+
+///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
+
+///////////////// ******** ----						search								------ ************ //////////////////
+//////// Searchs requests
+	// The parameters that can receive are:
+		// sears -> String to search
+		// mail -> User mail
+		
+	search : function($objet){
+		"use strict";
+		console.log('==========> $objet search', $objet);
+		
+		var algo = $('#search_expedients').val();
+		
+		if(algo.length > 0){
+			requests.list_requests({
+				search: $objet.search,
+				from_user: 1,
+				view: 'list_user_requests',
+				div: 'div_search_results',
+				mail: $objet.mail
+			});
+		} else{
+			$('#div_search_results').html('');
+			$('#search_expedients').focus();
+		}
 	}
 
 ///////////////// ******** ----					END view_upload_files					------ ************ //////////////////

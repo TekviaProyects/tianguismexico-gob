@@ -12,6 +12,8 @@ var users = {
 		"use strict";
 		console.log('==========> $objet view_profile', $objet);
 		
+		$("#collapseExample").removeClass("show");
+		
 		$("#"+$objet.div).html('<iframe id="the_frame" src="ajax.php?c=users&f=view_profile&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
 	},
 
@@ -28,17 +30,7 @@ var users = {
 		console.log('==========> $objet view_insurance_policy', $objet);
 		
 	// Hide menu on mobile
-		var body = jQuery('body');
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				jQuery('.mainpanel').height(docHeight);
-		}
-		if (body.hasClass('leftpanel-show'))
-			body.removeClass('leftpanel-show');
-		else
-			body.addClass('leftpanel-show');
-		adjustmainpanelheight();
+		$("#wrapper").removeClass("toggled");
 		
 		$.ajax({
 			data : $objet,
