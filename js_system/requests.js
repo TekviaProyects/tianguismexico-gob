@@ -1,5 +1,5 @@
 /*jslint plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
-/*global define, $, jQuery, swal, pdf, jsPDF */
+/*global define, $, jQuery, swal, pdf, jsPDF, MouseEvent */
 /*jslint browser: true*/
 var requests = {
 // Initialize vars
@@ -840,10 +840,14 @@ var requests = {
 			data : $objet,
 			url : folder+'ajax.php?c=pays&f=new_pay',
 			type : 'post',
-			dataType : 'html'
+			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> Done new_pay', resp);
 			
+			var link = document.createElement('a');
+			link.href = resp.url;
+			link.download = 'ficha.pdf';
+			link.dispatchEvent(new MouseEvent('click'));
 		}).fail(function(resp) {
 			console.log('==========> fail !!! new_pay', resp);
 			

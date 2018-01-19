@@ -31,6 +31,13 @@ if (empty($_SESSION['user'])) {
 		<link rel="stylesheet" href="plugins/sweetalert-master/dist/sweetalert.css" />
 		
 		<style>
+			.vuela{
+				position: sticky;
+			    right: 0px;
+			    top: 0px;
+			    z-index: 1;
+			    width: 100%;
+			}
 			#wrapper {
 				padding-left: 0;
 				-webkit-transition: all 0.5s ease;
@@ -46,7 +53,7 @@ if (empty($_SESSION['user'])) {
 				position: fixed;
 				left: 250px;
 				width: 0;
-				height: 92%;
+				height: 100%;
 				margin-left: -250px;
 				overflow-y: scroll;
 				overflow-x: hidden;
@@ -83,6 +90,7 @@ if (empty($_SESSION['user'])) {
 				line-height: 40px;
 			}
 			.sidebar-nav li a {
+				line-height: 200%;
 				display: block;
 				text-decoration: none;
 				color: #999999;
@@ -97,7 +105,7 @@ if (empty($_SESSION['user'])) {
 			}
 			.sidebar-nav > .sidebar-brand {
 				height: 65px;
-				font-size: 18px;
+				font-size: 1px;
 				line-height: 60px;
 			}
 			.sidebar-nav > .sidebar-brand a {
@@ -132,95 +140,10 @@ if (empty($_SESSION['user'])) {
 		</style>
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-			<button class="btn btn-default" id="menu-toggle" style="margin-right: 10px">
-				<i class="fa fa-bars"></i>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-				<form class="form-inline my-2 my-lg-0" onsubmit="event.preventDefault()">
-					<input 
-						class="form-control mr-sm-2" 
-						type="search" 
-						placeholder="Buscar.."
-						onchange="requests.search({
-							search: $(this).val(),
-							mail: '<?php echo $_SESSION['user']['correo'] ?>'
-						})"
-						id="search_expedients"
-						name="keyword">
-					<button 
-						onclick="requests.search({
-							search: $('#search_expedients').val(),
-							mail: '<?php echo $_SESSION['user']['correo'] ?>'
-						})"
-						class="btn btn-outline-success my-2 my-sm-0" 
-						type="button" 
-						style="margin-right: 10px">
-						Buscar
-					</button>
-				</form>
-				<ul class="navbar-nav mr-auto mt- mt-lg-0">
-					
-				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<button 
-							class="btn btn-default"
-							 data-toggle="collapse" 
-							 href="#collapseExample" 
-							 role="button" 
-							 aria-expanded="false" 
-							 aria-controls="collapseExample"> 
-							 <img 
-							 	style="max-width: 30px"
-							 	src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png"
-								onerror="this.src='images/photos/loggeduser.png';" 
-								class="profile-image img-circle"> 
-							 <?php echo $_SESSION['user']['nombre'] ?></h4>
-						</button>
-						</a>
-						<div class="collapse" id="collapseExample">
-							<a 
-								class="dropdown-item"
-								onclick="users.view_profile({
-									div: 'contenedor',
-									mail: '<?php echo $_SESSION['user']['correo'] ?>',
-									from_user: 1
-								})"
-								href="#contenedor">
-								<i class="fa fa-user"></i> Editar Perfil
-							</a>
-							<a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Configuración</a>
-							<a 
-								class="dropdown-item" 
-								onclick="help_desk.view_user_main({
-									div: 'contenedor',
-									mail: '<?php echo $_SESSION['user']['correo'] ?>',
-									from_user: 1
-								})"
-								href="#contenedor">
-								<i class="fa fa-info"></i> Ayuda
-							</a>
-							<a class="dropdown-item" href="index.php"><i class="fa fa-sign-out"></i> Salir</a>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<button 
-				class="navbar-toggler" 
-				type="button" 
-				data-toggle="collapse" 
-				data-target="#navbarTogglerDemo01" 
-				aria-controls="navbarTogglerDemo01" 
-				aria-expanded="false" 
-				aria-label="Toggle navigation">
-				<i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i>
-			</button>
-		</nav>
-		<div id="wrapper" style="padding-top: 60px">
+		<div id="wrapper">
 			<!-- Sidebar -->
 			<div id="sidebar-wrapper">
-				<div align="center">
+				<div align="center" style="background-color: #ffbc49">
 					<img src="images/logo.png" style="max-width: 150px" />
 				</div>
 				<ul class="sidebar-nav">
@@ -291,6 +214,7 @@ if (empty($_SESSION['user'])) {
 					</li>
 					<li>
 						<a
+							
 							href="#contenedor"
 						 	class="btn-orange btn-block"
 							href="#contenedor"
@@ -302,7 +226,7 @@ if (empty($_SESSION['user'])) {
 								from_user: 1
 							})">
 							<i class="fa fa-address-card" aria-hidden="true"></i>
-							<span>Carta de registro en padrón de comerciantes</span>
+							<span>Registro en padrón de comerciantes</span>
 						</a>
 					</li>
 					<li>
@@ -349,9 +273,94 @@ if (empty($_SESSION['user'])) {
 				</ul>
 			</div>
 			<!-- /#sidebar-wrapper -->
-			<div id="div_search_results"></div>
 			<!-- Contenedor -->
 			<div>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light vuela">
+					<button class="btn btn-default" id="menu-toggle" style="margin-right: 10px">
+						<i class="fa fa-bars"></i>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+						<form class="form-inline my-2 my-lg-0" onsubmit="event.preventDefault()">
+							<input 
+								class="form-control mr-sm-2" 
+								type="search" 
+								placeholder="Buscar.."
+								onchange="requests.search({
+									search: $(this).val(),
+									mail: '<?php echo $_SESSION['user']['correo'] ?>'
+								})"
+								id="search_expedients"
+								name="keyword">
+							<button 
+								onclick="requests.search({
+									search: $('#search_expedients').val(),
+									mail: '<?php echo $_SESSION['user']['correo'] ?>'
+								})"
+								class="btn btn-outline-success my-2 my-sm-0" 
+								type="button" 
+								style="margin-right: 10px">
+								Buscar
+							</button>
+						</form>
+						<ul class="navbar-nav mr-auto mt- mt-lg-0">
+							
+						</ul>
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<button 
+									class="btn btn-default"
+									 data-toggle="collapse" 
+									 href="#collapseExample" 
+									 role="button" 
+									 aria-expanded="false" 
+									 aria-controls="collapseExample"> 
+									 <img 
+									 	style="max-width: 30px"
+									 	src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png"
+										onerror="this.src='images/photos/loggeduser.png';" 
+										class="profile-image img-circle"> 
+									 <?php echo $_SESSION['user']['nombre'] ?></h4>
+								</button>
+								</a>
+								<div class="collapse" id="collapseExample">
+									<a 
+										class="dropdown-item"
+										onclick="users.view_profile({
+											div: 'contenedor',
+											mail: '<?php echo $_SESSION['user']['correo'] ?>',
+											from_user: 1
+										})"
+										href="#contenedor">
+										<i class="fa fa-user"></i> Editar Perfil
+									</a>
+									<a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Configuración</a>
+									<a 
+										class="dropdown-item" 
+										onclick="help_desk.view_user_main({
+											div: 'contenedor',
+											mail: '<?php echo $_SESSION['user']['correo'] ?>',
+											from_user: 1
+										})"
+										href="#contenedor">
+										<i class="fa fa-info"></i> Ayuda
+									</a>
+									<a class="dropdown-item" href="index.php"><i class="fa fa-sign-out"></i> Salir</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<button 
+						class="navbar-toggler" 
+						type="button" 
+						data-toggle="collapse" 
+						data-target="#navbarTogglerDemo01" 
+						aria-controls="navbarTogglerDemo01" 
+						aria-expanded="false" 
+						aria-label="Toggle navigation">
+						<i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i>
+					</button>
+				</nav>
+				<div id="div_search_results"></div>
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-12" id="contenedor">

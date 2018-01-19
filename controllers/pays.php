@@ -1,15 +1,15 @@
 <?php
+error_reporting(0);
+// error_reporting(E_ALL);
+
 //Carga la pays
 require ('controllers/common.php');
-error_reporting(E_ALL);
 //Carga el modelo para este controlador
 require ("models/pays.php");
 
 class pays extends Common {
 	public $paysModel;
 	private $production = 0;
-	private $open_pay_id = "mngsvcdrvfxhfkedj98m";
-	private $open_pay_token = "sk_e9c168c23f464f7eb5a1c1c591d8c21e";
 	
 //Se crea el objeto que instancia al modelo que se va a utilizar
 	function __construct() {
@@ -20,8 +20,20 @@ class pays extends Common {
 	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
-		
 		session_start();
+		
+	// Validate if exists pay without paying
+		$exists['status'] = 0;
+		$exists['request_id'] = $objet['request_id'];
+		$exists = $this -> paysModel -> list_pays($exists);
+		if($exists['total'] > 0){
+			$resp['status'] = 1;
+			$resp['url'] = $exists['rows'][0]['url'];
+			echo json_encode($resp);
+			
+			return;
+		}
+		
 	// Import openpay library
 		require('plugins/openpay/Openpay.php');
 		include('controllers/openpay.php' );
@@ -51,12 +63,12 @@ class pays extends Common {
 		}
 		
 	// Charge
-		$caducidad = date('Y-m-d');
+		$caducidad = date('Y-m-d H:i:s');
 		$caducidad = strtotime('+3 day',strtotime($caducidad));
 		$data = array(
 		    'method' => 'store',
 		    'amount' => $objet['cost_request'],
-		    'description' => 'Costo por derecho de solicitud',
+		    'description' => 'Costo por derecho de solicitud Num. '.$objet['request_id'],
 		    'due_date' => date('Y-m-d',$caducidad)
 		);
 		$cargo = $customer->charges->create($data);
@@ -74,10 +86,12 @@ class pays extends Common {
 		unset($googl);
 		
 	// Save the pay in the DB
-		$data_pay['date'] = $cargo -> creation_date;
+		$data_pay['user_id'] = $_SESSION['user']['id'];
+		$data_pay['request_id'] = $objet['request_id'];
 		$data_pay['pay_id'] = $cargo -> id;
 		$data_pay['reference'] = $cargo->payment_method->reference;
-		$data_pay['user_id'] = $_SESSION['user']['id'];
+		$data_pay['date'] = $cargo -> creation_date;
+		$data_pay['due_date'] = date('Y-m-d',$caducidad);
 		$resp['result'] = $this -> paysModel -> save_pay($data_pay);
 		
 		$resp['status'] = 1;

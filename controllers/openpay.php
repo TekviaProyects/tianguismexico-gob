@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-
-
 class openpayObject {
 // Initialize vars
 	private $id = "mngsvcdrvfxhfkedj98m";
