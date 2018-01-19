@@ -52,7 +52,7 @@ session_destroy();
 								</li>
 							</ul>
 							<div class="mb20"></div>
-							<strong>Levantar una nueva solicitud? <a href="signup.php">Registrala</a></strong>
+							<strong><a href="signup.php">Registrarse</a></strong>
 						</div><!-- signin0-info -->
 					</div><!-- col-sm-7 -->
 					<div class="col-md-5">

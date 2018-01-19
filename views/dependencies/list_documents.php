@@ -8,15 +8,15 @@
 				</span>
 			</h3>
 		</div><?php
-		
+
 		return;
 	}
 ?>
 <table class="table table-striped table-bordered" cellspacing="0" width="100%" id="documents_table">
 	<thead>
 		<tr>
-			<th>document</th>
-			<th><i class="fa fa-search"></i> Ver</th>
+			<th>Manuales</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody><?php
@@ -25,14 +25,14 @@
 				<td><?php echo $value['name'] ?></td>
 				<td align="center">
 					<button
-						data-toggle="modal" 
+						data-toggle="modal"
 						data-target="#modal_details"
 						class="btn btn-primary btn-block btnSubir"
 						onclick="dependencies.load_pdf({
 							url: '<?php echo $value['url'] ?>',
 							from_user: 1
 						})">
-						<i class="fa fa-search fa-lg"></i> Ver
+						<i class="fa fa-search fa-lg"></i> Consultar
 					</button>
 				</td>
 			</tr><?php
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a 
+				<a
 					href=""
 					download=""
 					id="btn_dowload_document"
