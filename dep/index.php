@@ -347,9 +347,9 @@ session_start();
 					</div><!-- header-right -->
 				</div><!-- headerbar -->
 				<div class="pageheader">
-					<h2><i class="fa fa-home"></i> Administrador <span>Direccion de licencias.</span></h2>
+					<h2><i class="fa fa-home"></i> Administrador <span>Dirección de licencias.</span></h2>
 					<div class="breadcrumb-wrapper">
-						<span class="label">Tu estas a qui:</span>
+						<span class="label">Tu estas aquí:</span>
 						<ol class="breadcrumb">
 							<li>
 								<a href="index.php">Inicio</a>
