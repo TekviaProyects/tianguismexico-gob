@@ -98,7 +98,8 @@
 									if ($value['status'] == 0) { ?>
 										<button 
 											onclick="requests.new_pay({
-												from_user: 1
+												from_user: 1,
+												cost_request: <?php echo $value['cost_request'] ?>
 											})"
 											class="btn btn-primary btn-block">
 											<i class="fa fa-check fa-lg"></i> Pagar

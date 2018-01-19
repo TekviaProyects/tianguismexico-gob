@@ -1,6 +1,6 @@
 <?php
 // Validate the documents
-	if (empty($documents)) {?>
+	if (empty($documents)) { ?>
 		<div align="center">
 			<h3>
 				<span class="label label-default">
