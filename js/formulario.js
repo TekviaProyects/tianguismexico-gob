@@ -328,7 +328,7 @@ $(document).ready(function() {
 			success : function(data) {
 				console.log(data);
 
-				location.href = "panel.php";
+				// location.href = "panel.php";
 
 				swal({
 					title : 'Registro Exitoso',
@@ -339,6 +339,8 @@ $(document).ready(function() {
 					confirmButtonText : 'ACEPTAR',
 					cancelButtonText : 'NO'
 				});
+				
+				$('#panelR').html('');
 			},
 			error : function(e) {
 			}

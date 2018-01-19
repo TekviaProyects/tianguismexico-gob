@@ -811,8 +811,41 @@ var requests = {
 			$('#div_search_results').html('');
 			$('#search_expedients').focus();
 		}
+	},
+	
+///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
+
+///////////////// ******** ----						new_pay								------ ************ //////////////////
+//////// Generate a new pay
+	// The parameters that can receive are:
+	
+	new_pay : function($objet){
+		"use strict";
+		console.log('==========> $objet new_pay', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=pays&f=new_pay',
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			console.log('==========> Done new_pay', resp);
+			
+		}).fail(function(resp) {
+			console.log('==========> fail !!! new_pay', resp);
+			
+			swal({
+				title : 'Error',
+				text : 'Error al generar el pago',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
 	}
 
-///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
+///////////////// ******** ----						END new_pay							------ ************ //////////////////
 
 };

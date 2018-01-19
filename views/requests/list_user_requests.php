@@ -94,10 +94,20 @@
 										</button><?php
 									} ?>
 								</td>
-								<td align="center">
-									<button class="btn btn-block btn-<?php echo $class ?>" disabled>
-										<?php echo $text ?>
-									</button>
+								<td align="center"><?php
+									if ($value['status'] == 0) { ?>
+										<button 
+											onclick="requests.new_pay({
+												from_user: 1
+											})"
+											class="btn btn-primary btn-block">
+											<i class="fa fa-check fa-lg"></i> Pagar
+										</button><?php
+									} else { ?>
+										<button class="btn btn-block btn-<?php echo $class ?>" disabled>
+											<?php echo $text ?>
+										</button><?php
+									}?>
 								</td>
 							</tr><?php
 						} ?>
