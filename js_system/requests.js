@@ -1,10 +1,10 @@
-/*jslint plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */ 
+/*jslint plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
 /*global define, $, jQuery, swal, pdf, jsPDF */
 /*jslint browser: true*/
 var requests = {
 // Initialize vars
 	data_messages:{},
-	
+
 ///////////////// ******** ----							list_requests						------ ************ //////////////////
 //////// Check the requests and loaded the view
 	// The parameters that can receive are:
@@ -13,16 +13,31 @@ var requests = {
 		// state -> Dependencie state
 		// municipality -> Dependencie municipality
 		// status -> Requests status
-		
+
 	list_requests : function($objet){
 		"use strict";
 		console.log('==========> $objet list_requests', $objet);
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-	
+
 	// Hide menu on mobile
+<<<<<<< HEAD
+		var body = jQuery('body');
+		function adjustmainpanelheight() {
+			var docHeight = jQuery(document).height();
+			if (docHeight > jQuery('.mainpanel').height())
+				jQuery('.mainpanel').height(docHeight);
+		}
+		if (body.hasClass('leftpanel-show'))
+			body.removeClass('leftpanel-show');
+		else
+			body.addClass('leftpanel-show');
+		adjustmainpanelheight();
+
+=======
 		$("#wrapper").removeClass("toggled");
 		
+>>>>>>> c99e37519011a278b3a03a76ad4b5a0d2798b8c0
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=list_requests',
@@ -30,15 +45,15 @@ var requests = {
 			dataType : 'html'
 		}).done(function(resp) {
 			console.log('==========> done list_requests', resp);
-			
+
 			if(!$objet.div){
 				$objet.div = 'contenedor';
 			}
-			
+
 			$("#"+$objet.div).html(resp);
 		}).fail(function(resp) {
 			console.log('==========> fail !!! list_requests', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se puede cargar la vista',
@@ -61,11 +76,11 @@ var requests = {
 		// formato -> Name format archive
 		// fotos -> Name photo archive
 		// identificacion -> Name identification archive
-		
+
 	load_info_buttons : function($objet){
 		"use strict";
 		console.log('==========> $objet load_info_buttons', $objet);
-		
+
 	// Clean document and coment
 		$("#image_view").attr("src", "");
 		$('#div_write_coment').html('');
@@ -74,7 +89,7 @@ var requests = {
 		$('#google_map').hide();
 		$('#google_street').hide();
 		$('#div_format').hide();
-		
+
 	// Quests
 		$("#btn_c_aceptacion").attr("request_id", $objet.id);
 		$("#btn_c_delegado").attr("request_id", $objet.id);
@@ -83,7 +98,7 @@ var requests = {
 		$("#btn_formato").attr("request_id", $objet.id);
 		$("#btn_fotos").attr("request_id", $objet.id);
 		$("#btn_identificacion").attr("request_id", $objet.id);
-		
+
 	// Archive
 		$("#btn_c_aceptacion").attr("archive", $objet.c_aceptacion);
 		$("#btn_c_delegado").attr("archive", $objet.c_delegado);
@@ -95,11 +110,11 @@ var requests = {
 		$("#btn_fotos").attr("f3", $objet.f3);
 		$("#btn_fotos").attr("f4", $objet.f4);
 		$("#btn_identificacion").attr("archive", $objet.identificacion);
-		
+
 	// coordenates
 		$("#btn_croquis").attr("lat", $objet.lat);
 		$("#btn_croquis").attr("lng", $objet.lng);
-	
+
 	// Coment
 		$("#btn_coment").attr("coment", $objet.coment);
 	},
@@ -111,13 +126,13 @@ var requests = {
 	// The parameters that can receive are:
 		// archive -> Name archive to load
 		// request_id -> Quest ID
-		
+
 	load_document : function($objet){
 		"use strict";
 		console.log('==========> $objet load_document', $objet);
-		
+
 		$objet.archive = $objet.archive || '';
-		
+
 	// Clean coment and load document
 		$('#div_write_coment').html('');
 		$('#div_format').html('');
@@ -127,11 +142,11 @@ var requests = {
 		$('#div_format').hide();
 		$("#image_view").attr("src", $objet.archive);
 		$("#btn_dowload_document").attr("href", $objet.archive);
-		
+
 	// Document name
 		var tarr = $objet.archive.split('/');
 		var file = tarr[tarr.length-1];
-		
+
 		$("#btn_dowload_document").attr("download", file);
 	},
 
@@ -142,13 +157,16 @@ var requests = {
 	// The parameters that can receive are:
 		// status -> Request status
 		// request_id -> Quest ID
-		
+
 	authorize : function($objet){
 		"use strict";
 		console.log('==========> $objet authorize', $objet);
-		
+
 		$("#btn_authorize").attr("status", $objet.status);
 		$("#btn_authorize").attr("request_id", $objet.id);
+		$("#btn_authorize").attr("user_id", $objet.user_id);
+		$("#btn_authorize").attr("estadomx", $objet.estadomx);
+		$("#btn_authorize").attr("municipiomx", $objet.municipiomx);
 	},
 
 ///////////////// ******** ----						END authorize							------ ************ //////////////////
@@ -159,11 +177,11 @@ var requests = {
 		// request_id -> Request ID
 		// status -> 1-> Approved, 2-> Denied
 		// coment -> Request coment
-		
+
 	update_authorize : function($objet){
 		"use strict";
 		console.log('==========> $objet update_authorize', $objet);
-		
+
 	// Validate the coment if the requet is denied
 		if($objet.status === "2" && $objet.coment === ""){
 			swal({
@@ -173,12 +191,12 @@ var requests = {
 				showConfirmButton : true,
 				type : 'warning'
 			});
-			
+
 			return;
 		}
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=update_authorize',
@@ -186,10 +204,18 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done update_authorize', resp);
-			
+
+
+
+					return;
+
+
+
+
+
 			$('#btn_approved_'+$objet.request_id).prop('disabled', true);
 			$('#btn_denied_'+$objet.request_id).prop('disabled', true);
-		
+
 		// Hide buttons
 			if($objet.status === "1"){
 				$('#btn_denied_'+$objet.request_id).hide();
@@ -197,10 +223,10 @@ var requests = {
 			if($objet.status === "2"){
 				$('#btn_approved_'+$objet.request_id).hide();
 			}
-			
+
 		// Hide modal
 			$("#modal_authorize").modal('hide');
-		
+
 		// Loaded format aprobation
 			if($objet.status === "1"){
 				requests.load_format({
@@ -213,7 +239,7 @@ var requests = {
 			}
 		}).fail(function(resp) {
 			console.log('==========> fail !!! update_authorize', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se puede autorizar la solicitud',
@@ -231,11 +257,11 @@ var requests = {
 	// The parameters that can receive are:
 		// request_id -> Request ID
 		// div -> Div where the content is loaded
-		
+
 	load_format : function($objet){
 		"use strict";
 		console.log('==========> $objet load_format', $objet);
-		
+
 	// Clean document and coment
 		$("#image_view").attr("src", "");
 		$('#div_write_coment').html('');
@@ -244,9 +270,9 @@ var requests = {
 		$('#google_map').hide();
 		$('#google_street').hide();
 		$('#div_format').show();
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'pdf.php?request_id='+$objet.request_id,
@@ -254,11 +280,11 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done load_format', resp);
-			
+
 			$("#modal_details").modal('show');
-				
+
 			var url = folder+resp;
-			
+
 			$.ajax({
 				data : {url: url},
 				url : folder+'pdfjs.php?url='+url,
@@ -266,13 +292,13 @@ var requests = {
 				dataType : 'html'
 			}).done(function(resp_html) {
 				console.log('==========> done pdfjs', resp_html);
-				
+
 				$("#div_format").html(resp_html);
-				
+
 				$("#btn_dowload_document").attr("href", folder+resp);
 			}).fail(function(resp) {
 				console.log('==========> fail !!! pdfjs', resp);
-				
+
 				swal({
 					title : 'Error',
 					text : 'No se puede cargar el formato',
@@ -283,7 +309,7 @@ var requests = {
 			});
 		}).fail(function(resp) {
 			console.log('==========> fail !!! load_format', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se puede cargar el formato',
@@ -301,11 +327,11 @@ var requests = {
 	// The parameters that can receive are:
 		// state -> Dependencie state
 		// municipality -> Dependencie municipality
-		
+
 	main_requests : function($objet){
 		"use strict";
 		console.log('==========> $objet main_requests', $objet);
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
 		$objet.json = 1;
 		$.ajax({
@@ -315,11 +341,11 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done main_requests', resp);
-			
+
 			var sum_fixed = 0,
 				sum_semi_fixed = 0,
 				sum_walking = 0;
-				
+
 			$.each(resp, function(key, value){
 				switch(value.estado) {
 				    case "Fijo":
@@ -338,7 +364,7 @@ var requests = {
 			});
 		}).fail(function(resp) {
 			console.log('==========> fail !!! main_requests', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se puede cargar la vista',
@@ -355,11 +381,11 @@ var requests = {
 //////// Check the requests and write the values
 	// The parameters that can receive are:
 		// mail -> User mail
-		
+
 	main_user_requests : function($objet){
 		"use strict";
 		console.log('==========> $objet main_user_requests', $objet);
-		
+
 		$objet.json = 1;
 		$.ajax({
 			data : $objet,
@@ -368,11 +394,11 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done main_user_requests', resp);
-			
+
 			var sum_aceppted = 0,
 				sum_rejected = 0,
 				sum_requests = 0;
-				
+
 			$.each(resp, function(key, value){
 				switch(value.status) {
 				    case "0":
@@ -391,7 +417,7 @@ var requests = {
 			});
 		}).fail(function(resp) {
 			console.log('==========> fail !!! main_user_requests', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se pueden cargar las solicitudes',
@@ -411,13 +437,13 @@ var requests = {
 		// from -> Origen message(user mail or estate and municipality dependencie)
 		// to -> Destination message(user mail or estate and municipality dependencie)
 		// request_id -> Request id
-		
+
 	load_messages : function($objet){
 		"use strict";
 		console.log('==========> $objet load_messages', $objet);
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=load_messages',
@@ -425,15 +451,15 @@ var requests = {
 			dataType : 'html'
 		}).done(function(resp) {
 			console.log('==========> done load_messages', resp);
-			
+
 			if(!$objet.div){
 				$objet.div = 'contenedor';
 			}
-			
+
 			$("#"+$objet.div).html(resp);
 		}).fail(function(resp) {
 			console.log('==========> fail !!! load_messages', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se puede cargar la vista',
@@ -454,18 +480,18 @@ var requests = {
 		// request_id -> Request ID
 		// message -> Message to send
 		// div -> Div where the message is loaded
-		
+
 	send_message : function($objet) {
 		"use strict";
-		var $message = '',	
+		var $message = '',
 			content = '',
 			folder = ($objet.from_user === 1) ? '' : '../';
-	
+
 	// Remove enter, tab, doble space, etc.
 		$objet.message = $objet.message.replace(/\s\s+/g, ' ');
 		console.log('===============> $objet send_message', $objet);
 		console.log('===============> requests.data_messages', requests.data_messages);
-		
+
 	// ** Validate that el message no are empty
 		if($objet.message === ""){
 			$message = 'Escribe algo';
@@ -475,11 +501,11 @@ var requests = {
 				autoHideDelay : 4000,
 				className : 'warn'
 			});
-			
+
 			$('#message').val('');
 			return;
 		}
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=send_message',
@@ -487,7 +513,7 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done load_messages', resp);
-			
+
 			switch(resp.status) {
 			    case 1:
 			        var f = new Date(),
@@ -512,7 +538,7 @@ var requests = {
 						autoHideDelay : 4000,
 						className : 'warn'
 					});
-					
+
 					$('#message').val('');
 			        break;
 			    default:
@@ -526,7 +552,7 @@ var requests = {
 			}
 		}).fail(function(resp) {
 			console.log('==========> fail !!! load_messages', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'Error al enviar el mensaje',
@@ -538,32 +564,47 @@ var requests = {
 	},
 
 ///////////////// ******** ----					END send_message						------ ************ //////////////////
-	
+
 ///////////////// ******** ----					new_request								------ ************ //////////////////
 //////// Load the view to create a new requet
 	// The parameters that can receive are:
 		// mail -> User mail
-		
+
 	new_request : function($objet){
 		"use strict";
 		console.log('==========> $objet new_request', $objet);
-		
+
 		$("#btn_new_request").prop("disabled", true);
-		
+
 	// Hide menu on mobile
+<<<<<<< HEAD
+		var body = jQuery('body');
+		function adjustmainpanelheight() {
+			var docHeight = jQuery(document).height();
+			if (docHeight > jQuery('.mainpanel').height())
+				jQuery('.mainpanel').height(docHeight);
+		}
+		if (body.hasClass('leftpanel-show'))
+			body.removeClass('leftpanel-show');
+		else
+			body.addClass('leftpanel-show');
+		adjustmainpanelheight();
+
+=======
 		$("#wrapper").removeClass("toggled");
 		
+>>>>>>> c99e37519011a278b3a03a76ad4b5a0d2798b8c0
 		swal({
 			title : '',
 			imageUrl : 'resources/images/spiner.gif',
 			text : 'Cargando información',
 			showConfirmButton : false
 		});
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'new.php?'+'&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
-		
+
 		$("#btn_new_request").prop("disabled", false);
 		swal.close();
 	},
@@ -574,11 +615,11 @@ var requests = {
 //////// Conver a div en 360 container
 	// The parameters that can receive are:
 		// folder -> content images folder
-		
+
 	covert_360 : function($objet){
 		"use strict";
 		console.log('==========> $objet covert_360', $objet);
-		
+
 	// Clean coment and load document
 		$('#div_write_coment').html('');
 		$('#div_format').html('');
@@ -588,9 +629,9 @@ var requests = {
 		$('#div_format').hide();
 		$("#image_view").attr("src", "");
 		$("#btn_dowload_document").attr("href", '');
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'360.php',
@@ -598,14 +639,14 @@ var requests = {
 			dataType : 'html'
 		}).done(function(resp) {
 			$("#div_360").html(resp);
-			
+
 			$('.carousel').carousel({
 				interval: 3000,
 				pause: null
 			});
 		}).fail(function(resp) {
 			console.log('==========> fail !!! new_request', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se pueden cargar la vista',
@@ -625,23 +666,23 @@ var requests = {
 		// mail -> New user mail
 		// reason -> Reason to transfer
 		// cost -> Cost of the dependencie
-		
+
 	transfer_rights : function($objet){
 		"use strict";
-	
+
 	// ** Validations
 		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 			canvas1 = document.getElementById("canvas1"),
 			dataURL1 = canvas1.toDataURL(),
 			canvas2 = document.getElementById("canvas2"),
 			dataURL2 = canvas2.toDataURL();
-		
+
 		re = re.test($objet.mail.toLowerCase());
 		$objet.transferor = dataURL1;
 		$objet.assignee = dataURL2;
-		
+
 		console.log('==========> $objet transfer_rights', $objet);
-		
+
 		if(re === false){
 			swal({
 				title : 'Datos no validos',
@@ -650,10 +691,10 @@ var requests = {
 				showConfirmButton : true,
 				type : 'warning'
 			});
-			
+
 			return;
 		}
-		
+
 		if($objet.reason === ""){
 			swal({
 				title : 'Datos no validos',
@@ -662,10 +703,10 @@ var requests = {
 				showConfirmButton : true,
 				type : 'warning'
 			});
-			
+
 			return;
 		}
-		
+
 		if(parseInt($objet.canva1) === 0 || parseInt($objet.canva2) === 0){
 			swal({
 				title : 'Datos no validos',
@@ -674,14 +715,14 @@ var requests = {
 				showConfirmButton : true,
 				type : 'warning'
 			});
-			
+
 			return;
 		}
-		
+
 		$("#btn_transfer").prop("disabled", true);
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=transfer_rights',
@@ -689,9 +730,9 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done transfer_rights', resp);
-			
+
 			$("#btn_transfer").prop("disabled", false);
-			
+
 			if(resp.status === 2){
 				swal({
 					title : 'Datos no validos',
@@ -700,10 +741,10 @@ var requests = {
 					showConfirmButton : true,
 					type : 'warning'
 				});
-				
+
 				return;
 			}
-			
+
 			swal({
 				title : 'Cesión de derechos solicitada',
 				text : 'La solicitud de la cesión de derechos ha sido creada exitosamente',
@@ -713,7 +754,7 @@ var requests = {
 			});
 		}).fail(function(resp) {
 			console.log('==========> fail !!! transfer_rights', resp);
-			
+
 			$("#btn_transfer").prop("disabled", false);
 			swal({
 				title : 'Error',
@@ -735,16 +776,16 @@ var requests = {
 		// assignee -> Base 64 string with the frim of the assignee
 		// transferor -> Base 64 string with the frim of the transferor
 		// date -> Create request date
-		
+
 	details_transfer : function($objet){
 		"use strict";
 		console.log('==========> $objet details_transfer', $objet);
-		
+
 		$('#div_reason').html($objet.reason);
 		$('#div_date').html($objet.date);
 		$("#img_assignee").attr('src', $objet.assignee);
 		$("#img_transferor").attr('src', $objet.transferor);
-		
+
 	},
 
 ///////////////// ******** ----						END details_transfer				------ ************ //////////////////
@@ -754,13 +795,13 @@ var requests = {
 	// The parameters that can receive are:
 		// id -> Request ID
 		// div -> Div where the content is loaded
-		
+
 	view_upload_files : function($objet){
 		"use strict";
 		console.log('==========> $objet view_upload_files', $objet);
-		
+
 		var folder = ($objet.from_user === 1) ? '' : '../';
-		
+
 		$.ajax({
 			data : $objet,
 			url : folder+'views/solicitudDenegada/ejemplo.php?request_id='+$objet.id,
@@ -770,11 +811,11 @@ var requests = {
 			if(!$objet.div){
 				$objet.div = 'contenedor';
 			}
-			
+
 			$("#"+$objet.div).html(resp);
 		}).fail(function(resp) {
 			console.log('==========> fail !!! view_upload_files', resp);
-			
+
 			swal({
 				title : 'Error',
 				text : 'No se puede cargar la vista',

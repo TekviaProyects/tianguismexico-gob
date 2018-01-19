@@ -26,9 +26,9 @@
 						<tr>
 							<th># Solicitud</th>
 							<th>Nombre</th>
-							<th>Mail</th>
+							<th>Correo Electronico</th>
 							<th>Fecha</th>
-							<th>Documentacion</th>
+							<th>Documentación</th>
 							<th>Aprobar</th>
 							<th>Denegar</th>
 						</tr>
@@ -50,6 +50,11 @@
 									$hidden_su = ' style="display: none"';
 									$disabled = ' disabled';
 									$hidden_da = '';
+									break;
+								case 3:
+									$hidden_su = ' style="display: none"';
+									$disabled = ' disabled';
+									$hidden_da = ' style="display: none"';
 									break;
 							} ?>
 
@@ -106,6 +111,8 @@
 											class="btn btn-success btn-block"
 											onclick="requests.authorize({
 												id: <?php echo $value['id'] ?>,
+												user_id: <?php echo $value['user_id'] ?>,
+												estadomx: <?php echo $value['estadomx'] ?>,
 												status: 1
 											})">
 											<i class="fa fa-check fa-lg"></i>
@@ -122,6 +129,9 @@
 										class="btn btn-danger btn-block"
 										onclick="requests.authorize({
 											id: <?php echo $value['id'] ?>,
+											user_id: <?php echo $value['user_id'] ?>,
+											estadomx: <?php echo $value['estadomx'] ?>,
+											municipiomx: '<?php echo $value['municipiomx'] ?>',
 											status: 2
 										})">
 										<i class="fa fa-ban fa-lg"></i>
@@ -286,11 +296,16 @@
 					id="btn_authorize"
 					status=""
 					request_id=""
+					user_id=""
+					estadomx=""
+					municipiomx=""
 					type="button"
 					class="btn btn-info"
 					onclick="requests.update_authorize({
 						status: $(this).attr('status'),
 						request_id: $(this).attr('request_id'),
+						user_id: $(this).attr('user_id'),
+						estadomx: $(this).attr('estadomx'),
 						coment: $('#coment').val(),
 						state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 						municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
