@@ -21,23 +21,8 @@ var requests = {
 		var folder = ($objet.from_user === 1) ? '' : '../';
 
 	// Hide menu on mobile
-<<<<<<< HEAD
-		var body = jQuery('body');
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				jQuery('.mainpanel').height(docHeight);
-		}
-		if (body.hasClass('leftpanel-show'))
-			body.removeClass('leftpanel-show');
-		else
-			body.addClass('leftpanel-show');
-		adjustmainpanelheight();
-
-=======
 		$("#wrapper").removeClass("toggled");
 		
->>>>>>> c99e37519011a278b3a03a76ad4b5a0d2798b8c0
 		$.ajax({
 			data : $objet,
 			url : folder+'ajax.php?c=requests&f=list_requests',
@@ -577,23 +562,8 @@ var requests = {
 		$("#btn_new_request").prop("disabled", true);
 
 	// Hide menu on mobile
-<<<<<<< HEAD
-		var body = jQuery('body');
-		function adjustmainpanelheight() {
-			var docHeight = jQuery(document).height();
-			if (docHeight > jQuery('.mainpanel').height())
-				jQuery('.mainpanel').height(docHeight);
-		}
-		if (body.hasClass('leftpanel-show'))
-			body.removeClass('leftpanel-show');
-		else
-			body.addClass('leftpanel-show');
-		adjustmainpanelheight();
-
-=======
 		$("#wrapper").removeClass("toggled");
 		
->>>>>>> c99e37519011a278b3a03a76ad4b5a0d2798b8c0
 		swal({
 			title : '',
 			imageUrl : 'resources/images/spiner.gif',

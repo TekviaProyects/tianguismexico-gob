@@ -65,21 +65,20 @@ class pays extends Common {
 		$link = ($this->production == 0) ? 'sandbox-dashboard.openpay.mx' : 'dashboard.openpay.mx';
 		$link = "https://".$link."/paynet-pdf/mngsvcdrvfxhfkedj98m/".$cargo->payment_method->reference;
 		
-		echo $link;
-		return;
 	// Google short link
 		require_once('plugins/google-api-php-client-2.2.0/vendor/autoload.php');
 		require_once('controllers/Googl.class.php');
 		$original = $link;
 		$googl = new Googl('AIzaSyCsZOvqzL9c7_O7Fj7t3FDt77nejjwbZXw');
-		$resp['url'] = $data['url'] = $googl->shorten($link);
+		$resp['url'] = $data_pay['url'] = $googl->shorten($link);
 		unset($googl);
 		
 	// Save the pay in the DB
-		$data['date'] = $cargo -> creation_date;
-		$data['pay_id'] = $cargo -> id;
-		$data['user_id'] = $_SESSION['usuario']['id'];
-		$resp['result'] = $this -> paysModel -> save_pay($data);
+		$data_pay['date'] = $cargo -> creation_date;
+		$data_pay['pay_id'] = $cargo -> id;
+		$data_pay['reference'] = $cargo->payment_method->reference;
+		$data_pay['user_id'] = $_SESSION['user']['id'];
+		$resp['result'] = $this -> paysModel -> save_pay($data_pay);
 		
 		$resp['status'] = 1;
 		echo json_encode($resp);
