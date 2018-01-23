@@ -93,3 +93,16 @@
 		document.getElementById('campo11r').value = x;
 	};
 </script>
+
+<script>
+
+			// Imput para busqueda en google maps
+			var input = document.getElementById('in_add');
+			var searchBox = new google.maps.places.SearchBox(input);
+			map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+			// mostrar resultados de la busqueda
+			map.addListener('bounds_changed', function() {
+				searchBox.setBounds(map.getBounds());
+			});
+</script>
