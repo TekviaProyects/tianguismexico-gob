@@ -97,18 +97,7 @@
 		<input name="password" type="text" id="passwordr">
 	</form>
 </div>
-
-<!-- <script src="js/jquery-1.11.1.min.js"></script> -->
-<!-- <script src="js/jquery-migrate-1.2.1.min.js"></script> -->
-<!-- <script src="js/bootstrap.min.js"></script> -->
-<!-- <script src="js/modernizr.min.js"></script> -->
-<!-- <script src="js/jquery.sparkline.min.js"></script> -->
-<!-- <script src="js/jquery.cookies.js"></script> -->
-<!-- <script src="js/toggles.min.js"></script> -->
-<!-- <script src="js/retina.min.js"></script> -->
 <script src="js/select2.min.js"></script>
-<!-- <script src="js/custom.js"></script> -->
-<!-- <script src="assets/sweetalert/dist/sweetalert2.min.js"></script> -->
 <script src="js/subir.js"></script>
 <script src="js/registros.js"></script>
 
