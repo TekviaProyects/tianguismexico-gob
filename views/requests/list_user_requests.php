@@ -99,7 +99,8 @@
 										<button
 											onclick="requests.new_pay({
 												from_user: 1,
-												cost_request: <?php echo $value['cost_request'] ?>
+												cost_request: <?php echo $value['cost_request'] ?>,
+												request_id: <?php echo $value['id'] ?>
 											})"
 											class="btn btn-primary btn-block">
 											<i class="fa fa-check fa-lg"></i> Pagar

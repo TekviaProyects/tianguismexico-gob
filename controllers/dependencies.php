@@ -32,7 +32,6 @@ class dependencies extends Common {
 		// ubication -> Local ubication
 		// zone -> Local zone
 		
-		
 	function save($objet) {
 	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
