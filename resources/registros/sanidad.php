@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="plugins/cropper-master/dist/cropper.min.css">
 <link rel="stylesheet" href="plugins/cropper-master/examples/crop-avatar/css/main.css">
-REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
+<h4> REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD </h4>
+<p></p>
 <div class="col-md-6">
 
 <!-- =====================________________				crop-ine					________________===================== -->
@@ -8,8 +9,8 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	<label class="control-label">Copia de Identificación Oficial.</label>
 	<div id="crop-ine">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -62,7 +63,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -70,41 +71,41 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button class="btn btn-success btn-block" type="submit" id="return4"> regresar </button>
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button class="btn btn-warning btn-block" type="submit" id="return4"> Regresar </button>
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -120,14 +121,14 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________				END crop-ine 				________________===================== -->
-
+	<p></p>
 <!-- =====================________________				crop-sanidad				________________===================== -->
 
 	<label class="control-label">Copia de Carta de Salubridad vigente (en caso de venta de alimentos)</label>
 	<div id="crop-sanidad">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -180,7 +181,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -188,40 +189,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -237,14 +238,14 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________				END crop-sanidad			________________===================== -->
-
+ <p></p>
 <!-- =====================________________				crop-comprobante			________________===================== -->
 
 	<label class="control-label">Copia de comprobante de domicilio actualizado (luz, agua, cable o teléfono).</label>
 	<div id="crop-comprobante">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -297,7 +298,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -305,40 +306,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -354,15 +355,15 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________				END crop-comprobante		________________===================== -->
-
+	<p></p>
 	<label class="control-label">4 Fotografías del puesto panorámicas del punto a instalarse..</label>
 
 <!-- =====================________________					crop-F1					________________===================== -->
 
 	<div id="crop-f1">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -415,7 +416,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -423,40 +424,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -473,12 +474,13 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 
 <!-- =====================________________					END f1					________________===================== -->
 
+<p></p>
 <!-- =====================________________					crop-f2					________________===================== -->
 
 	<div id="crop-f2">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -531,7 +533,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -539,40 +541,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -588,13 +590,13 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________					END f2					________________===================== -->
-
+<p></p>
 <!-- =====================________________					crop-f3					________________===================== -->
 
 	<div id="crop-f3">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -647,7 +649,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -655,40 +657,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -704,13 +706,13 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________					END f3					________________===================== -->
-
+<p></p>
 <!-- =====================________________					crop-f4					________________===================== -->
 
 	<div id="crop-f4">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -763,7 +765,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -771,40 +773,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -820,14 +822,14 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________					END f4					________________===================== -->
-
+<p></p>
 <!-- =====================________________				crop-cdelegado				________________===================== -->
 
 	<label class="control-label">Carta del Delegado o Presidente de colonos / vecinos.</label>
 	<div id="crop-cdelegado">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -880,7 +882,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -888,40 +890,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -937,14 +939,14 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 	</div>
 
 <!-- =====================________________				END crop-cdelegado			________________===================== -->
-
+<p></p>
 <!-- =====================________________				crop-caceptacion			________________===================== -->
 
 	<label class="control-label">Carta del Delegado o Presidente de colonos / vecinos.</label>
 	<div id="crop-caceptacion">
 		<!-- Current avatar -->
-		<div class="avatar-view" title="Subir imagen">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -997,7 +999,7 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -1005,40 +1007,40 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -1052,9 +1054,9 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________				END crop-caceptacion		________________===================== -->
-
+	<p></p>
 	<div class="notoy">
 		<label class="control-label">Copia de Identificación Oficial.</label>
 		<label  for="archivo1" class="btn btn-success btn-block">Subir Foto</label>
@@ -1105,10 +1107,10 @@ REQUISITOS PARA SUBIR ARCHIVOS CON PERMISO DE SANIDAD
 		<br>
 	</div>
 </div>
-<button class="btn btn-success btn-block" type="submit" id="registro2">
+<button class="btn btn-warning" type="submit" id="registro2">
 	Regresar
 </button>
-<button class="btn btn-success btn-block" type="submit" id="registrar2">
+<button class="btn btn-warning" type="submit" id="registrar2">
 	Enviar Solicitud
 </button>
 <script src="js/formulario.js"></script>
