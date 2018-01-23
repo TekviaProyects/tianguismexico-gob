@@ -1,21 +1,28 @@
-Selecciona el tipo de espacio que necesitas. <label class="control-label">Fijo, Semi-Fijo, Ambulante</label>
-<br>
-<select name="estados" id="estados" onchange="mostrarValor1(this.value);">
-	<option value="Fijo">Fijo</option>
-	<option value="Semi-fijo">Semi-Fijo</option>
-	<option value="Ambulante">Ambulante</option>
-</select>
-<br>
-<br>
-
-<div id="google_map" style="width: 100%; height: 90vh">
-
+<div style="padding:2%;" class="">
+	<label>Ingresa Dirección</label>
+	<input style="width:600px;" type="text" class="form-control" id="in_add" aria-describedby="emailHelp">
+	<small id="" class="form-text text-muted">Ingresa tu direccion para que el mapa pueda localizarla</small>
+</div>
+<div style="padding:2%;" class="row">
+	<div class="col">
+		<div id="google_map" style="width: 100%; height: 60vh">
+		</div>
+	</div>
+	<div class="col">
+		<p>Selecciona el tipo de espacio que necesitas.</p>
+		<p>Fijo, Semi-Fijo, Ambulante</p>
+		<p></p>
+		<select style="width:300px;" class="form-control" name="estados" id="estados" onchange="mostrarValor1(this.value);">
+			<option value="Fijo">Fijo</option>
+			<option value="Semi-fijo">Semi-Fijo</option>
+			<option value="Ambulante">Ambulante</option>
+		</select>
+		<p></p>
+		<button class="btn btn-warning" type="button" id="return2"> regresar </button>
+		<button class="btn btn-warning" type="button" id="registro2">Siguiente</button>
+	</div>
 </div>
 
-<button class="btn btn-success btn-block" type="submit" id="return2"> regresar </button>
-<button class="btn btn-success btn-block" type="submit" id="registro2">
-	Siguiente
-</button>
 <script src="js/formulario.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsZOvqzL9c7_O7Fj7t3FDt77nejjwbZXw&libraries=places,geometry&callback=init" async defer></script>
 <script>

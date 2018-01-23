@@ -18,13 +18,13 @@
 	<div class="col-sm-12">
 		<div class="signup-form-container">
 			<div class="form-header">
-				<h3 class="form-title"><i class="fa fa-users"></i> Solicitudes</h3>
+				<h3 class="form-title"><i class="fa fa-drivers-license-o"></i> Permisos Activos</h3>
 			</div>
 			<div class="form-body" style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
 					<thead>
 						<tr>
-							<th># Solicitud</th>
+							<th># Permiso</th>
 							<th>Nombre</th>
 							<th>Mail</th>
 							<th>Fecha</th>
@@ -62,7 +62,7 @@
 								<td><?php echo $value['cost_request'] ?></td>
 								<td align="center"><?php
 									if ($value['status'] == 2) { ?>
-										<button 
+										<button
 											onclick="requests.view_upload_files({
 												id: '<?php echo $value['id'] ?>',
 												from_user: 1
@@ -96,7 +96,7 @@
 								</td>
 								<td align="center"><?php
 									if ($value['status'] == 0) { ?>
-										<button 
+										<button
 											onclick="requests.new_pay({
 												from_user: 1,
 												cost_request: <?php echo $value['cost_request'] ?>
@@ -269,7 +269,7 @@
 			dom : 'Bfrtip',
 			destroy: true,
 			search : "<i class=\"fa fa-search\"></i>",
-			lengthMenu : "_MENU_ por pagina",
+			lengthMenu : "_MENU_ Elementos por Pagina",
 			zeroRecords : "No hay datos.",
 			infoEmpty : "No hay datos para mostrar.",
 			info : " ",

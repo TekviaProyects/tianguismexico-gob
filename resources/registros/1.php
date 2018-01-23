@@ -1,11 +1,16 @@
 <?php session_start(); ?>
-<form method="post" id="formulario" onsubmit="return forM(this)" enctype="multipart/form-data" >
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+<form method="post" id="formulario" onsubmit="return forM(this)" enctype="multipart/form-data" style="padding: 2%;" >
 	<h3 class="nomargin">Llena todos los datos.</h3>
-	<p class="mt5 mb20">
+	<p>
 		Es importante recordar correo y contraseña ya que estos serán necesarios
 		para dar seguimiento al tramite.
 	</p>
-	<div class="mb10">
+
+	<div class="form-group">
 		<div class="" style="display:none;">
 			<label class="control-label">Nombre (s)</label>
 			<input
@@ -70,20 +75,37 @@
 					required="1"/>
 			</div>
 		</div>
-
-		<label class="control-label">Domicilio Particular</label>
-		<input type="text" class="form-control" name="domicilio" id="domicilio" autocomplete="off" required="1"/>
-		<label class="control-label">Colonia</label>
-		<input type="text" class="form-control" name="colonia1" id="colonia1" autocomplete="off" required="1"/>
-		<label class="control-label">Municipio</label>
-		<input type="text" class="form-control" name=" municipio1" id="municipio1" autocomplete="off" required="1"/>
-		<label class="control-label">Código Postal</label>
-		<input type="number" class="form-control" name="postal" id="postal" autocomplete="off" required="1"/>
-		<label class="control-label">Teléfono</label>
-		<input type="number" class="form-control" name=" telefono" id="telefono" autocomplete="off" required="1"/>
+		<div class="row">
+			<div class="col">
+				<label class="control-label">Domicilio Particular</label>
+				<input type="text" class="form-control" name="domicilio" id="domicilio" autocomplete="off" required="1"/>
+			</div>
+			<div class="col">
+				<label class="control-label">Colonia</label>
+				<input type="text" class="form-control" name="colonia1" id="colonia1" autocomplete="off" required="1"/>
+			</div>
+		</div>
+		<p></p>
+		<div class="row">
+			<div class="col">
+				<label class="control-label">Municipio</label>
+				<input type="text" class="form-control" name=" municipio1" id="municipio1" autocomplete="off" required="1"/>
+			</div>
+			<div class="col">
+				<label class="control-label">Código Postal</label>
+				<input type="number" class="form-control" name="postal" id="postal" autocomplete="off" required="1"/>
+			</div>
+		</div>
+		<p></p>
+		<div class="row">
+			<div class="col">
+				<label class="control-label">Teléfono</label>
+				<input type="number" class="form-control" name=" telefono" id="telefono" autocomplete="off" required="1"/>
+			</div>
+		</div>
 	<br/>
 </form>
-<button class="btn btn-success btn-block" type="submit" id="registro1">
+<button class="btn btn-warning" type="button" id="registro1" style="margin-left: 2%;">
 	Siguiente
 </button>
 <script src="js/formulario.js"></script>

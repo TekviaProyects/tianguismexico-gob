@@ -81,7 +81,7 @@
 			dom : 'Bfrtip',
 			destroy: true,
 			search : "<i class=\"fa fa-search\"></i>",
-			lengthMenu : "_MENU_ por pagina",
+			lengthMenu : "_MENU_ Elementos por pagina",
 			zeroRecords : "No hay datos.",
 			infoEmpty : "No hay datos para mostrar.",
 			info : " ",
