@@ -573,10 +573,36 @@ var requests = {
 
 		var folder = ($objet.from_user === 1) ? '' : '../';
 
-		$("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'new.php?'+'&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
-
-		$("#btn_new_request").prop("disabled", false);
-		swal.close();
+		// $("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'new.php?'+'&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
+		
+		
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'new.php',
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			console.log('==========> done transfer_rights', resp);
+			
+			$("#btn_new_request").prop("disabled", false);
+			swal.close();
+			
+			$("#"+$objet.div).html(resp);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! transfer_rights', resp);
+			
+			$("#btn_new_request").prop("disabled", false);
+			swal.close();
+		
+			swal({
+				title : 'Error',
+				text : 'Error al ceder los derechos, intenta mas tarde',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
 	},
 
 ///////////////// ******** ----						END new_request						------ ************ //////////////////
@@ -834,31 +860,42 @@ var requests = {
 		"use strict";
 		console.log('==========> $objet new_pay', $objet);
 		
-		var folder = ($objet.from_user === 1) ? '' : '../';
+		$("#"+$objet.btn).prop('disabled', true);
+		$("#"+$objet.btn).html('Cargando...');
 		
-		$.ajax({
-			data : $objet,
-			url : folder+'ajax.php?c=pays&f=new_pay',
-			type : 'post',
-			dataType : 'json'
-		}).done(function(resp) {
-			console.log('==========> Done new_pay', resp);
-			
-			var link = document.createElement('a');
-			link.href = resp.url;
-			link.download = 'ficha.pdf';
-			link.dispatchEvent(new MouseEvent('click'));
-		}).fail(function(resp) {
-			console.log('==========> fail !!! new_pay', resp);
-			
-			swal({
-				title : 'Error',
-				text : 'Error al generar el pago',
-				timer : 5000,
-				showConfirmButton : true,
-				type : 'error'
+		setTimeout(function(){
+			var folder = ($objet.from_user === 1) ? '' : '../';
+		
+			$.ajax({
+				data : $objet,
+				url : folder+'ajax.php?c=pays&f=new_pay',
+				type : 'post',
+				dataType : 'json'
+			}).done(function(resp) {
+				console.log('==========> Done new_pay', resp);
+				
+				var link = document.createElement('a');
+				link.href = resp.url;
+				link.download = 'ficha.pdf';
+				link.dispatchEvent(new MouseEvent('click'));
+				
+				$("#"+$objet.btn).prop('disabled', false);
+				$("#"+$objet.btn).html('<i class="fa fa-check fa-lg"></i> Pagar');
+			}).fail(function(resp) {
+				console.log('==========> fail !!! new_pay', resp);
+				
+				$("#"+$objet.btn).prop('disabled', false);
+				$("#"+$objet.btn).html('<i class="fa fa-check fa-lg"></i> Pagar');
+				
+				swal({
+					title : 'Error',
+					text : 'Error al generar el pago',
+					timer : 5000,
+					showConfirmButton : true,
+					type : 'error'
+				});
 			});
-		});
+		}, 100);
 	}
 
 ///////////////// ******** ----						END new_pay							------ ************ //////////////////

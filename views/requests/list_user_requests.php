@@ -97,11 +97,14 @@
 								<td align="center"><?php
 									if ($value['status'] == 0) { ?>
 										<button
+											id="btn_pay_<?php echo $value['id'] ?>"
 											onclick="requests.new_pay({
+												btn: 'btn_pay_<?php echo $value['id'] ?>',
 												from_user: 1,
 												cost_request: <?php echo $value['cost_request'] ?>,
 												request_id: <?php echo $value['id'] ?>
 											})"
+											data-loading-text="Cargando..."
 											class="btn btn-primary btn-block">
 											<i class="fa fa-check fa-lg"></i> Pagar
 										</button><?php

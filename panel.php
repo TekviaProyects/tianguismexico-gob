@@ -76,7 +76,6 @@ if (empty($_SESSION['user'])) {
 				margin-right: -250px;
 			}
 			/* Sidebar Styles */
-
 			.sidebar-nav {
 				/*position: absolute;*/
 				top: 0;
@@ -142,6 +141,9 @@ if (empty($_SESSION['user'])) {
 				right: 0;
 				bottom: 0;
 				text-align: right;
+			}
+			.notoy{
+				display: none !important;
 			}
 		</style>
 	</head>
