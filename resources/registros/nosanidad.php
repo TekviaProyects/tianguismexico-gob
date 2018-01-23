@@ -118,7 +118,7 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________				END crop-ine 				________________===================== -->
 
 <!-- =====================________________				crop-comprobante			________________===================== -->
@@ -235,11 +235,11 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________				END crop-comprobante		________________===================== -->
 
 	<label class="control-label">4 Fotografías del puesto panorámicas del punto a instalarse..</label>
-
+	<p></p>
 <!-- =====================________________					crop-F1					________________===================== -->
 
 	<div id="crop-f1">
@@ -353,7 +353,7 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________					END f1					________________===================== -->
 
 <!-- =====================________________					crop-f2					________________===================== -->
@@ -469,7 +469,7 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________					END f2					________________===================== -->
 
 
@@ -478,7 +478,7 @@ de tu celular para completar el registro.</h4>
 	<div id="crop-f3">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -531,7 +531,7 @@ de tu celular para completar el registro.</h4>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -539,40 +539,40 @@ de tu celular para completar el registro.</h4>
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -586,7 +586,7 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________					END f3					________________===================== -->
 
 <!-- =====================________________					crop-f4					________________===================== -->
@@ -594,7 +594,7 @@ de tu celular para completar el registro.</h4>
 	<div id="crop-f4">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -647,7 +647,7 @@ de tu celular para completar el registro.</h4>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -655,40 +655,40 @@ de tu celular para completar el registro.</h4>
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -702,7 +702,7 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________					END f4					________________===================== -->
 
 <!-- =====================________________				crop-cdelegado				________________===================== -->
@@ -711,7 +711,7 @@ de tu celular para completar el registro.</h4>
 	<div id="crop-cdelegado">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -764,7 +764,7 @@ de tu celular para completar el registro.</h4>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -772,40 +772,40 @@ de tu celular para completar el registro.</h4>
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
@@ -819,7 +819,7 @@ de tu celular para completar el registro.</h4>
 		<!-- Loading state -->
 		<div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
 	</div>
-
+	<p></p>
 <!-- =====================________________				END crop-cdelegado			________________===================== -->
 
 <!-- =====================________________				crop-caceptacion			________________===================== -->
@@ -828,7 +828,7 @@ de tu celular para completar el registro.</h4>
 	<div id="crop-caceptacion">
 		<!-- Current avatar -->
 		<div class="avatar-view" title="Subir imagen" style="margin:0%; width:150px; height:150px;">
-			<img src="images/picture.jpg" alt="Subir imagen" onerror="this.src='images/uploadfile.png';">
+			<img src="images/upload.png" alt="Subir imagen" onerror="this.src='images/upload.png';">
 		</div>
 		<!-- Cropping modal -->
 		<div
@@ -881,7 +881,7 @@ de tu celular para completar el registro.</h4>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-90"
 												title="Rotate -90 degrees">
@@ -889,40 +889,40 @@ de tu celular para completar el registro.</h4>
 											</button>
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="-15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="-45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="-45">
 												45º
 											</button>
 										</div>
 										<div class="btn-group">
 											<button
 												type="button"
-												class="btn btn-primary"
+												class="btn btn-warning"
 												data-method="rotate"
 												data-option="90"
 												title="Rotate 90 degrees">
 												<i class="fa fa-repeat"></i>
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="15">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="15">
 												15º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="30">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="30">
 												30º
 											</button>
-											<button type="button" class="btn btn-primary" data-method="rotate" data-option="45">
+											<button type="button" class="btn btn-warning" data-method="rotate" data-option="45">
 												45º
 											</button>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button type="submit" class="btn btn-primary btn-block avatar-save">
+										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>
 									</div>
