@@ -148,7 +148,28 @@ session_destroy();
 									class="form-control uname"
 									name="office" 
 									id="office"/>
-								<label>Correo:</label>
+								¿Con cuántos puestos fijos, semi-fijos y ambulantes cuenta el municipio?
+								<input 
+									required="1" 
+									type="text" 
+									class="form-control pword" 
+									name="num_pues" 
+									id="num_pues"/>
+								¿Cuántos mercados tiene el municipio?
+								<input 
+									required="1" 
+									type="text" 
+									class="form-control pword" 
+									name="num_mer" 
+									id="num_mer"/>
+								¿Cuántos puestos móviles tiene el municipio?
+								<input 
+									required="1" 
+									type="text" 
+									class="form-control pword" 
+									name="num_mo" 
+									id="num_mo"/>
+								<label>Correo:</label> 
 								<input 
 									required="1" 
 									type="email" 

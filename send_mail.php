@@ -37,6 +37,9 @@
 				<div> 
 					Nombre de presidente: " . $_REQUEST['name'] . "<br />
 					Oficina de: " . $_REQUEST['office'] . "<br />
+					Numero de puestos fijos, semi-fijos y ambulantes: " . $_REQUEST['num_pues'] . "<br />
+					Numero de mercados del municipio: " . $_REQUEST['num_mer'] . "<br />
+					Numero de puestos móviles del municipio: " . $_REQUEST['num_mo'] . "<br />
 					Periodo de ejercicio: " . $_REQUEST['period'] . "<br />
 					Correo: " . $_REQUEST['mail'] . "<br />
 					Teléfono: " . $_REQUEST['telefono'] . "<br />

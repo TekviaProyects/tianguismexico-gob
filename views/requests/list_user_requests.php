@@ -18,7 +18,7 @@
 	<div class="col-sm-12">
 		<div class="signup-form-container">
 			<div class="form-header">
-				<h3 class="form-title"><i class="fa fa-users"></i> Solicitudes</h3>
+				<h3 class="form-title"><i class="fa fa-users"></i> Estado de Solicitudes</h3>
 			</div>
 			<div class="form-body" style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
