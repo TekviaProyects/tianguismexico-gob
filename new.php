@@ -10,16 +10,17 @@
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="images/favicon.png" type="image/png">
 		<title>Bienvenido - Nueva Solicitud.</title>
-		<link href="css/style.default.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+		integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 		<link href="assets/css/style.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="assets/sweetalert/dist/sweetalert2.min.css">
 	</head>
 	<body class="signin">
 		<section>
 			<div class="signuppanel">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="signup-info">
+				<div class="">
+					<div class="">
+					<!--	<div class="signup-info">
 							<div class="logopanel">
 								<h1><span></span>Registra una nueva solicitud, o si ya tienes alguna
 								<br>
@@ -59,9 +60,9 @@
 								 						que </br> de lo contrario no podrás finalizar el trámite de Nueva Solicitud. </strong> </h5>
 							<div class="mb20"></div>
 						</div>
-					</div>
+					</div>-->
 
-					<div class="col-md-6">
+					<div class="">
 						<div class="panelR" id="panelR"></div>
 					</div>
 				</div>

@@ -8,10 +8,10 @@
 				</span>
 			</h5>
 		</div><?php
-		
+
 		return;
 	}
-	
+
 	session_start();
 ?>
 <style>
@@ -26,14 +26,14 @@
 		<div>
 			<div>
 				<h5>
-					<i class="fa fa-list"></i> Solicitudes
+					<i class="fa fa-list"></i> Solicitudes Pendientes por Ceder
 				</h5>
 			</div>
 			<div style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
 					<thead>
 						<tr>
-							<th># Solicitud</th>
+							<th># Permiso</th>
 							<th>Cedente</th>
 							<th>Cesionario</th>
 							<th>Documentacion</th>
@@ -43,25 +43,25 @@
 					</thead>
 					<tbody><?php
 						foreach ($transfer_rights as $key => $value) {
-							$class = ''; 
+							$class = '';
 							$text_status = '';
-							
+
 							switch ($value['status']) {
 								case 0:
 									$text_status = 'Pagar ahora';
-									$class = ''; 
+									$class = '';
 									break;
-								
+
 								case 1:
 									$text_status = 'Pendiente';
-									$class = 'warning'; 
+									$class = 'warning';
 									break;
-								
+
 								case 2:
 									$text_status = 'Denegada';
 									$class = 'danger';
 									break;
-								
+
 								case 3:
 									$text_status = 'Aceptada';
 									$class = 'success';
@@ -72,8 +72,8 @@
 								<td><?php echo $value['user_name'] ?></td>
 								<td><?php echo $value['new_user_name'] ?></td>
 								<td align="center">
-									<button 
-										data-toggle="modal" 
+									<button
+										data-toggle="modal"
 										data-target="#modal_details"
 										class="btn btn-primary btn-block"
 										onclick="requests.details_transfer({
@@ -86,9 +86,9 @@
 										<i class="fa fa-list fa-lg"></i>
 									</button>
 								</td>
-								<td align="center" class="<?php echo $class ?>"><?php 
+								<td align="center" class="<?php echo $class ?>"><?php
 									if($value['status'] == 0){ ?>
-										<button 
+										<button
 											class="btn btn-success btn-block"
 											onclick="">
 											<i class="fa fa-usd fa-lg"></i> <?php echo $text_status; ?>
@@ -98,7 +98,7 @@
 									} ?>
 								</td>
 								<td align="center">
-									<button 
+									<button
 										class="btn btn-warning btn-block"
 										onclick="">
 										<i class="fa fa-comments-o fa-lg"></i>
@@ -135,18 +135,18 @@
 				<div class="row">
 					<div class="col-sm-12 col-md-6" align="center">
 						<label>Cedente:</label><br />
-						<img 
+						<img
 							src=""
-							class="img-thumbnail" 
-							id="img_assignee" 
+							class="img-thumbnail"
+							id="img_assignee"
 							onerror="this.src='images/logo.png';"/>
 					</div>
 					<div class="col-sm-12 col-md-6" align="center">
 						<label>Cesionario:</label><br />
-						<img 
+						<img
 							src=""
-							class="img-thumbnail" 
-							id="img_transferor" 
+							class="img-thumbnail"
+							id="img_transferor"
 							onerror="this.src='images/logo.png';"/>
 					</div>
 				</div>
@@ -164,14 +164,14 @@
 		<div >
 			<div>
 				<h5>
-					<i class="fa fa-archive"></i> Nueva solicitud
+					<i class="fa fa-archive"></i> Permisos Disponibles para Ceder
 				</h5>
 			</div>
 			<div style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
 					<thead>
 						<tr>
-							<th># Solicitud</th>
+							<th># Permiso</th>
 							<th>Nombre</th>
 							<th>Mail</th>
 							<th>Fecha</th>
@@ -185,19 +185,19 @@
 							$hidden_da = '';
 							$disabled = '';
 							$class = ''; ?>
-							
+
 							<tr>
 								<td><?php echo $value['id'] ?></td>
 								<td><?php echo $value['nombre'] ?></td>
 								<td><?php echo $value['correo'] ?></td>
 								<td><?php echo $value['date'] ?></td>
 								<td align="center">
-									<button 
+									<button
 										class="btn btn-primary btn-block"
 										onclick="
-											$('#div_new_request').hide(); 
-											$('#div_list_request').hide(); 
-											$('#div_data').show(); 
+											$('#div_new_request').hide();
+											$('#div_list_request').hide();
+											$('#div_data').show();
 											$('#btn_transfer').attr('id_request', <?php echo $value['id'] ?>);
 											$('#btn_transfer').attr('cost', '<?php echo $cost ?>');
 											$('#cost').html('<?php echo $cost ?>');
@@ -233,17 +233,17 @@
 					</div>
 				</form>
 			</div><br /><br />
-			<label>Firma del cedente</label>&nbsp;&nbsp; 
+			<label>Firma del cedente</label>&nbsp;&nbsp;
 			<button class="btn btn-default" id="clearCanvas1">limpiar</button><br />
 			<div class="image">
 				<div id="canvas1Div"> </div>
 			</div>
-			<label>Firma del cesionario</label>&nbsp;&nbsp; 
+			<label>Firma del cesionario</label>&nbsp;&nbsp;
 			<button class="btn btn-default" id="clearCanvas2">limpiar</button><br />
 			<div class="image">
 				<div id="canvas2Div"> </div>
 			</div><br /><br />
-			<button 
+			<button
 				id="btn_transfer"
 				onclick="requests.transfer_rights({
 					from_user: 1,
@@ -277,7 +277,7 @@
 			dom : 'Bfrtip',
 			destroy: true,
 			search : "<i class=\"fa fa-search\"></i>",
-			lengthMenu : "_MENU_ por pagina",
+			lengthMenu : "_MENU_ Elementos por Pagina",
 			zeroRecords : "No hay datos.",
 			infoEmpty : "No hay datos para mostrar.",
 			info : " ",
