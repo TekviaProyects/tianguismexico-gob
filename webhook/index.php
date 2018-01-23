@@ -17,6 +17,7 @@ var_dump($obj);
 $json = json_decode($obj);
 $tipo = $json->type;
 $id = $json->transaction->id;
+
 //Selector que permite realizar una accion dependiendo el tipo de notificacion recibida
 switch ($tipo) {
 	//Procedimiento para notificacion de tipo cargo completado
@@ -24,7 +25,8 @@ switch ($tipo) {
 		if ($json -> transaction -> status == 'completed') {
 		//obtenemos el id de opnepay de la orden de pago
 			$id_orden_open = $json -> transaction -> id;
-		  	
+		  	$html = '';
+			
 		  	try {
 				$update = "	UPDATE
 			  					pays
@@ -36,13 +38,9 @@ switch ($tipo) {
 			} catch (mysqli_sql_exception $e) {
 				$resultado = $e;
 			}
-		  	
-		  	$update = json_encode($update);
-		  	$resultado = json_encode($resultado);
-		  	
 			
 		  	try {
-				$user_mail = "	SELECT
+				$q_user_mail = "SELECT
 				  					u.mail
 				  				FROM
 				  					users u
@@ -52,82 +50,79 @@ switch ($tipo) {
 				  						p.user_id = u.id
 				  				WHERE
 				  					p.pay_id = '".$id_orden_open."'";
-				$resultado = mysqli_query($conexion, $user_mail);
+				$user_mail = mysqli_query($conexion, $q_user_mail);
 				
-				while ($fila = mysqli_fetch_assoc($resultado)) {
+				while ($fila = mysqli_fetch_assoc($user_mail)) {
 					$correo = $fila['mail'];
+				}
+				
+				if (empty($correo)) {
+					$encode = json_encode($json);
+					$correo = 'fertekvia@gmail.com';
+					$html = 'Correo no encontrado:<br>'.$encode;
 				}
 			} catch (mysqli_sql_exception $e) {
 				$correo = $e;
 			}
-		  		$correo = json_encode($correo);
-
-			$mail = new PHPMailer(true);
-
-			//modificar en caso de utilizar un correo distinto a gmail
+			
+			if (empty($html)) {
+				$html = "Tu siguiente compra se completo:<br>
+					        ".$json -> transaction -> description."<br>
+					        Por el monto de $ ".$json -> transaction -> amount;
+			}
+			
+		// Configuration mail
+			$mail = new PHPMailer();
 			$mail -> IsSMTP();
 			$mail -> SMTPAuth = true;
 			$mail -> SMTPSecure = "ssl";
 			$mail -> Host = "smtp.gmail.com";
 			$mail -> Port = 465;
-
-			//Datos de acceso al smtp
 			$mail -> Username = "tekviaprogramacion@gmail.com";
 			$mail -> Password = "tekvia123";
-
-			//Correo e informacion del remitente
-			$mail -> setFrom('tekviaprogramacion@gmail.com', 'Tekvia');
-			//Datos y contenido del correo
+			$mail -> setFrom('tekviaprogramacion@gmail.com', 'Municiapp');
+			
+		// Mail message
 			$mail -> Subject = "Confirmacion de pago";
 			$mail -> AltBody = "Confirmacion de pago";
-			$mail -> MsgHTML("
-				<!DOCTYPE html>
-		        <html>
-		        	<head>
-		        		<meta charset='utf-8'>
-		        		<title>Gracias por tu compra</title>
-		        	</head>
-		        	<body style='background-color:#F2F2F2!important;width:92%!important;margin-left:4px!important;position:absolute!important;'>
-				        <div style='color:#2E2E2E!important;font-family:sans-serif!important;font-size:12px!important;font-weight:normal!important;'>
-				        <div style='background-color:orange!important;width:100%!important;height:75px!important;'>
-				          <img 
-				          	style='height:50px!important;max-width: 60px!important;margin-top:10px!important;margin-left:5px!important;' 
-				          	src='http://municiapp.com/images/logo.png'>
-				        </div>
-					    <div style='color:#2E2E2E!important;font-family:sans-serif!important;margin:8px!important;font-size:12px!important;font-weight:normal!important;'>
-					        <h1>Municiapp</h1>
-					        <div style='width:100%!important;height:2px!important;background-color:#848484!important;'></div>
-					        <h3>Tu siguiente compra se completo</h3><br>
-					        <h3>" . $json -> transaction -> description . "</h3><br>
-					        <h3>Por el monto de $" . $json -> transaction -> amount . "</h3><br>
-					        <h3>Con el ID: " . $id_orden_open . "</h3><br>
-					        <p>Result: $resultado</p></ br>
-					        <p>Query: $update</p></ br>
-					        <p>Correo: $correo</p></ br>
-					        <div style='width:100%!important;height:2px!important;background-color:#848484!important;'></div>
-					        <h2>Ingresa ahora</h2>
-				        </div>
-				        <div style='width:100%!important;height:2px!important;background-color:#848484!important;'></div><br>
-				        <div style='width:100%!important;height:10px!important;background-color:#2E2E2E!important;'></div>
-				        </div>
-		        	</body>
-		        </html>
-	        ");
-			// $mail -> AddReplyTo("$correo");
-			// $mail -> AddAddress("$correo");
-			$mail -> AddReplyTo("fertekvia@gmail.com");
-			$mail -> AddAddress("fertekvia@gmail.com");
+			$mail -> MsgHTML($html);
+			
+		// More configuration mail
+			$mail -> AddReplyTo("$correo");
+			$mail -> AddAddress("$correo");
 			$mail -> IsHTML(true);
-
+			
 		//Envio de correo
 			try {
 				$mail -> send();
 			} catch(phpmailerException $e) {
 				var_dump($e);
 			}
-
 		} elseif ($json -> transaction -> status == 'failed') {
-			var_dump($json -> transaction);
+			$correo = "fertekvia@gmail.com";
+			$mail = new PHPMailer();
+			$mail -> IsSMTP();
+			$mail -> SMTPAuth = true;
+			$mail -> SMTPSecure = "ssl";
+			$mail -> Host = "smtp.gmail.com";
+			$mail -> Port = 465;
+			$mail -> Username = "tekviaprogramacion@gmail.com";
+			$mail -> Password = "tekvia123";
+			$mail -> setFrom('tekviaprogramacion@gmail.com', 'Municiapp');
+			$mail -> Subject = "Funcion de cronJob";
+			$mail -> AltBody = "Esta es la fecha";
+			$algo = json_encode($json);
+			$mail -> MsgHTML($algo);
+			$mail -> AddReplyTo("$correo");
+			$mail -> AddAddress("$correo");
+			$mail -> IsHTML(true);
+			
+			if (!$mail -> send()) {
+				echo 'Message could not be sent.';
+				echo 'Mailer Error: ' . $mail -> ErrorInfo;
+			} else {
+				echo 'Message has been sent';
+			}
 		}
 		break;
 	//No eliminar ya que sera necesario si desea migrar el proyecto a otro host para recibir la aprobacion de webhook
@@ -150,7 +145,7 @@ switch ($tipo) {
 		$mail -> Password = "tekvia123";
 
 		//Correo e informacion del remitente
-		$mail -> setFrom('tekviaprogramacion@gmail.com', 'Tekvia');
+		$mail -> setFrom('tekviaprogramacion@gmail.com', 'Municiapp');
 		//Datos y contenido del correo
 		$mail -> Subject = "Funcion de cronJob";
 		$mail -> AltBody = "Esta es la fecha";
