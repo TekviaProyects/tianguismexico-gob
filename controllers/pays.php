@@ -23,7 +23,7 @@ class pays extends Common {
 		session_start();
 		
 	// Validate if exists pay without paying
-		$exists['status'] = 0;
+		$exists['status'] = " 0 ";
 		$exists['request_id'] = $objet['request_id'];
 		$exists = $this -> paysModel -> list_pays($exists);
 		if($exists['total'] > 0){

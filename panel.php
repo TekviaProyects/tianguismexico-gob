@@ -55,7 +55,7 @@ if (empty($_SESSION['user'])) {
 				width: 0;
 				height: 100%;
 				margin-left: -250px;
-				overflow-y: scroll;
+				/*overflow-y: scroll;*/
 				overflow-x: hidden;
 				background: #000;
 				-webkit-transition: all 0.5s ease;
@@ -76,7 +76,6 @@ if (empty($_SESSION['user'])) {
 				margin-right: -250px;
 			}
 			/* Sidebar Styles */
-
 			.sidebar-nav {
 				/*position: absolute;*/
 				top: 0;
@@ -137,13 +136,26 @@ if (empty($_SESSION['user'])) {
 					margin-right: 0;
 				}
 			}
+			.footer {
+				position: relative;
+				right: 0;
+				bottom: 0;
+				text-align: right;
+			}
+			.notoy{
+				display: none !important;
+			}
 		</style>
 	</head>
 	<body>
 		<div id="wrapper">
 			<!-- Sidebar -->
 			<div id="sidebar-wrapper">
-				<div align="center" style="background-color: #ffbc49">
+				<div 
+					
+					onclick="location.reload()"
+					align="center" 
+					style="background-color: #ffbc49; cursor: pointer">
 					<img src="images/logo.png" style="max-width: 150px" />
 				</div>
 				<ul class="sidebar-nav">
@@ -364,6 +376,64 @@ if (empty($_SESSION['user'])) {
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-12" id="contenedor">
+							<div class="row" style="display: none">
+								<div class="col-sm-6 col-md-3">
+									<div 
+										class="card text-white bg-success mb-3" 
+										onclick="requests.list_requests({
+											div: 'contenedor',
+											status: 1,
+											mail: '<?php echo $_SESSION['user']['correo'] ?>',
+											view: 'list_user_requests',
+											from_user: 1
+										})"
+										style="cursor: pointer">
+										<div class="card-header">
+											Solicitudes Aceptadas
+										</div>
+										<div class="card-body">
+											<i class="fa fa-check fa-3x"></i> <h1 id="sum_aceppted">0</h1>
+										</div>
+									</div>
+								</div><!-- col-sm-6 -->
+								<div class="col-sm-6 col-md-3">
+									<div 
+										class="card text-white bg-danger mb-3" 
+										onclick="requests.list_requests({
+											div: 'contenedor',
+											status: 2,
+											mail: '<?php echo $_SESSION['user']['correo'] ?>',
+											view: 'list_user_requests',
+											from_user: 1
+										})"
+										style="cursor: pointer">
+										<div class="card-header">
+											Solicitudes Rechazada
+										</div>
+										<div class="card-body">
+											<i class="fa fa-times fa-3x"></i> <h1 id="sum_aceppted">0</h1>
+										</div>
+									</div>
+								</div><!-- col-sm-6 -->
+								<div class="col-sm-6 col-md-3">
+									<div 
+										class="card text-white bg-primary mb-3" 
+										onclick="requests.list_requests({
+											div: 'contenedor',
+											mail: '<?php echo $_SESSION['user']['correo'] ?>',
+											view: 'list_user_requests',
+											from_user: 1
+										})"
+										style="cursor: pointer">
+										<div class="card-header">
+											Solicitudes Pendientes
+										</div>
+										<div class="card-body">
+											<i class="fa fa-user fa-3x"></i> <h1 id="sum_aceppted">0</h1>
+										</div>
+									</div>
+								</div><!-- col-sm-6 -->
+							</div><!-- row <--></-->
 						</div>
 					</div>
 				</div>
@@ -411,6 +481,10 @@ if (empty($_SESSION['user'])) {
 <!-- /////////////////// ===================			END JS						=================== /////////////////// -->
 
 	</body>
+	<div class="footer">
+		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> /
+		<a href="aviso.html" style="color: grey !important;">Aviso de privacidad</a>
+	</div>
 </html>
 
 <script>
@@ -418,4 +492,9 @@ if (empty($_SESSION['user'])) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	}); 
+	requests.new_request({
+		div: 'contenedor',
+		view: 'list_user_requests',
+		from_user: 1
+	})
 </script>
