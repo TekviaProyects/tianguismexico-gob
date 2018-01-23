@@ -95,7 +95,6 @@
 </script>
 
 <script>
-
 			// Imput para busqueda en google maps
 			var input = document.getElementById('in_add');
 			var searchBox = new google.maps.places.SearchBox(input);
