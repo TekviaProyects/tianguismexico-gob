@@ -70,15 +70,22 @@ class requestsModel extends Connection {
 		$condition .= (!empty($objet['estado'])) ? ' AND r.estado = \''.$objet['estado'].'\'' : '' ;
 	// Filter by municipality if exists
 		$condition .= (!empty($objet['municipality'])) ? ' AND r.municipiomx = \''.$objet['municipality'].'\'' : '' ;
-
+		
+	// Group
+		$condition .= (!empty($objet['group'])) ? ' GROUP BY = \''.$objet['group'].'\'' : ' GROUP BY r.id' ;
+		
 		$sql = "SELECT
-					r.*, u.id AS user_id, u.name AS user_name, u.curp, d.cost_transfer_rights
+					r.*, u.id AS user_id, u.name AS user_name, u.curp, d.cost_transfer_rights, p.status AS pay_status
 				FROM
 					registros r
 				LEFT JOIN
 						users u
 					ON
 						u.mail = CONVERT(r.correo using utf8) collate utf8_spanish_ci
+				LEFT JOIN
+						pays p
+					ON
+						p.request_id = CONVERT(r.id using utf8) collate utf8_spanish_ci
 				LEFT JOIN
 						dependencies d
 					ON
