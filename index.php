@@ -147,10 +147,12 @@ session_destroy();
 							onclick="
 								$('#wrapper').removeClass('toggled');
 								$('#div_commerce').show();
+								$('#div_frame_video').show();
 								$('#formulario').hide();
 								$('#form_info').hide();
 								$('#div_index').hide();
 								$('#contenedor').hide();
+								$('#div_map').hide();
 								$('#div_404').hide();
 								$('#the_frame').attr('src', 'https://www.youtube.com/embed/6wMYKvaO4zE?rel=0&autoplay=1');
 							">
@@ -660,7 +662,7 @@ session_destroy();
 							Regresar
 						</button>
 					</div>
-					<div align="center" style="display: none">
+					<div align="center" style="display: none" id="div_frame_video">
 						<div class="embed-responsive embed-responsive-21by9">
 							
 						  		<!-- src="https://www.youtube.com/embed/G7ubCKG3Jxc?rel=0&autoplay=1"  -->

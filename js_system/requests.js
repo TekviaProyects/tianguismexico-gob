@@ -850,7 +850,34 @@ var requests = {
 		}
 	},
 	
-///////////////// ******** ----					END view_upload_files					------ ************ //////////////////
+///////////////// ******** ----						END search							------ ************ //////////////////
+
+///////////////// ******** ----						search_dep							------ ************ //////////////////
+//////// Searchs requests
+	// The parameters that can receive are:
+		// sears -> String to search
+		// mail -> User mail
+		
+	search_dep : function($objet){
+		"use strict";
+		console.log('==========> $objet search_dep', $objet);
+		
+		var algo = $('#search_expedients').val();
+		
+		if(algo.length > 0){
+			requests.list_requests({
+				search: $objet.search,
+				view: 'list_user_requests',
+				div: 'div_search_results',
+				mail: $objet.mail
+			});
+		} else{
+			$('#div_search_results').html('');
+			$('#search_expedients').focus();
+		}
+	},
+	
+///////////////// ******** ----					END search_dep							------ ************ //////////////////
 
 ///////////////// ******** ----						new_pay								------ ************ //////////////////
 //////// Generate a new pay

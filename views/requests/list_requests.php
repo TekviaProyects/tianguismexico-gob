@@ -21,126 +21,236 @@
 				<h3 class="form-title"><i class="fa fa-users"></i> Solicitudes</h3>
 			</div>
 			<div class="form-body" style="padding: 30px">
-				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
-					<thead>
-						<tr>
-							<th># Solicitud</th>
-							<th>Nombre</th>
-							<th>Correo Electronico</th>
-							<th>Fecha</th>
-							<th>Documentación</th>
-							<th>Aprobar</th>
-							<th>Denegar</th>
-						</tr>
-					</thead>
-					<tbody><?php
-						foreach ($requests as $key => $value) {
-							$hidden_su = '';
-							$hidden_da = '';
-							$disabled = '';
-							$class = '';
-
-							switch ($value['status']) {
-								case 1:
-									$hidden_da = ' style="display: none"';
-									$disabled = ' disabled';
-									$hidden_su = '';
-									break;
-								case 2:
-									$hidden_su = ' style="display: none"';
-									$disabled = ' disabled';
-									$hidden_da = '';
-									break;
-								case 3:
-									$hidden_su = ' style="display: none"';
-									$disabled = ' disabled';
-									$hidden_da = ' style="display: none"';
-									break;
-							} ?>
-
+				<div class="d-sm-none d-none d-md-block">
+					<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
+						<thead>
 							<tr>
-								<td><?php echo $value['id'] ?></td>
-								<td><?php echo $value['nombre'] ?></td>
-								<td><?php echo $value['correo'] ?></td>
-								<td><?php echo $value['date'] ?></td>
-								<td align="center">
-									<button
-										data-toggle="modal"
-										data-target="#modal_details"
-										class="btn btn-primary btn-block"
-										onclick="requests.load_info_buttons({
-											id: '<?php echo $value['id'] ?>',
-											formato: '<?php echo $value['comprobante'] ?>',
-											identificacion: '<?php echo $value['identificacion'] ?>',
-											c_salubridad: '<?php echo $value['sanidad'] ?>',
-											croquis: '<?php echo $value['fotografia1'] ?>',
-											f1: '<?php echo $value['fotografia1'] ?>',
-											f2: '<?php echo $value['fotografia2'] ?>',
-											f3: '<?php echo $value['fotografia3'] ?>',
-											f4: '<?php echo $value['fotografia4'] ?>',
-											c_delegado: '<?php echo $value['cartadelegado'] ?>',
-											c_aceptacion: '<?php echo $value['cartaaceptacion'] ?>',
-											lat: '<?php echo $value['lat'] ?>',
-											lng: '<?php echo $value['lng'] ?>',
-											coment: '<?php echo $value['comentario'] ?>'
-										})">
-										<i class="fa fa-list fa-lg"></i>
-									</button>
-								</td>
-								<td align="center"><?php
-									if($value['status'] == 1){ ?>
+								<th># Solicitud</th>
+								<th>Nombre</th>
+								<th>Correo Electronico</th>
+								<th>Fecha</th>
+								<th>Documentación</th>
+								<th>Aprobar</th>
+								<th>Denegar</th>
+							</tr>
+						</thead>
+						<tbody><?php
+							foreach ($requests as $key => $value) {
+								$hidden_su = '';
+								$hidden_da = '';
+								$disabled = '';
+								$class = '';
+	
+								switch ($value['status']) {
+									case 1:
+										$hidden_da = ' style="display: none"';
+										$disabled = ' disabled';
+										$hidden_su = '';
+										break;
+									case 2:
+										$hidden_su = ' style="display: none"';
+										$disabled = ' disabled';
+										$hidden_da = '';
+										break;
+									case 3:
+										$hidden_su = ' style="display: none"';
+										$disabled = ' disabled';
+										$hidden_da = ' style="display: none"';
+										break;
+								} ?>
+	
+								<tr>
+									<td><?php echo $value['id'] ?></td>
+									<td><?php echo $value['nombre'] ?></td>
+									<td><?php echo $value['correo'] ?></td>
+									<td><?php echo $value['date'] ?></td>
+									<td align="center">
 										<button
-											id="btn_approved_<?php echo $value['id'] ?>"
 											data-toggle="modal"
 											data-target="#modal_details"
-											class="btn btn-success btn-block"
-											onclick="requests.load_format({
-														request_id: <?php echo $value['id'] ?>,
-														div: 'div_modal_authorize',
-														doc: 'aprobacion'
+											class="btn btn-primary btn-block"
+											onclick="requests.load_info_buttons({
+												id: '<?php echo $value['id'] ?>',
+												formato: '<?php echo $value['comprobante'] ?>',
+												identificacion: '<?php echo $value['identificacion'] ?>',
+												c_salubridad: '<?php echo $value['sanidad'] ?>',
+												croquis: '<?php echo $value['fotografia1'] ?>',
+												f1: '<?php echo $value['fotografia1'] ?>',
+												f2: '<?php echo $value['fotografia2'] ?>',
+												f3: '<?php echo $value['fotografia3'] ?>',
+												f4: '<?php echo $value['fotografia4'] ?>',
+												c_delegado: '<?php echo $value['cartadelegado'] ?>',
+												c_aceptacion: '<?php echo $value['cartaaceptacion'] ?>',
+												lat: '<?php echo $value['lat'] ?>',
+												lng: '<?php echo $value['lng'] ?>',
+												coment: '<?php echo $value['comentario'] ?>'
 											})">
-											Ver permiso
-										</button><?php
-									}else{ ?>
+											<i class="fa fa-list fa-lg"></i>
+										</button>
+									</td>
+									<td align="center"><?php
+										if($value['status'] == 1){ ?>
+											<button
+												id="btn_approved_<?php echo $value['id'] ?>"
+												data-toggle="modal"
+												data-target="#modal_details"
+												class="btn btn-success btn-block"
+												onclick="requests.load_format({
+															request_id: <?php echo $value['id'] ?>,
+															div: 'div_modal_authorize',
+															doc: 'aprobacion'
+												})">
+												Ver permiso
+											</button><?php
+										}else{ ?>
+											<button
+												<?php echo $hidden_su ?>
+												<?php echo $disabled ?>
+												id="btn_approved_<?php echo $value['id'] ?>"
+												data-toggle="modal"
+												data-target="#modal_authorize"
+												class="btn btn-success btn-block"
+												onclick="requests.authorize({
+													id: <?php echo $value['id'] ?>,
+													user_id: <?php echo $value['user_id'] ?>,
+													estadomx: <?php echo $value['estadomx'] ?>,
+													status: 1
+												})">
+												<i class="fa fa-check fa-lg"></i>
+											</button><?php
+										} ?>
+									</td>
+									<td align="center">
 										<button
-											<?php echo $hidden_su ?>
+											<?php echo $hidden_da ?>
 											<?php echo $disabled ?>
-											id="btn_approved_<?php echo $value['id'] ?>"
+											id="btn_denied_<?php echo $value['id'] ?>"
 											data-toggle="modal"
 											data-target="#modal_authorize"
-											class="btn btn-success btn-block"
+											class="btn btn-danger btn-block"
 											onclick="requests.authorize({
 												id: <?php echo $value['id'] ?>,
 												user_id: <?php echo $value['user_id'] ?>,
 												estadomx: <?php echo $value['estadomx'] ?>,
-												status: 1
+												municipiomx: '<?php echo $value['municipiomx'] ?>',
+												status: 2
 											})">
-											<i class="fa fa-check fa-lg"></i>
-										</button><?php
-									} ?>
-								</td>
-								<td align="center">
+											<i class="fa fa-ban fa-lg"></i>
+										</button>
+									</td>
+								</tr><?php
+							} ?>
+						</tbody>
+					</table>
+				</div>
+				<div class="d-lg-none d-md-none"><?php
+					foreach ($requests as $key => $value) {
+						$hidden_su = '';
+						$hidden_da = '';
+						$disabled = '';
+						$class = '';
+
+						switch ($value['status']) {
+							case 1:
+								$hidden_da = ' style="display: none"';
+								$disabled = ' disabled';
+								$hidden_su = '';
+								break;
+							case 2:
+								$hidden_su = ' style="display: none"';
+								$disabled = ' disabled';
+								$hidden_da = '';
+								break;
+							case 3:
+								$hidden_su = ' style="display: none"';
+								$disabled = ' disabled';
+								$hidden_da = ' style="display: none"';
+								break;
+						} ?>
+						<div class="card text-center" style="margin-bottom: 15px">
+							<div class="card-header">
+								SOLICITUD # <?php echo $value['id'] ?>
+							</div>
+							<div class="card-body">
+								<p class="card-text"><?php echo $value['nombre'] ?></p>
+								<p class="card-text"><?php echo $value['correo'] ?></p>
+								<p class="card-text"><?php echo $value['date'] ?></p>
+								<p class="card-text"><?php echo $value['cost_request'] ?></p>
+							</div>
+							<div class="card-footer text-muted">
+								<button
+									data-toggle="modal"
+									data-target="#modal_details"
+									class="btn btn-primary btn-block"
+									onclick="requests.load_info_buttons({
+										id: '<?php echo $value['id'] ?>',
+										formato: '<?php echo $value['comprobante'] ?>',
+										identificacion: '<?php echo $value['identificacion'] ?>',
+										c_salubridad: '<?php echo $value['sanidad'] ?>',
+										croquis: '<?php echo $value['fotografia1'] ?>',
+										f1: '<?php echo $value['fotografia1'] ?>',
+										f2: '<?php echo $value['fotografia2'] ?>',
+										f3: '<?php echo $value['fotografia3'] ?>',
+										f4: '<?php echo $value['fotografia4'] ?>',
+										c_delegado: '<?php echo $value['cartadelegado'] ?>',
+										c_aceptacion: '<?php echo $value['cartaaceptacion'] ?>',
+										lat: '<?php echo $value['lat'] ?>',
+										lng: '<?php echo $value['lng'] ?>',
+										coment: '<?php echo $value['comentario'] ?>'
+									})">
+									<i class="fa fa-list fa-lg"></i>
+								</button><?php
+								
+								if($value['status'] == 1){ ?>
 									<button
-										<?php echo $hidden_da ?>
+										id="btn_approved_<?php echo $value['id'] ?>"
+										data-toggle="modal"
+										data-target="#modal_details"
+										class="btn btn-success btn-block"
+										onclick="requests.load_format({
+													request_id: <?php echo $value['id'] ?>,
+													div: 'div_modal_authorize',
+													doc: 'aprobacion'
+										})">
+										Ver permiso
+									</button><?php
+								}else{ ?>
+									<button
+										<?php echo $hidden_su ?>
 										<?php echo $disabled ?>
-										id="btn_denied_<?php echo $value['id'] ?>"
+										id="btn_approved_<?php echo $value['id'] ?>"
 										data-toggle="modal"
 										data-target="#modal_authorize"
-										class="btn btn-danger btn-block"
+										class="btn btn-success btn-block"
 										onclick="requests.authorize({
 											id: <?php echo $value['id'] ?>,
 											user_id: <?php echo $value['user_id'] ?>,
 											estadomx: <?php echo $value['estadomx'] ?>,
-											municipiomx: '<?php echo $value['municipiomx'] ?>',
-											status: 2
+											status: 1
 										})">
-										<i class="fa fa-ban fa-lg"></i>
-									</button>
-								</td>
-							</tr><?php
-						} ?>
-					</tbody>
-				</table>
+										<i class="fa fa-check fa-lg"></i>
+									</button><?php
+								} ?>
+								<button
+									<?php echo $hidden_da ?>
+									<?php echo $disabled ?>
+									id="btn_denied_<?php echo $value['id'] ?>"
+									data-toggle="modal"
+									data-target="#modal_authorize"
+									class="btn btn-danger btn-block"
+									onclick="requests.authorize({
+										id: <?php echo $value['id'] ?>,
+										user_id: <?php echo $value['user_id'] ?>,
+										estadomx: <?php echo $value['estadomx'] ?>,
+										municipiomx: '<?php echo $value['municipiomx'] ?>',
+										status: 2
+									})">
+									<i class="fa fa-ban fa-lg"></i>
+								</button>
+							</div>
+						</div><?php
+					} ?>
+				</div>
 			</div>
 		</div>
 	</div>
