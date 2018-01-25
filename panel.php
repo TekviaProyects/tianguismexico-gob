@@ -4,7 +4,16 @@ session_start();
 if (empty($_SESSION['user'])) {
 	echo "<script>location.href='index.php'</script>";
 }
-
+//start codigo para Notificaciones ------------------>
+include("php/conection/conection.php");
+	$num_notification = 0;
+	$consulta = $_SESSION['user']['id'];
+	$notificaciones="SELECT * FROM notifications WHERE user_id = '$consulta' ";
+	$resultado = mysqli_query($conexion,$notificaciones);
+	while ($row = mysqli_fetch_array($resultado)){
+		$mensaje=$row['mensaje'];
+		$num_notification++;
+	}
 ?>
 <!DOCTYPE HTML>
 
@@ -18,7 +27,7 @@ if (empty($_SESSION['user'])) {
 	<!-- fullcalendar -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-		
+
 	<!-- font-awesome -->
 		<link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css">
 	<!-- dataTables  -->
@@ -29,7 +38,7 @@ if (empty($_SESSION['user'])) {
 		<link rel="stylesheet" href="plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<!-- sweetalert -->
 		<link rel="stylesheet" href="plugins/sweetalert-master/dist/sweetalert.css" />
-		
+
 		<style>
 			.vuela{
 				position: sticky;
@@ -151,10 +160,10 @@ if (empty($_SESSION['user'])) {
 		<div id="wrapper">
 			<!-- Sidebar -->
 			<div id="sidebar-wrapper">
-				<div 
-					
+				<div
+
 					onclick="location.reload()"
-					align="center" 
+					align="center"
 					style="background-color: #ffbc49; cursor: pointer">
 					<img src="images/logo.png" style="max-width: 150px" />
 				</div>
@@ -226,7 +235,7 @@ if (empty($_SESSION['user'])) {
 					</li>
 					<li>
 						<a
-							
+
 							href="#contenedor"
 						 	class="btn-orange btn-block"
 							href="#contenedor"
@@ -293,9 +302,9 @@ if (empty($_SESSION['user'])) {
 					</button>
 					<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 						<form class="form-inline my-2 my-lg-0" onsubmit="event.preventDefault()">
-							<input 
-								class="form-control mr-sm-2" 
-								type="search" 
+							<input
+								class="form-control mr-sm-2"
+								type="search"
 								placeholder="Buscar.."
 								onchange="requests.search({
 									search: $(this).val(),
@@ -303,39 +312,58 @@ if (empty($_SESSION['user'])) {
 								})"
 								id="search_expedients"
 								name="keyword">
-							<button 
+							<button
 								onclick="requests.search({
 									search: $('#search_expedients').val(),
 									mail: '<?php echo $_SESSION['user']['correo'] ?>'
 								})"
-								class="btn btn-outline-success my-2 my-sm-0" 
-								type="button" 
+								class="btn btn-outline-success my-2 my-sm-0"
+								type="button"
 								style="margin-right: 10px">
 								Buscar
 							</button>
 						</form>
 						<ul class="navbar-nav mr-auto mt- mt-lg-0">
-							
+
 						</ul>
+						<div class="dropdown show" style="margin-right: 3%;">
+								<button id="notification" type="button" class="btn btn-info dropdown-toggle"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+								onclick="notifications.actualizar({
+									user_id: '<?php echo $consulta ?>'
+								})">
+								Notificaciones
+								<span class="badge badge-light">
+									<?php echo $num_notification; ?>
+								</span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#"><?php echo $mensaje; ?></a>
+							</div>
+						</div>
 						<ul class="navbar-nav">
 							<li class="nav-item">
-								<button 
+								<button
 									class="btn btn-default"
-									 data-toggle="collapse" 
-									 href="#collapseExample" 
-									 role="button" 
-									 aria-expanded="false" 
-									 aria-controls="collapseExample"> 
-									 <img 
+									 data-toggle="collapse"
+									 href="#collapseExample"
+									 role="button"
+									 aria-expanded="false"
+									 aria-controls="collapseExample">
+									 <img
 									 	style="max-width: 30px"
 									 	src="users_files/<?php echo $_SESSION['user']['id'] ?>/perfil.png"
-										onerror="this.src='images/photos/loggeduser.png';" 
-										class="profile-image img-circle"> 
+										onerror="this.src='images/photos/loggeduser.png';"
+										class="profile-image img-circle">
 									 <?php echo $_SESSION['user']['nombre'] ?></h4>
 								</button>
 								</a>
 								<div class="collapse" id="collapseExample">
-									<a 
+									<a
 										class="dropdown-item"
 										onclick="users.view_profile({
 											div: 'contenedor',
@@ -346,8 +374,8 @@ if (empty($_SESSION['user'])) {
 										<i class="fa fa-user"></i> Editar Perfil
 									</a>
 									<a class="dropdown-item" href="#"><i class="fa fa-cog"></i> Configuración</a>
-									<a 
-										class="dropdown-item" 
+									<a
+										class="dropdown-item"
 										onclick="help_desk.view_user_main({
 											div: 'contenedor',
 											mail: '<?php echo $_SESSION['user']['correo'] ?>',
@@ -361,13 +389,13 @@ if (empty($_SESSION['user'])) {
 							</li>
 						</ul>
 					</div>
-					<button 
-						class="navbar-toggler" 
-						type="button" 
-						data-toggle="collapse" 
-						data-target="#navbarTogglerDemo01" 
-						aria-controls="navbarTogglerDemo01" 
-						aria-expanded="false" 
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-toggle="collapse"
+						data-target="#navbarTogglerDemo01"
+						aria-controls="navbarTogglerDemo01"
+						aria-expanded="false"
 						aria-label="Toggle navigation">
 						<i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i>
 					</button>
@@ -378,8 +406,8 @@ if (empty($_SESSION['user'])) {
 						<div class="col-sm-12" id="contenedor">
 							<div class="row" style="display: none">
 								<div class="col-sm-6 col-md-3">
-									<div 
-										class="card text-white bg-success mb-3" 
+									<div
+										class="card text-white bg-success mb-3"
 										onclick="requests.list_requests({
 											div: 'contenedor',
 											status: 1,
@@ -397,8 +425,8 @@ if (empty($_SESSION['user'])) {
 									</div>
 								</div><!-- col-sm-6 -->
 								<div class="col-sm-6 col-md-3">
-									<div 
-										class="card text-white bg-danger mb-3" 
+									<div
+										class="card text-white bg-danger mb-3"
 										onclick="requests.list_requests({
 											div: 'contenedor',
 											status: 2,
@@ -416,8 +444,8 @@ if (empty($_SESSION['user'])) {
 									</div>
 								</div><!-- col-sm-6 -->
 								<div class="col-sm-6 col-md-3">
-									<div 
-										class="card text-white bg-primary mb-3" 
+									<div
+										class="card text-white bg-primary mb-3"
 										onclick="requests.list_requests({
 											div: 'contenedor',
 											mail: '<?php echo $_SESSION['user']['correo'] ?>',
@@ -440,7 +468,7 @@ if (empty($_SESSION['user'])) {
 			</div>
 			<!-- END Contenedor -->
 		</div>
-		
+
 <!-- /////////////////// ===================				JS						=================== /////////////////// -->
 
 		<script src="plugins/jquery-1.11.2.min.js"></script>
@@ -477,6 +505,7 @@ if (empty($_SESSION['user'])) {
 		<script src="js_system/help_desk.js"></script>
 		<script src="js_system/users.js"></script>
 		<script src="js_system/dependencies.js"></script>
+		<script src="js_system/notifications.js"></script>
 
 <!-- /////////////////// ===================			END JS						=================== /////////////////// -->
 
@@ -491,7 +520,7 @@ if (empty($_SESSION['user'])) {
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
-	}); 
+	});
 	requests.new_request({
 		div: 'contenedor',
 		view: 'list_user_requests',
