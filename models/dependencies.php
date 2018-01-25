@@ -46,7 +46,7 @@ class dependenciesModel extends Connection {
 	
 ///////////////// ******** ----						END save							------ ************ //////////////////
 
-///////////////// ******** ----						list_dependencies						------ ************ //////////////////
+///////////////// ******** ----						list_dependencies					------ ************ //////////////////
 //////// Check the dependencies in the DB and return into array
 	// The parameters that can receive are:
 		// name -> Customer name
@@ -73,7 +73,7 @@ class dependenciesModel extends Connection {
 		return $result;
 	}
 	
-///////////////// ******** ----						END list_dependencies					------ ************ //////////////////
+///////////////// ******** ----						END list_dependencies				------ ************ //////////////////
 
 ///////////////// ******** ----							update							------ ************ //////////////////
 //////// Check the dependencies in the DB and return into array
@@ -190,6 +190,33 @@ class dependenciesModel extends Connection {
 	}
 	
 ///////////////// ******** ----						END delete_document					------ ************ //////////////////
+
+///////////////// ******** ----							check							------ ************ //////////////////
+//////// Check ddependencies registred and return into array
+	// The parameters that can receive are:
+		// municipality -> String with the name of the municipality
+		// state -> String with the name of the state
+	
+	function check($objet) {
+	// Filter by municipality
+		$condition .= (!empty($objet['municipality'])) ? ' AND municipality = \''.$objet['municipality'].'\'' : '' ;
+	// Filter by state
+		$condition .= (!empty($objet['state'])) ? ' AND state = \''.$objet['state'].'\'' : '' ;
+		
+		$sql = "SELECT
+					*
+				FROM
+					dependencies_map
+				WHERE
+					1 = 1".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END check							------ ************ //////////////////
 
 }
 

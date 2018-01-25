@@ -292,6 +292,27 @@ class dependencies extends Common {
 	
 ///////////////// ******** ----						END view_documets					------ ************ //////////////////
 
+///////////////// ******** ----							check							------ ************ //////////////////
+//////// Check if the municipality are registred
+	// The parameters that can receive are:
+		// municipality -> String with the name of the municipality
+		// state -> String with the name of the state
+	
+	function check($objet) {
+	// If the object is empty (called from the ajax) it assigns $_REQUEST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		
+	// Delete document from DB
+		$result = $this -> dependenciesModel -> check($objet);
+		$resp['dependencies'] = $result['rows'];
+		$resp['total'] = $result['total'];
+		
+		echo json_encode($resp);
+	}
+	
+///////////////// ******** ----						END check							------ ************ //////////////////
+
 }
 
 ?>
