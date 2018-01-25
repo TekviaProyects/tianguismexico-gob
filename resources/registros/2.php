@@ -1,14 +1,14 @@
 <div style="padding:2%;" class="">
 	<label>Ingresa Dirección</label>
-	<input style="width:600px;" type="text" class="form-control" id="in_add" aria-describedby="emailHelp">
+	<input style="width:300px;" type="text" class="form-control" id="in_add">
 	<small id="" class="form-text text-muted">Ingresa tu direccion para que el mapa pueda localizarla</small>
 </div>
 <div style="padding:2%;" class="row">
-	<div class="col">
+	<div class="col-md-6 col-sm-12">
 		<div id="google_map" style="width: 100%; height: 60vh">
 		</div>
 	</div>
-	<div class="col">
+	<div class="col-md-6 col-sm-12">
 		<p>Selecciona el tipo de espacio que necesitas.</p>
 		<p>Fijo, Semi-Fijo, Ambulante</p>
 		<p></p>
@@ -70,7 +70,75 @@
 			zoom : zoom,
 			center : myLatlng
 		});
+		
+	// Imput para busqueda en google maps
+		var input = document.getElementById('in_add');
+		var searchBox = new google.maps.places.SearchBox(input);
+		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+	// mostrar resultados de la busqueda
+		map.addListener('bounds_changed', function() {
+			searchBox.setBounds(map.getBounds());
+		});
+		
+        var markers = [];
+        
+		searchBox.addListener('places_changed', function() {
+			var places = searchBox.getPlaces();
+			
+			if (places.length == 0) {
+				return;
+			}
+			
+		// Clear out the old markers.
+			markers.forEach(function(marker) {
+				marker.setMap(null);
+			});
+			markers = [];
+			
+			// For each place, get the icon, name and location.
+			var bounds = new google.maps.LatLngBounds();
+			places.forEach(function(place) {
+				if (!place.geometry) {
+					console.log("Returned place contains no geometry");
+					return;
+				}
+				var icon = {
+					url: place.icon,
+					size: new google.maps.Size(71, 71),
+					origin: new google.maps.Point(0, 0),
+					anchor: new google.maps.Point(17, 34),
+					scaledSize: new google.maps.Size(25, 25)
+				};
+				
+				var marker = new google.maps.Marker({
+						position: place.geometry.location,
+						draggable : true,
+						map : map,
+						title : 'Arrastrar'
+					});
+				
+			// Create a marker for each place.
+				markers.push(marker);
+				
+				google.maps.event.addListener(marker, "dragend", function(event) {
+					var lat = event.latLng.lat();
+					var lng = event.latLng.lng();
+		
+					document.getElementById("lat").value = lat;
+					document.getElementById("lng").value = lng;
+				});
+				
+				if (place.geometry.viewport) {
+				// Only geocodes have viewport.
+					bounds.union(place.geometry.viewport);
+				} else {
+					bounds.extend(place.geometry.location);
+				}
+			});
+			map.fitBounds(bounds);
+		});
+		
 		var marker = new google.maps.Marker({
 			position : myLatlng,
 			draggable : true,
@@ -92,16 +160,4 @@
 	var mostrarValor1 = function(x) {
 		document.getElementById('campo11r').value = x;
 	};
-</script>
-
-<script>
-			// Imput para busqueda en google maps
-			var input = document.getElementById('in_add');
-			var searchBox = new google.maps.places.SearchBox(input);
-			map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-			// mostrar resultados de la busqueda
-			map.addListener('bounds_changed', function() {
-				searchBox.setBounds(map.getBounds());
-			});
 </script>

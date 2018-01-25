@@ -68,7 +68,7 @@ switch ($tipo) {
 			if (empty($html)) {
 				$html = "Tu siguiente compra se completo:<br>
 					        ".$json -> transaction -> description."<br>
-					        Por el monto de $ ".$json -> transaction -> amount;
+					        Por el monto de $".$json -> transaction -> amount;
 			}
 			
 		// Configuration mail

@@ -534,7 +534,7 @@ session_destroy();
 									<option value="32">Zacatecas</option>
 								</select>
 								<label class="control-label">Municipio</label>
-								<select required="1" class="custom-select custom-select-lg" name="municipiodep2" id="municipiodep2">
+								<select required="1" class="custom-select custom-select-lg" name="municipiodep2" id="municipiodep">
 									<option value="Aguascalientes">Aguascalientes</option>
 									<option value="Asientos">Asientos</option>
 									<option value="Calvillo">Calvillo</option>
@@ -660,28 +660,18 @@ session_destroy();
 							Regresar
 						</button>
 					</div>
-					<div align="center" style="display: none">
+					<div align="center">
 						<div class="embed-responsive embed-responsive-21by9">
-							
-						  		<!-- src="https://www.youtube.com/embed/G7ubCKG3Jxc?rel=0&autoplay=1"  -->
 						  	<iframe 
 						  		id="the_frame"
 						  		width="560" 
 						  		height="315" 
-						  		src="https://www.youtube.com/embed/G7ubCKG3Jxc" 
+						  		src="https://www.youtube.com/embed/G7ubCKG3Jxc?rel=0&autoplay=1" 
 						  		frameborder="0" allow="autoplay; encrypted-media" 
 						  		allowfullscreen></iframe>
 						</div>
 					</div>
-					<div id="div_map">
-						<div class="row">
-							<div class="col-sm-12">
-								<input style="width:300px;" type="text" class="form-control" id="in_add">
-								<div id="google_map" style="width: 100%; height: 60vh"> </div>
-							</div>
-						</div>
-					</div>
-					<div align="center" id="div_index" style="display: none">
+					<div align="center" id="div_index">
 						<div class="row" style="padding-top: 20px">
 							<div class="col-sm-12">
 								<button type="button" class="btn btn-warning btn-lg" id="menu-toggle">Ver Mas</button>
@@ -726,38 +716,13 @@ session_destroy();
 			</div>
 			<!-- END Contenedor -->
 		</div>
-	
-	
-	
-	
-		<div class="modal" tabindex="-1" role="dialog" id="modal_map">
-			<div class="modal-dialog modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Autorizar ubicacion</h5>
-					</div>
-					<div class="modal-body" align="center">
-						<p>
-							Para poder usar la aplicación es necesario que autorices tu ubicación.
-						</p>
-						<img src="images/map-pin-location.jpg" class="img-fluid" />
-					</div>
-				</div>
-			</div>
-		</div>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsZOvqzL9c7_O7Fj7t3FDt77nejjwbZXw&libraries=places,geometry" async defer></script>
 		<script src="plugins/jquery-1.11.2.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 		<script src="assets/sweetalert/dist/sweetalert2.min.js"></script>
 		<script src="js/sesion.js"></script>
+		
 		<script>
-			var coordenates = {
-				lat : 20.6739383,
-				lng : -103.405454
-			},
-			zoom = 15;
-	
 			$("#menu-toggle").click(function(e) {
 				e.preventDefault();
 				$("#wrapper").toggleClass("toggled");
@@ -1033,6 +998,7 @@ session_destroy();
 				});
 			}
 			
+			
 			function info () {
 				var data = {},
 					$required = [],
@@ -1124,248 +1090,6 @@ session_destroy();
 					});
 				});
 			}
-			
-			function check ($objet) {
-				console.log("============== Objet check", $objet);
-							
-				$objet.json = 1;
-				
-				$.ajax({
-					data : $objet,
-					url : 'ajax.php?c=dependencies&f=check',
-					type : 'post',
-					dataType : 'json'
-				}).done(function(resp) {
-					console.log('==========> done check', resp);
-
-					if(resp.total < 1){
-						swal({
-							title : 'Municipio sin contrato',
-							text : 'Este Municipio no cuenta con contrato',
-							timer : 7000,
-							showConfirmButton : true,
-							type : 'warning'
-						});
-
-						return;
-					}
-					
-					$("#wrapper").toggleClass("toggled");
-				}).fail(function(resp) {
-					console.log('==========> fail !!! save', resp);
-
-					$("#btnSubir").prop('disabled', false);
-					swal({
-						title : 'Error',
-						text : 'A ocurrido un problema al guardar los datos',
-						timer : 5000,
-						showConfirmButton : true,
-						type : 'error'
-					});
-				});
-			}
-			
-			
-			window.onload = function() {
-				var startPos;
-				var geoOptions = {
-					enableHighAccuracy : true,
-					timeout: 10 * 1000
-				}
-
-				var geoSuccess = function(position) {
-					console.log("============> All ok.", position);
-					
-					
-					startPos = position;
-					coordenates.lat = startPos.coords.latitude;
-					coordenates.lng = startPos.coords.longitude;
-					init();
-					// document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-					// document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-				};
-				var geoError = function(error) {
-					console.log('Error occurred. Error code: ' + error.code);
-					if ("geolocation" in navigator) {
-						navigator.geolocation.getCurrentPosition(function(position) {});
-					}
-					if(error.code === 1){
-						$('#modal_map').modal({
-						    backdrop: 'static',
-						    keyboard: false
-						})
-						// $("#modal_map").modal('show');
-					}
-				};
-				
-				navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
-			};
-			
-			
-///////////////// ******** -------						init						------ ************ //////////////////
-//////// Load a Google map
-	// The parameters can receive:
-
-			function init() {
-				if (coordenates.lat === 20.6739383 || coordenates.lng === -103.405454) {
-					zoom = 15;
-				}
-		
-				var myLatlng = {
-					lat : coordenates.lat,
-					lng : coordenates.lng
-				};
-		
-				var map = new google.maps.Map(document.getElementById('google_map'), {
-					zoom : zoom,
-					center : myLatlng
-				});
-				
-			// Imput para busqueda en google maps
-				var input = document.getElementById('in_add');
-				var searchBox = new google.maps.places.SearchBox(input, {
-					region: 'MX'
-				});
-				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-		
-			// mostrar resultados de la busqueda
-				map.addListener('bounds_changed', function() {
-					searchBox.setBounds(map.getBounds());
-				});
-				
-		        var markers = [],
-		        	markersArray = [];
-		        
-				searchBox.addListener('places_changed', function() {
-					$("#wrapper").addClass("toggled");
-				// Clear markers
-					function clearOverlays() {
-						for (var i = 0; i < markersArray.length; i++ ) {
-							markersArray[i].setMap(null);
-						}
-						markersArray.length = 0;
-					}
-					markersArray.push(marker);
-					google.maps.event.addListener(marker,"click",function(){});
-					clearOverlays();
-
-					var places = searchBox.getPlaces();
-					
-					if (places.length == 0) {
-						return;
-					}
-					
-				// Clear out the old markers.
-					markers.forEach(function(marker) {
-						marker.setMap(null);
-					});
-					markers = [];
-					
-					// For each place, get the icon, name and location.
-					var bounds = new google.maps.LatLngBounds();
-					places.forEach(function(place) {
-						if (!place.geometry) {
-							console.log("Returned place contains no geometry");
-							return;
-						}
-						
-						var marker = new google.maps.Marker({
-								position: place.geometry.location,
-								draggable : true,
-								map : map,
-								title : 'Arrastrar'
-							});
-						
-					// Create a marker for each place.
-						markers.push(marker);
-						
-						google.maps.event.addListener(marker, "dragend", function(event) {
-							console.log("============> Event", event);
-						});
-						
-						google.maps.event.addListener(marker, "click", function(event) {
-							console.log("==============Event click", event);
-							
-							var geocoder = new google.maps.Geocoder,
-								latlng = place.geometry.location;
-								
-							geocoder.geocode({'location': latlng}, function(results, status) {
-								if (status === 'OK') {
-									
-								console.log("==============results", results[1]);
-								
-									var data = {};
-									$.each(results[1].address_components, function(index, value) {
-										var arr = value.types;
-										var m = arr.indexOf("administrative_area_level_2"),
-											s = arr.indexOf("administrative_area_level_1");
-										
-										if(m > -1){
-											data.municipality = value.short_name;
-										}
-										if(s > -1){
-											data.state = value.short_name;
-										}
-									});
-									
-									check(data);
-								} else {
-									console.log("============== !!! FAIL :(", status);
-									window.alert('No podemos encontrar tu direccion');
-								}
-							});
-						});
-						
-						if (place.geometry.viewport) {
-						// Only geocodes have viewport.
-							bounds.union(place.geometry.viewport);
-						} else {
-							bounds.extend(place.geometry.location);
-						}
-					});
-					map.fitBounds(bounds);
-				});
-				
-				var marker = new google.maps.Marker({
-					position : myLatlng,
-					draggable : true,
-					map : map,
-					title : 'Arrastrar'
-				});
-		
-				google.maps.event.addListener(marker, "click", function(event) {
-					console.log("==============Event click", event);
-					
-					var geocoder = new google.maps.Geocoder,
-						latlng = event.latLng;
-						
-					geocoder.geocode({'location': latlng}, function(results, status) {
-						if (status === 'OK') {
-							var data = {};
-							$.each(results[1].address_components, function(index, value) {
-								var arr = value.types;
-								var m = arr.indexOf("administrative_area_level_2"),
-									s = arr.indexOf("administrative_area_level_1");
-								
-								if(m > -1){
-									data.municipality = value.short_name;
-								}
-								if(s > -1){
-									data.state = value.short_name;
-								}
-							});
-							
-							check(data);
-						} else {
-							console.log("============== !!! FAIL :(", status);
-							window.alert('No podemos encontrar tu direccion');
-						}
-					});
-				});
-			}
-
-///////////////// ******** -------					END init						------ ************ //////////////////
-
 		</script>
 	</body>
 </html>
