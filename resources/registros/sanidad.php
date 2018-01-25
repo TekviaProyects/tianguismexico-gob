@@ -104,7 +104,6 @@
 										</div>
 									</div>
 									<div class="col-md-3">
-										<button class="btn btn-warning btn-block" type="submit" id="return4"> Regresar </button>
 										<button type="submit" class="btn btn-warning btn-block avatar-save">
 											Guardar
 										</button>

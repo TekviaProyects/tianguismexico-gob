@@ -1174,7 +1174,6 @@ session_destroy();
 				}
 
 				var geoSuccess = function(position) {
-					
 					console.log("============> All ok.", position);
 					
 					
@@ -1187,7 +1186,9 @@ session_destroy();
 				};
 				var geoError = function(error) {
 					console.log('Error occurred. Error code: ' + error.code);
-					
+					if ("geolocation" in navigator) {
+						navigator.geolocation.getCurrentPosition(function(position) {});
+					}
 					if(error.code === 1){
 						$('#modal_map').modal({
 						    backdrop: 'static',
