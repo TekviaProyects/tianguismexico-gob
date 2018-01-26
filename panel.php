@@ -11,7 +11,7 @@ include("php/conection/conection.php");
 	$notificaciones="SELECT * FROM notifications WHERE user_id = '$consulta' ";
 	$resultado = mysqli_query($conexion,$notificaciones);
 	while ($row = mysqli_fetch_array($resultado)){
-		$mensaje=$row['mensaje'];
+		$mensaje = $row['mensaje'];
 		$num_notification++;
 	}
 ?>
@@ -44,7 +44,7 @@ include("php/conection/conection.php");
 				position: sticky;
 			    right: 0px;
 			    top: 0px;
-			    z-index: 1;
+			    z-index: 6;
 			    width: 100%;
 			}
 			#wrapper {
@@ -200,6 +200,7 @@ include("php/conection/conection.php");
 							onclick="help_desk.view_dating({
 								div: 'contenedor',
 								mail: '<?php echo $_SESSION['user']['correo'] ?>',
+								user_id: '<?php echo $_SESSION['user']['id'] ?>',
 								from_user: 1
 							})">
 							<i class="fa fa-calendar-o"></i>
@@ -334,7 +335,7 @@ include("php/conection/conection.php");
 								onclick="notifications.actualizar({
 									user_id: '<?php echo $consulta ?>'
 								})">
-								Notificaciones
+								<i class="fa fa-bell"></i>
 								<span class="badge badge-light">
 									<?php echo $num_notification; ?>
 								</span>
@@ -521,9 +522,14 @@ include("php/conection/conection.php");
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
 	});
+	
 	requests.new_request({
 		div: 'contenedor',
 		view: 'list_user_requests',
 		from_user: 1
-	})
+	});
+	
+	notifications.list_notifications({
+		user_id: <?php echo $_SESSION['user']['id'] ?>
+	});
 </script>

@@ -169,7 +169,6 @@ class requests extends Common {
 		$data['id'] = $objet['request_id'];
 		$data['columns'] = '';
 		$data2['colums1'] = '';
-				echo json_encode($objet);
 
 	// Buil the SQL
 		$data['columns'] .= ($objet['status']) ? ' status = '.$objet['status'].', ' : '' ;
@@ -187,7 +186,7 @@ class requests extends Common {
 		$rep['result'] = $this -> requestsModel -> update($data);
 		$rep['result'] = $this -> requestsModel -> notificacion($objet);
 
-					echo json_encode($rep);
+		echo json_encode($rep);
 	}
 
 ///////////////// ******** ----						END update_authorize				------ ************ //////////////////

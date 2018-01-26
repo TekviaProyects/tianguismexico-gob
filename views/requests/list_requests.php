@@ -113,7 +113,8 @@
 												onclick="requests.authorize({
 													id: <?php echo $value['id'] ?>,
 													user_id: <?php echo $value['user_id'] ?>,
-													estadomx: <?php echo $value['estadomx'] ?>,
+													estadomx: '<?php echo $value['estadomx'] ?>',
+													municipiomx: '<?php echo $value['municipiomx'] ?>',
 													status: 1
 												})">
 												<i class="fa fa-check fa-lg"></i>

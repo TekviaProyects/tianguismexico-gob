@@ -108,7 +108,6 @@ class dependencies extends Common {
 			$customer = $customer['rows'][0];
 		}
 		
-		
 		require ('views/dependencies/add.php');
 	}
 	

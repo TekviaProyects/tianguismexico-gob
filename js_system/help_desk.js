@@ -408,7 +408,16 @@ var help_desk = {
 		// Update calendar
 			$('#calendar').fullCalendar('removeEvents');
 			$.each(resp, function(index, value) {
-				$('#calendar').fullCalendar('renderEvent', value, true);
+				if($objet.from_user === 1){
+				// Only show the user dating
+					if(value.user_id !== $objet.user_id){
+						value.title = ' ';
+					}
+					
+					$('#calendar').fullCalendar('renderEvent', value, true);
+				}else{
+					$('#calendar').fullCalendar('renderEvent', value, true);
+				}
 			});
 		}).fail(function(resp) {
 			console.log('==========> fail !!! list_datings', resp);

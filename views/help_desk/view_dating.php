@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <script>
 	function init_calendar($objet) {
 		console.log("==========> init_calendar", $objet);
@@ -132,6 +133,7 @@
 
 		help_desk.list_datings({
 			json : 1,
+			user_id: '<?php echo $_SESSION['user']['id'] ?>',
 			estate : $('#state').val(),
 			municipality : $('#municipality').val(),
 			from_user : 1
@@ -207,6 +209,7 @@
 			json: 1,
 			estate: $('#state').val(),
 			municipality: $('#municipality').val(),
+			user_id: '<?php echo $_SESSION['user']['id'] ?>',
 			from_user: 1
 		})"
 		class="btn btn-success">

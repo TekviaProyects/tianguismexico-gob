@@ -256,7 +256,7 @@ session_start();
 								state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
 								municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>'
 							})"
-							href="#contenedodr">
+							href="#contenedor">
 							<i class="fa fa-home"></i> <span>Expedientes</span>
 						</a>
 					</li>

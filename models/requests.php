@@ -118,32 +118,21 @@ class requestsModel extends Connection {
 		// return $sql;
 		$result = $this -> query($sql);
 
-
-
 		return $result;
 	}
 
 ///////////////// ******** ----						END update							------ ************ //////////////////
 function notificacion($objet){
+	session_start();
 	$notify_date = date("Y-m-d H:i:s");
-
-	if ($objet['status'] == 1) {
-		$sql1 = "INSERT INTO notifications
-							(user_id, fecha_hora, mensaje, estadomx, municipiomx, status, request_id)
-							VALUES ('".$objet['user_id']."', '".$notify_date."', 'Solicitud Aceptada',
-											'".$objet['estadomx']."', '".$objet['municipiomx']."', '".$objet['status']."',
-											'".$objet['request_id']."' )";
-		$result = $this -> query($sql1);
-	}
-	elseif ($objet['status'] == 2) {
-		$sql2 = "INSERT INTO notifications
-							(user_id, fecha_hora, mensaje, estadomx, municipiomx, status, request_id)
-							VALUES ('".$objet['user_id']."', '".$notify_date."', 'Solicitud Rechazada',
-											'".$objet['estadomx']."', '".$objet['municipiomx']."', '".$objet['status']."',
-											'".$objet['request_id']."' )";
-		$result = $this -> query($sql2);
-	}
-
+	$text = ($objet['status'] == 1) ? 'Solicitud Aceptada' : 'Solicitud rechazada';
+	
+	$sql1 = "INSERT INTO notifications
+					(user_id, fecha_hora, mensaje, estadomx, municipiomx, status, request_id)
+			VALUES ('".$objet['user_id']."', '".$notify_date."', '".$text."', '".$_SESSION['dependencie']['estadodep']."', 
+					'".$_SESSION['dependencie']['municipiodep']."', '".$objet['status']."', '".$objet['request_id']."' )";
+	$result = $this -> query($sql1);
+	
 	return $result;
 
 }

@@ -189,15 +189,7 @@ var requests = {
 			dataType : 'json'
 		}).done(function(resp) {
 			console.log('==========> done update_authorize', resp);
-
-
-
-					return;
-
-
-
-
-
+			
 			$('#btn_approved_'+$objet.request_id).prop('disabled', true);
 			$('#btn_denied_'+$objet.request_id).prop('disabled', true);
 
