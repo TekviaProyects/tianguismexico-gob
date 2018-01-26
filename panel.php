@@ -4,17 +4,9 @@ session_start();
 if (empty($_SESSION['user'])) {
 	echo "<script>location.href='index.php'</script>";
 }
-//start codigo para Notificaciones ------------------>
-include("php/conection/conection.php");
-	$num_notification = 0;
-	$consulta = $_SESSION['user']['id'];
-	$notificaciones="SELECT * FROM notifications WHERE user_id = '$consulta' ";
-	$resultado = mysqli_query($conexion,$notificaciones);
-	while ($row = mysqli_fetch_array($resultado)){
-		$mensaje = $row['mensaje'];
-		$num_notification++;
-	}
+
 ?>
+
 <!DOCTYPE HTML>
 
 <html>
@@ -333,17 +325,17 @@ include("php/conection/conection.php");
 								aria-haspopup="true"
 								aria-expanded="false"
 								onclick="notifications.actualizar({
-									user_id: '<?php echo $consulta ?>'
+									user_id: '<?php echo $_SESSION['user']['id'] ?>',
+									div: 'num_notifications'
 								})">
 								<i class="fa fa-bell"></i>
-								<span class="badge badge-light">
-									<?php echo $num_notification; ?>
+								<span class="badge badge-light" id="num_notifications">
 								</span>
 								<span class="sr-only">Toggle Dropdown</span>
 							</button>
 
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#"><?php echo $mensaje; ?></a>
+							<div class="dropdown-menu" id="div_notifications">
+							
 							</div>
 						</div>
 						<ul class="navbar-nav">
@@ -530,6 +522,12 @@ include("php/conection/conection.php");
 	});
 	
 	notifications.list_notifications({
-		user_id: <?php echo $_SESSION['user']['id'] ?>
+		user_id: <?php echo $_SESSION['user']['id'] ?>,
+		div: 'div_notifications'
+	});
+	
+	notifications.count_notifications({
+		user_id: <?php echo $_SESSION['user']['id'] ?>,
+		div: 'num_notifications'
 	});
 </script>

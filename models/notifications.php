@@ -7,9 +7,9 @@ class notificationsModel extends Connection {
 		$sql = "UPDATE
             		notifications
           		SET 
-          			status = 0
+          			status = 1
           		WHERE
-            		user_id = " . $objet['consulta'] . "";
+            		user_id = " . $objet['user_id'] . "";
 		// return $sql;
 		$result = $this -> query($sql);
 		
@@ -33,12 +33,36 @@ class notificationsModel extends Connection {
             		1 = 1 ". 
             	$condition;
 		// return $sql;
-		$result = $this -> query($sql);
+		$result = $this -> query_array($sql);
 		
 		return $result;
 	}
 	
 ///////////////// ******** ----					END list_notifications					------ ************ //////////////////
+
+///////////////// ******** ----					count_notifications						------ ************ //////////////////
+//////// Count number of notifications
+	// The parameters that can receive are:
+		// user_id -> User ID
+		
+	function count_notifications($objet) {
+	// Filter by user ID
+		$condition .= (!empty($objet['user_id'])) ? ' AND user_id = '.$objet['user_id'] : '' ;
+		
+		$sql = "SELECT 
+					COUNT(id) AS total
+				FROM
+					notifications
+				WHERE
+					status = 0 ". 
+            	$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----					END count_notifications					------ ************ //////////////////
 
 }
 ?>

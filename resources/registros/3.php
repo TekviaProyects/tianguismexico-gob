@@ -89,7 +89,7 @@ ya que si falta alguno, el tramite se puede anular por falta de datos.</h4>
 		<option value="No">No</option>
 	</select>
 	<p></p>
-	<button class="btn btn-warning" type="submit" id="return3"> regresar </button>
+	<button class="btn btn-warning" type="submit" id="return3"> Regresar </button>
 	<button class="btn btn-warning" type="submit" id="registro3">Siguiente</button>
 </div>
 <script src="js/formulario.js"></script>

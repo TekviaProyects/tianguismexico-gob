@@ -1,11 +1,9 @@
 <?php
-
 require ('controllers/common.php');
 require ("models/notifications.php");
 
 class notifications extends Common {
 	public $notificationsModel;
-	
 	function __construct() {
 		$this -> notificationsModel = new notificationsModel();
 	}
@@ -37,5 +35,23 @@ class notifications extends Common {
 	
 ///////////////// ******** ----					END list_notifications					------ ************ //////////////////
 
+///////////////// ******** ----					count_notifications						------ ************ //////////////////
+//////// Count number of notifications
+	// The parameters that can receive are:
+		// user_id -> User ID
+		
+	function count_notifications($objet) {
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		
+	// Notificaciones actualizadas
+		$total= $this -> notificationsModel -> count_notifications($objet);
+		$total = $total['rows'][0]['total'];
+		
+		echo json_encode($total);
+	}
+	
+///////////////// ******** ----					END count_notifications					------ ************ //////////////////
+
 }
+
 ?>

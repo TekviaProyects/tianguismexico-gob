@@ -64,7 +64,7 @@
     </form>
     </div>
     <br><br>
-    <button class="btn btn-warning" type="button" id="return"> regresar </button>
+    <button class="btn btn-warning" type="button" id="return"> Regresar </button>
     <button class="btn btn-warning" type="button" id="registromx">Siguiente</button>
   </div>
 </div>

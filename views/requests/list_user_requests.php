@@ -18,7 +18,7 @@
 	<div class="col-sm-12">
 		<div class="signup-form-container">
 			<div class="form-header">
-				<h3 class="form-title"><i class="fa fa-drivers-license-o"></i> Permisos Activos</h3>
+				<h3 class="form-title"><i class="fa fa-drivers-license-o"></i> Solicitudes</h3>
 			</div>
 			<div class="form-body" style="padding: 30px">
 				<div class="d-sm-none d-none d-md-block">

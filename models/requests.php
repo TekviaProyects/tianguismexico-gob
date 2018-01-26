@@ -125,12 +125,13 @@ class requestsModel extends Connection {
 function notificacion($objet){
 	session_start();
 	$notify_date = date("Y-m-d H:i:s");
-	$text = ($objet['status'] == 1) ? 'Solicitud Aceptada' : 'Solicitud rechazada';
+	$text = ($objet['status'] == 1) ? 
+		'Solicitud num.'.$objet['request_id'].' fue aceptada' : 'Solicitud num.'.$objet['request_id'].' fue rechazada';
 	
 	$sql1 = "INSERT INTO notifications
-					(user_id, fecha_hora, mensaje, estadomx, municipiomx, status, request_id)
+					(user_id, fecha_hora, mensaje, estadomx, municipiomx, request_id)
 			VALUES ('".$objet['user_id']."', '".$notify_date."', '".$text."', '".$_SESSION['dependencie']['estadodep']."', 
-					'".$_SESSION['dependencie']['municipiodep']."', '".$objet['status']."', '".$objet['request_id']."' )";
+					'".$_SESSION['dependencie']['municipiodep']."', '".$objet['request_id']."' )";
 	$result = $this -> query($sql1);
 	
 	return $result;

@@ -18,7 +18,7 @@
 			<option value="Ambulante">Ambulante</option>
 		</select>
 		<p></p>
-		<button class="btn btn-warning" type="button" id="return2"> regresar </button>
+		<button class="btn btn-warning" type="button" id="return2"> Regresar </button>
 		<button class="btn btn-warning" type="button" id="registro2">Siguiente</button>
 	</div>
 </div>
