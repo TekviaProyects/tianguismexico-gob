@@ -83,9 +83,7 @@ class openpayObject {
 		$resp['status'] = 1;
 		
 		try {
-			$resp['status'] = 2;
 			$resp['result'] = $this -> openpay -> customers -> get($objet['o_id']);
-			$resp['result']->delete();
 		} catch (OpenpayApiTransactionError $e) {
 			$resp['status'] = 2;
 			$resp['message'] = $e->getMessage();
@@ -114,6 +112,45 @@ class openpayObject {
 	}
 	
 ///////////////// ******** ---- 				END get_customer					------ ************ //////////////////
+
+///////////////// ******** ---- 				create_card_charge			 		------ ************ //////////////////
+//////// Get a customer information
+	// The parameters can receive:
+		// o_id -> Open pay ID customer
+		
+	public function create_card_charge($objet) {
+		$resp['status'] = 1;
+		
+		try {
+			$resp['result'] = $this -> openpay -> charges -> create($objet);
+		} catch (OpenpayApiTransactionError $e) {
+			$resp['status'] = 2;
+			$resp['message'] = $e->getMessage();
+			$resp['error_code'] = $e->getErrorCode();
+			$resp['error_category'] = $e->getCategory();
+			$resp['HTTP_code'] = $e->getHttpCode();
+			$resp['request_ID'] = $e->getRequestId();
+		} catch (OpenpayApiRequestError $e) {
+			$resp['status'] = 2;
+			$resp['message'] = 'ERROR on the request: ' . $e->getMessage();
+		} catch (OpenpayApiConnectionError $e) {
+			$resp['status'] = 2;
+			$resp['message'] = 'ERROR while connecting to the API: ' . $e->getMessage();
+		} catch (OpenpayApiAuthError $e) {
+			$resp['status'] = 2;
+			$resp['message'] = 'ERROR on the authentication: ' . $e->getMessage();
+		} catch (OpenpayApiError $e) {
+			$resp['status'] = 2;
+			$resp['message'] = 'ERROR on the API: ' . $e->getMessage();
+		} catch (Exception $e) {
+			$resp['status'] = 2;
+			$resp['message'] = 'Error on the script: ' . $e->getMessage();
+		}
+		
+		return $resp;
+	}
+	
+///////////////// ******** ---- 				END create_card_charge				------ ************ //////////////////
 
 ///////////////// ******** ---- 				list_customers				 		------ ************ //////////////////
 //////// Check the customers and return into array

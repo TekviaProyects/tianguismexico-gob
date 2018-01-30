@@ -16,6 +16,10 @@ class pays extends Common {
 		$this -> paysModel = new paysModel();
 	}
 	
+///////////////// ******** ----							 new_pay						------ ************ //////////////////
+//////// Generate a new pay
+	// The parameters that can receive are:
+		
 	function new_pay($objet) {
 	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
 	// If not, take its normal value
@@ -97,4 +101,63 @@ class pays extends Common {
 		$resp['status'] = 1;
 		echo json_encode($resp);
 	}
+
+///////////////// ******** ----						END new_pay							------ ************ //////////////////
+
+///////////////// ******** ----						new_card_pay						------ ************ //////////////////
+//////// Generate a new pay
+	// The parameters that can receive are:
+		
+	function new_card_pay($objet) {
+	// If the object is empty (called from the ajax) it assigns $ $_REQUEST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		$resp['status'] = 1;
+		session_start();
+		
+	// Import openpay library
+		require('plugins/openpay/Openpay.php');
+		include('controllers/openpay.php' );
+		
+	// Call the function to generate a charge
+		$open_pay = new openpayObject();
+		
+		$customer = array(
+		     'name' => $_SESSION['user']['nombre'],
+		     'email' => $_SESSION['user']['mail']
+		);
+		
+		$chargeData = array(
+		    'method' => 'card',
+		    'source_id' => $objet["token_id"],
+		    'amount' => $objet['cost_request'],
+		    'description' => 'Costo por derecho de solicitud Num. '.$objet['request_id'],
+		    'device_session_id' => $objet["deviceIdHiddenFieldName"],
+		    'customer' => $customer
+		);
+		
+		$cargo = $open_pay -> create_card_charge($chargeData);
+		$status = $cargo['result'] -> status;
+		
+		if($status == "completed"){
+			$data_pay['user_id'] = $_SESSION['user']['id'];
+			$data_pay['request_id'] = $objet['request_id'];
+			$data_pay['pay_id'] = $cargo['result'] -> id;
+			$data_pay['date'] = $cargo['result'] -> creation_date;
+			$data_pay['reference'] = $cargo['result'] -> authorization;
+			$data_pay['status'] = 3;
+			
+			$resp['result'] = $this -> paysModel -> save_pay($data_pay);
+			$resp['result'] = $this -> paysModel -> update_request($data_pay);
+			$resp['mail'] = $_SESSION['user']['correo'];
+		}else{
+			$resp['status'] = 2;
+			$resp['test'] = $cargo;
+		}
+		
+		echo json_encode($resp);
+	}
+	
+///////////////// ******** ----						END new_card_pay					------ ************ //////////////////
+
 }

@@ -4,7 +4,7 @@
 		<div align="center">
 			<h3>
 				<span class="label label-default">
-					* Sin resultados *
+					* Sin expedientes *
 				</span>
 			</h3>
 		</div><?php
@@ -18,13 +18,13 @@
 	<div class="col-sm-12">
 		<div class="signup-form-container">
 			<div class="form-header">
-				<h3 class="form-title"><i class="fa fa-users"></i> Solicitudes</h3>
+				<h3 class="form-title"><i class="fa fa-users"></i> Expedientes</h3>
 			</div>
 			<div class="form-body" style="padding: 30px">
 				<table class="table table-striped table-bordered" cellspacing="0" width="100%" id="requests_table">
 					<thead>
 						<tr>
-							<th># Solicitud</th>
+							<th># Expediente</th>
 							<th>Nombre</th>
 							<th>Mail</th>
 							<th>Documentacion</th>

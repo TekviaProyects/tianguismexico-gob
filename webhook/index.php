@@ -35,6 +35,19 @@ switch ($tipo) {
 			  				WHERE
 			  					pay_id = '".$id_orden_open."'";
 				$resultado = mysqli_query($conexion, $update);
+				
+				$update = "	UPDATE
+								registros
+							SET
+								status = 3
+							WHERE
+								id = (SELECT
+											request_id
+										FROM
+											pays
+										WHERE
+											pay_id = '".$id_orden_open."')";
+				$resultado = mysqli_query($conexion, $update);
 			} catch (mysqli_sql_exception $e) {
 				$resultado = $e;
 			}

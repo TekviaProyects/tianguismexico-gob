@@ -4,6 +4,7 @@
 var requests = {
 // Initialize vars
 	data_messages:{},
+	temp_data_pay:{},
 
 ///////////////// ******** ----							list_requests						------ ************ //////////////////
 //////// Check the requests and loaded the view
@@ -556,18 +557,7 @@ var requests = {
 	// Hide menu on mobile
 		$("#wrapper").removeClass("toggled");
 		
-		swal({
-			title : '',
-			imageUrl : 'resources/images/spiner.gif',
-			text : 'Cargando información',
-			showConfirmButton : false
-		});
-
 		var folder = ($objet.from_user === 1) ? '' : '../';
-
-		// $("#"+$objet.div).html('<iframe id="the_frame" src="'+folder+'new.php?'+'&mail='+$objet.mail+'" style="width: 100%; height: 100vh; margin-bottom: 50px"></iframe>');
-		
-		
 		
 		$.ajax({
 			data : $objet,
@@ -578,14 +568,12 @@ var requests = {
 			console.log('==========> done transfer_rights', resp);
 			
 			$("#btn_new_request").prop("disabled", false);
-			swal.close();
 			
 			$("#"+$objet.div).html(resp);
 		}).fail(function(resp) {
 			console.log('==========> fail !!! transfer_rights', resp);
 			
 			$("#btn_new_request").prop("disabled", false);
-			swal.close();
 		
 			swal({
 				title : 'Error',
@@ -884,7 +872,7 @@ var requests = {
 		
 		setTimeout(function(){
 			var folder = ($objet.from_user === 1) ? '' : '../';
-		
+			
 			$.ajax({
 				data : $objet,
 				url : folder+'ajax.php?c=pays&f=new_pay',
@@ -899,12 +887,24 @@ var requests = {
 				link.dispatchEvent(new MouseEvent('click'));
 				
 				$("#"+$objet.btn).prop('disabled', false);
-				$("#"+$objet.btn).html('<i class="fa fa-check fa-lg"></i> Pagar');
+				$("#"+$objet.btn).html('<i class="fa fa-check fa-lg"></i> Tienda');
+				
+				$("#modal_pay").modal('hide');
+			
+				setTimeout(function(){
+					swal({
+						title : 'Ficha de pago creada',
+						text : 'Tu ficha de pago ha sido creada con exito',
+						timer : 5000,
+						showConfirmButton : true,
+						type : 'success'
+					});
+				}, 500);
 			}).fail(function(resp) {
 				console.log('==========> fail !!! new_pay', resp);
 				
 				$("#"+$objet.btn).prop('disabled', false);
-				$("#"+$objet.btn).html('<i class="fa fa-check fa-lg"></i> Pagar');
+				$("#"+$objet.btn).html('<i class="fa fa-check fa-lg"></i> Tienda');
 				
 				swal({
 					title : 'Error',
@@ -915,8 +915,89 @@ var requests = {
 				});
 			});
 		}, 100);
-	}
+	},
 
 ///////////////// ******** ----						END new_pay							------ ************ //////////////////
+
+///////////////// ******** ----						data_pay							------ ************ //////////////////
+//////// Load the data pay on the buttons
+	// The parameters that can receive are:
+
+	data_pay : function($objet){
+		"use strict";
+		console.log('==========> $objet data_pay', $objet);
+		
+		requests.temp_data_pay = $objet;
+		console.log('==========> data', requests.temp_data_pay);
+		
+		$("#btn_pay_store").attr("cost_request", $objet.cost_request);
+		$("#btn_pay_store").attr("request_id", $objet.request_id);
+	},
+
+///////////////// ******** ----					END load_info_buttons					------ ************ //////////////////
+
+///////////////// ******** ----					new_card_pay							------ ************ //////////////////
+//////// Generate a new pay
+	// The parameters that can receive are:
+	
+	new_card_pay : function($objet){
+		"use strict";
+		console.log('==========> $objet new_card_pay', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../',
+			data = {};
+		
+		data = requests.temp_data_pay;
+		
+		data.token_id = $objet.data.token_id;
+		data.deviceIdHiddenFieldName = $objet.data.deviceIdHiddenFieldName;
+		console.log('==========> data', data);
+		
+		$.ajax({
+			data : data,
+			url : folder+'ajax.php?c=pays&f=new_card_pay',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> Done new_card_pay', resp);
+			
+			$("#pay-button").prop("disabled", false);
+			$("#pay-button").html("Pagar");
+			
+			$("#modal_pay").modal('hide');
+			
+			setTimeout(function(){
+				swal({
+					title : 'Solicitud pagada',
+					text : 'Tu solicitud ha sido pagada con exito',
+					timer : 5000,
+					showConfirmButton : true,
+					type : 'success'
+				});
+				
+				requests.list_requests({
+					div: 'contenedor',
+					view: 'list_user_requests',
+					mail: resp.mail,
+					from_user: 1
+				});
+			}, 500);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! new_card_pay', resp);
+			
+			$("#pay-button").prop("disabled", false);
+			$("#pay-button").html("Pagar");
+		
+			swal({
+				title : 'Error',
+				text : 'Error al generar el pago',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	}
+
+///////////////// ******** ----						END new_card_pay					------ ************ //////////////////
 
 };

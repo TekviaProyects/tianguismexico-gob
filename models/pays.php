@@ -15,11 +15,13 @@ class paysModel extends Connection {
 		// url -> PDF URL
 	
 	function save_pay($objet) {
+		$status = (!empty($objet['status'])) ? $objet['status'] : 0;
+		
 		$sql = "INSERT INTO 
-					pays(request_id, user_id, pay_id, reference, date, due_date, url) 
+					pays(request_id, user_id, pay_id, reference, date, due_date, url, status) 
 				VALUES
 					(".$objet['request_id'].", ".$objet['user_id'].", '".$objet['pay_id']."', '".$objet['reference']."', 
-					'".$objet['date']."', '".$objet['due_date']."', '".$objet['url']."')";
+					'".$objet['date']."', '".$objet['due_date']."', '".$objet['url']."', $status)";
 		// return $sql;
 		$result = $this -> query($sql);
 		
@@ -77,7 +79,28 @@ class paysModel extends Connection {
 		return $result;
 	}
 	
-///////////////// ******** ---- 					END update_user		 			------ ************ //////////////////
+///////////////// ******** ---- 					END update_user		 				------ ************ //////////////////
+
+///////////////// ******** ---- 					update_request	 					------ ************ //////////////////
+//////// Update the request
+	// The parameters can receive:
+		// request_id -> request ID
+		// o_id -> OpenPay ID
+	
+	function update_request($objet) {
+		$sql = "UPDATE
+					registros
+				SET
+					status = 3
+				WHERE
+					id = ".$objet['request_id'];
+		// return $sql;
+		$result = $this -> query($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ---- 					END update_request		 			------ ************ //////////////////
 
 }
 

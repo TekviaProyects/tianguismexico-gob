@@ -30,6 +30,9 @@ if (empty($_SESSION['user'])) {
 		<link rel="stylesheet" href="plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<!-- sweetalert -->
 		<link rel="stylesheet" href="plugins/sweetalert-master/dist/sweetalert.css" />
+	<!-- Loader -->
+		<link rel="stylesheet" href="plugins/css3-preloader-transition-start/css/normalize.css">
+		<link rel="stylesheet" href="plugins/css3-preloader-transition-start/css/main.css">
 
 		<style>
 			.vuela{
@@ -146,6 +149,7 @@ if (empty($_SESSION['user'])) {
 			.notoy{
 				display: none !important;
 			}
+		/*Loader*/
 		</style>
 	</head>
 	<body>
@@ -165,7 +169,6 @@ if (empty($_SESSION['user'])) {
 							href="#contenedor"
 							onclick="requests.new_request({
 								div: 'contenedor',
-								view: 'list_user_requests',
 								from_user: 1
 							})">
 							<i class="fa fa-plus" aria-hidden="true"></i> Nueva solicitud
@@ -183,6 +186,21 @@ if (empty($_SESSION['user'])) {
 							})">
 							<i class="fa fa-address-card" aria-hidden="true"></i>
 							<span>Estado de solicitudes</span>
+						</a>
+					</li>
+					<li>
+						<a
+							href="#contenedor"
+						 	class="btn-orange btn-block"
+							onclick="requests.list_requests({
+								div: 'contenedor',
+								status: 1,
+								view: 'list_active_permits',
+								mail: '<?php echo $_SESSION['user']['correo'] ?>',
+								from_user: 1
+							})">
+							<i class="fa fa-check" aria-hidden="true"></i>
+							<span>Permisos activos</span>
 						</a>
 					</li>
 					<li>
@@ -319,11 +337,14 @@ if (empty($_SESSION['user'])) {
 						<ul class="navbar-nav mr-auto mt- mt-lg-0">
 
 						</ul>
-						<div class="dropdown show" style="margin-right: 3%;">
-								<button id="notification" type="button" class="btn btn-info dropdown-toggle"
-								data-toggle="dropdown"
-								aria-haspopup="true"
-								aria-expanded="false"
+						<div style="margin-right: 3%;">
+							<button 
+								class="btn btn-info"
+								data-toggle="collapse" 
+								href="#div_notifications" 
+								role="button" 
+								aria-expanded="false" 
+								aria-controls="div_notifications"
 								onclick="notifications.actualizar({
 									user_id: '<?php echo $_SESSION['user']['id'] ?>',
 									div: 'num_notifications'
@@ -333,10 +354,6 @@ if (empty($_SESSION['user'])) {
 								</span>
 								<span class="sr-only">Toggle Dropdown</span>
 							</button>
-
-							<div class="dropdown-menu" id="div_notifications">
-							
-							</div>
 						</div>
 						<ul class="navbar-nav">
 							<li class="nav-item">
@@ -393,6 +410,7 @@ if (empty($_SESSION['user'])) {
 						<i class="fa fa-exchange fa-rotate-90" aria-hidden="true"></i>
 					</button>
 				</nav>
+				<div class="collapse" id="div_notifications" align="right"> </div>
 				<div id="div_search_results"></div>
 				<div class="container-fluid">
 					<div class="row">
@@ -461,6 +479,9 @@ if (empty($_SESSION['user'])) {
 			</div>
 			<!-- END Contenedor -->
 		</div>
+		<div id="loader-wrapper">
+			<div id="loader"></div>
+		</div>
 
 <!-- /////////////////// ===================				JS						=================== /////////////////// -->
 
@@ -492,7 +513,13 @@ if (empty($_SESSION['user'])) {
 	<!-- fullcalendar -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js"></script>
 		<script src='plugins/fullCalendarLang.js'></script>
-
+	<!-- Loader -->
+		<script src="plugins/css3-preloader-transition-start/js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="plugins/css3-preloader-transition-start/js/main.js"></script>
+	<!-- openpay -->
+		<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+		<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+		
 	<!-- System -->
 		<script src="js_system/requests.js"></script>
 		<script src="js_system/help_desk.js"></script>
@@ -530,4 +557,8 @@ if (empty($_SESSION['user'])) {
 		user_id: <?php echo $_SESSION['user']['id'] ?>,
 		div: 'num_notifications'
 	});
+	
+	$(document).ready(function () {
+        $('#loader-wrapper').hide();
+    });
 </script>
