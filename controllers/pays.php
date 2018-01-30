@@ -63,7 +63,8 @@ class pays extends Common {
 			
 			$_SESSION['user']['o_id'] = $o_id;
 		}else{
-			$o_id = $customer['result']->id;
+			$customer = $customer['result'];
+			$o_id = $customer->id;
 		}
 		
 	// Charge
