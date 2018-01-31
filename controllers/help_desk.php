@@ -215,6 +215,9 @@ class help_desk extends Common {
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
+		$states = $this -> help_deskModel -> list_states($objet);
+		$states = $states['rows'];
+		
 		$view = (!empty($objet['view'])) ? $objet['view'] : 'view_dating' ;
 		
 		require ('views/help_desk/'.$view.'.php');
@@ -237,10 +240,16 @@ class help_desk extends Common {
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		session_start();
 		$resp['status'] = 1;
-		
-	// Save the dating on the DB
 		$objet['user_id'] = $_SESSION['user']['id'];
-		$resp['result'] = $this -> help_deskModel -> save_dating($objet);
+		
+		$dating = $this -> help_deskModel -> list_datings($objet);
+		
+		if($dating['total'] > 0){
+			$resp['result'] = $this -> help_deskModel -> update_dating($objet);
+		}else{
+		// Save the dating on the DB
+			$resp['result'] = $this -> help_deskModel -> save_dating($objet);
+		}
 		
 		echo json_encode($resp);
 	}
@@ -258,7 +267,7 @@ class help_desk extends Common {
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
-	// Save the dating on the DB
+	// List datings
 		$datings = $this -> help_deskModel -> list_datings($objet);
 		$datings = $datings['rows'];
 		

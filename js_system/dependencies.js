@@ -199,7 +199,7 @@ var dependencies = {
 		"use strict";
 		console.log('==========> $objet list_municipalities', $objet);
 		
-		var folder = ($objet.from_user === 1) ? 'dep/' : '';
+		var folder = ($objet.from_user === 1) ? 'municipio/' : '';
 		
 		$.ajax({
 			data : $objet,

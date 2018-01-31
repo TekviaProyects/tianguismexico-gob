@@ -125,6 +125,35 @@ class help_deskModel extends Connection {
 	
 ///////////////// ******** ----						END save_dating						------ ************ //////////////////
 
+///////////////// ******** ----						update_dating						------ ************ //////////////////
+//////// Save the dating on the DB
+	// The parameters that can receive are:
+		// f_ini -> Dating start
+		// f_end -> Dating end
+		// title -> Title dating
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+		
+	function update_dating($objet) {
+		$sql = "UPDATE
+					 datings
+				SET
+					state = '".$objet['state']."', 
+					municipality = '".$objet['municipality']."', 
+					title = '".$objet['title']."', 
+					date = '".$objet['date']."', 
+					f_ini = '".$objet['f_ini']."', 
+					f_end = '".$objet['f_end']."'
+				WHERE
+					user_id = ".$objet['user_id'];
+		// return $sql;
+		$result = $this -> query($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END update_dating					------ ************ //////////////////
+
 ///////////////// ******** ----						list_datings						------ ************ //////////////////
 //////// Check the datings and return into array
 	// The parameters that can receive are:
@@ -134,6 +163,8 @@ class help_deskModel extends Connection {
 	function list_datings($objet) {
 	// Filter by state
 		$condition .= (!empty($objet['state'])) ? ' AND d.state = '.$objet['state'] : '' ;
+	// Filter by user id
+		$condition .= (!empty($objet['user_id'])) ? ' AND d.user_id = '.$objet['user_id'] : '' ;
 	// Filter by municipality
 		$condition .= (!empty($objet['municipality'])) ? ' AND d.municipality = \''.$objet['municipality'].'\'' : '' ;
 		
@@ -155,6 +186,26 @@ class help_deskModel extends Connection {
 	}
 	
 ///////////////// ******** ----						END list_datings					------ ************ //////////////////
+
+///////////////// ******** ----						list_states							------ ************ //////////////////
+//////// Check the datings and return into array
+	// The parameters that can receive are:
+		
+	function list_states($objet) {
+		$sql = "SELECT 
+					d.estadodep AS id
+				FROM
+					 dependencies d
+				WHERE
+					1 = 1".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END list_states						------ ************ //////////////////
 
 }
 

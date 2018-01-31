@@ -333,6 +333,28 @@ class users extends Common {
 	
 ///////////////// ******** ----						END view_profile					------ ************ //////////////////
 
+///////////////// ******** ----						view_gafette						------ ************ //////////////////
+//////// Loaded the view gafette
+	// The parameters that can receive are:
+		// div -> Div where the content is loaded
+		// mail -> User mail
+	
+	function view_gafette($objet) {
+	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		
+		$user = $this -> usersModel -> list_users($objet);
+		$user = $user['rows'][0];
+		
+		$places = $this -> usersModel -> list_places($objet);
+		$places = $places['rows'];
+		
+		require ('views/users/view_gafette.php');
+	}
+	
+///////////////// ******** ----						END view_gafette					------ ************ //////////////////
+
 ///////////////// ******** ----							 edit							------ ************ //////////////////
 //////// Call the function to update user on the DB
 	// The parameters that can receive are:

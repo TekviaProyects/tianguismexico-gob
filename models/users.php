@@ -81,6 +81,31 @@ class usersModel extends Connection {
 	
 ///////////////// ******** ----						END list_users					------ ************ //////////////////
 
+///////////////// ******** ----						list_places						------ ************ //////////////////
+//////// Check the users in the DB and return into array
+	// The parameters that can receive are:
+		// name -> Customer name
+		// id -> Customer ID
+	
+	function list_places($objet) {
+	// Filter by mail if exists
+		$condition .= (!empty($objet['mail'])) ? ' AND correo = \''.$objet['mail'].'\'' : '' ;
+		
+		$sql = "SELECT
+					*
+				FROM
+					registros
+				WHERE
+					1 = 1".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END list_places						------ ************ //////////////////
+
 ///////////////// ******** ----							update							------ ************ //////////////////
 //////// Check the users in the DB and return into array
 	// The parameters that can receive are:

@@ -286,6 +286,9 @@ class dependencies extends Common {
 	// If not, take its normal value
 		$objet = (empty($objet)) ? $_REQUEST : $objet;
 		
+		$states = $this -> dependenciesModel -> list_states($objet);
+		$states = $states['rows'];
+		
 		require ('views/dependencies/view_documents.php');
 	}
 	

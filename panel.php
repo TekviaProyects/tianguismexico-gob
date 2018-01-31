@@ -1,9 +1,9 @@
 <?php
-session_start();
-
-if (empty($_SESSION['user'])) {
-	echo "<script>location.href='index.php'</script>";
-}
+	session_start();
+	
+	if (empty($_SESSION['user'])) {
+		echo "<script>location.href='index.php'</script>";
+	}
 
 ?>
 
@@ -250,15 +250,13 @@ if (empty($_SESSION['user'])) {
 							href="#contenedor"
 						 	class="btn-orange btn-block"
 							href="#contenedor"
-							onclick="requests.list_requests({
+							onclick="users.view_gafette({
 								div: 'contenedor',
-								status: 2,
 								mail: '<?php echo $_SESSION['user']['correo'] ?>',
-								view: 'list_user_requests',
 								from_user: 1
 							})">
 							<i class="fa fa-address-card" aria-hidden="true"></i>
-							<span>Registro en padrón de comerciantes</span>
+							<span>Gafete electronico</span>
 						</a>
 					</li>
 					<li>

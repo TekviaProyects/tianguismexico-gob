@@ -99,7 +99,7 @@
 	
 	include "plugins/phpqrcode/qrlib.php";    
 	
-	//ofcourse we need rights to create temp dir
+//ofcourse we need rights to create temp dir
 	if (!file_exists($PNG_TEMP_DIR))
 	    mkdir($PNG_TEMP_DIR);
 	

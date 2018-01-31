@@ -218,6 +218,26 @@ class dependenciesModel extends Connection {
 	
 ///////////////// ******** ----						END check							------ ************ //////////////////
 
+///////////////// ******** ----						list_states							------ ************ //////////////////
+//////// Check the state and return into array
+	// The parameters that can receive are:
+		
+	function list_states($objet) {
+		$sql = "SELECT 
+					d.estadodep AS id
+				FROM
+					 dependencies d
+				WHERE
+					1 = 1".
+				$condition;
+		// return $sql;
+		$result = $this -> query_array($sql);
+		
+		return $result;
+	}
+	
+///////////////// ******** ----						END list_states						------ ************ //////////////////
+
 }
 
 ?>

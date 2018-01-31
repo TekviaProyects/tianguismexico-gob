@@ -2,9 +2,7 @@
 error_reporting(0);
 // error_reporting(E_ALL);
 
-//Carga la pays
 require ('controllers/common.php');
-//Carga el modelo para este controlador
 require ("models/pays.php");
 
 class pays extends Common {

@@ -10,39 +10,45 @@
 			required="1" 
 			class="form-control" 
 			name="estadodep" 
-			id="estadodep">
-			<option value="1">Aguascalientes</option>
-			<option value="2">Baja California</option>
-			<option value="3">Baja California Sur</option>
-			<option value="4">Campeche</option>
-			<option value="5">Coahuila de Zaragoza</option>
-			<option value="6">Colima</option>
-			<option value="7">Chiapas</option>
-			<option value="8">Chihuahua</option>
-			<option value="9">Distrito Federal</option>
-			<option value="10">Durango</option>
-			<option value="11">Guanajuato</option>
-			<option value="12">Guerrero</option>
-			<option value="13">Hidalgo</option>
-			<option value="14">Jalisco</option>
-			<option value="15">México</option>
-			<option value="16">Michoacán de Ocampo</option>
-			<option value="17">Morelos</option>
-			<option value="18">Nayarit</option>
-			<option value="19">Nuevo León</option>
-			<option value="20">Oaxaca</option>
-			<option value="21">Puebla</option>
-			<option value="22">Querétaro</option>
-			<option value="23">Quintana Roo</option>
-			<option value="24">San Luis Potosí</option>
-			<option value="25">Sinaloa</option>
-			<option value="26">Sonora</option>
-			<option value="27">Tabasco</option>
-			<option value="28">Tamaulipas</option>
-			<option value="29">Tlaxcala</option>
-			<option value="30">Veracruz de Ignacio de la Llave</option>
-			<option value="31">Yucatán</option>
-			<option value="32">Zacatecas</option>
+			id="estadodep"><?php
+			foreach ($states as $key => $value) { 
+				switch ($value['id']) {
+					case 1: $state = 'Aguascalientes'; break;
+					case 2: $state = 'Baja California'; break;
+					case 3: $state = 'Baja California Sur'; break;
+					case 4: $state = 'Campeche'; break;
+					case 5: $state = 'Coahuila de Zaragoza'; break;
+					case 6: $state = 'Colima'; break;
+					case 7: $state = 'Chiapas'; break;
+					case 8: $state = 'Chihuahua'; break;
+					case 9: $state = 'Distrito Federal'; break;
+					case 10: $state = 'Durango'; break;
+					case 11: $state = 'Guanajuato'; break;
+					case 12: $state = 'Guerrero'; break;
+					case 13: $state = 'Hidalgo'; break;
+					case 14: $state = 'Jalisco'; break;
+					case 15: $state = 'México'; break;
+					case 16: $state = 'Michoacán de Ocampo'; break;
+					case 17: $state = 'Morelos'; break;
+					case 18: $state = 'Nayarit'; break;
+					case 19: $state = 'Nuevo León'; break;
+					case 20: $state = 'Oaxaca'; break;
+					case 21: $state = 'Puebla'; break;
+					case 22: $state = 'Querétaro'; break;
+					case 23: $state = 'Quintana Roo'; break;
+					case 24: $state = 'San Luis Potosí'; break;
+					case 25: $state = 'Sinaloa'; break;
+					case 26: $state = 'Sonora'; break;
+					case 27: $state = 'Tabasco'; break;
+					case 28: $state = 'Tamaulipas'; break;
+					case 29: $state = 'Tlaxcala'; break;
+					case 30: $state = 'Veracruz de Ignacio de la Llave'; break;
+					case 31: $state = 'Yucatán'; break;
+					case 32: $state = 'Zacatecas'; break;
+					default: $state = ''; break;
+				} ?>
+				<option value="<?php echo $value['id'] ?>" selected><?php echo $state ?></option><?php
+			} ?>
 		</select>
 	</div>
 	<div class="col-sm-12 col-md-5">
@@ -75,3 +81,10 @@
 	</div>
 </div>
 <div id="div_documents" style="padding-top: 20px"> </div>
+<script>
+	dependencies.list_municipalities({
+		div: 'municipiodep',
+		estado: $("#estadodep").val(),
+		from_user: 1
+	})
+</script>

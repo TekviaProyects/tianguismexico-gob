@@ -677,6 +677,13 @@ session_destroy();
 					</div>
 					<div id="div_map">
 						<div class="row">
+							<div class="col-sm-12" align="center">
+								- Arrastra el marcador con el mouse al municiio donde quieres consultar. Tambien puedes
+								usar el cuadro de busqueda dentro del mapa.<br />
+								- Despues pulsa sobre el marcador.
+							</div>
+						</div>
+						<div class="row">
 							<div class="col-sm-12">
 								<input style="width:300px;" type="text" class="form-control" id="in_add">
 								<div id="google_map" style="width: 100%; height: 60vh"> </div>
