@@ -6,10 +6,8 @@ integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13
 <form method="post" id="formulario" onsubmit="return forM(this)" enctype="multipart/form-data" style="padding: 2%;" >
 	<h3 class="nomargin">Llena todos los datos.</h3>
 	<p>
-		Es importante recordar correo y contraseña ya que estos serán necesarios
-		para dar seguimiento al tramite.
+		Para obtener tu permiso municipal en puesto Fijo, Semi-fijo, u Ambulante.
 	</p>
-
 	<div class="form-group">
 		<div class="" style="display:none;">
 			<label class="control-label">Nombre (s)</label>

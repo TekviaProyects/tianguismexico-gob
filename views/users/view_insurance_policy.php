@@ -15,6 +15,8 @@
 		</form>
 	</div>
 	<div class="col-sm-12 col-md-9" align="center" id="div_pdf" style="overflow: auto; max-height: 80vh;">
+		En esta sección deberás subir tu Póliza de seguro vigente, oprime el botón de examinar y ubica el archivo PDF
+		que la contiene, a continuación presiona subir.
 	</div>
 </div>
 <script>

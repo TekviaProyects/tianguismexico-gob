@@ -147,6 +147,11 @@
 	}); 
 </script>
 <div class="row">
+	<div class="col-sm-12">
+		Agenda tu cita para acudir personalmente a la dependencia municipal. Recuerda que es una cita por comercio.
+	</div>
+</div><br />
+<div class="row">
 	<div class="col-sm-12 col-md-5">
 		<label class="control-label">Estado</label>
 		<select

@@ -30,7 +30,7 @@
 								<th>Mail</th>
 								<th>Fecha</th>
 								<th>Costo</th>
-								<th>Documentacion</th>
+								<th>Documentación</th>
 							</tr>
 						</thead>
 						<tbody><?php
@@ -262,7 +262,7 @@
 			dom : 'Bfrtip',
 			destroy: true,
 			search : "<i class=\"fa fa-search\"></i>",
-			lengthMenu : "_MENU_ Elementos por Pagina",
+			lengthMenu : "_MENU_ Elementos por Página",
 			zeroRecords : "No hay datos.",
 			infoEmpty : "No hay datos para mostrar.",
 			info : " ",

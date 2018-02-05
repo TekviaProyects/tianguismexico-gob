@@ -21,6 +21,9 @@
 		cursor: pointer;
 	}
 </style>
+<h3>
+	En esta sección podás ceder los derechos de tu comercio Fijo, Semi-fijo, u ambulante.
+</h3><br />
 <div class="row" id="div_list_request">
 	<div class="col-sm-12">
 		<div>
@@ -277,7 +280,7 @@
 			dom : 'Bfrtip',
 			destroy: true,
 			search : "<i class=\"fa fa-search\"></i>",
-			lengthMenu : "_MENU_ Elementos por Pagina",
+			lengthMenu : "_MENU_ Elementos por Página",
 			zeroRecords : "No hay datos.",
 			infoEmpty : "No hay datos para mostrar.",
 			info : " ",

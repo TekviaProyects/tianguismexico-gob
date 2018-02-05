@@ -8,7 +8,10 @@
 		return;
 	} ?>
 
-	<h2 align="center">Encuentra la Respuesta ...</h2><br />
+	<h3>
+		Resuelve fácilmente tus preguntas, 
+		escribe sobre el tema de tu interés en la barra que se muestra a continuación:
+	</h3><br />
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="input-group input-group-lg">

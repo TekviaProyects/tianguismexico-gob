@@ -166,6 +166,7 @@ session_destroy();
 							$('#formulario').hide();
 							$('#form_info').hide();
 							$('#contenedor').hide();
+							$('#div_map').hide();
 							$('#div_commerce').hide();
 							$('#the_frame').attr('src', '');
 							$('#div_404').show();">
@@ -179,6 +180,7 @@ session_destroy();
 							$('#formulario').hide();
 							$('#form_info').hide();
 							$('#contenedor').hide();
+							$('#div_map').hide();
 							$('#div_commerce').hide();
 							$('#the_frame').attr('src', '');
 							$('#div_404').show();">
@@ -195,10 +197,11 @@ session_destroy();
 							$('#formulario').hide();
 							$('#form_info').hide();
 							$('#contenedor').hide();
+							$('#div_map').hide();
 							$('#div_commerce').hide();
 							$('#the_frame').attr('src', '');
 							$('#div_404').show();">
-							Permisos especiales via pública
+							Permisos especiales en via pública
 						</a>
 						<ul class="sidebar-nav collapse" id="collapseExample">
 							<li>Para utilizar permisos de:</li>
@@ -210,6 +213,7 @@ session_destroy();
 									$('#formulario').hide();
 									$('#form_info').hide();
 									$('#contenedor').hide();
+									$('#div_map').hide();
 									$('#div_commerce').hide();
 									$('#the_frame').attr('src', '');
 									$('#div_404').show();">
@@ -225,6 +229,7 @@ session_destroy();
 									$('#formulario').hide();
 									$('#form_info').hide();
 									$('#contenedor').hide();
+									$('#div_map').hide();
 									$('#div_commerce').hide();
 									$('#the_frame').attr('src', '');
 									$('#div_404').show();">
@@ -239,6 +244,7 @@ session_destroy();
 									$('#formulario').hide();
 									$('#form_info').hide();
 									$('#contenedor').hide();
+									$('#div_map').hide();
 									$('#div_commerce').hide();
 									$('#the_frame').attr('src', '');
 									$('#div_404').show();">
@@ -248,7 +254,6 @@ session_destroy();
 						</ul>
 					</li>
 					<li>
-						
 						<a 
 							data-toggle="collapse" 
 							href="#collapseExample2"
@@ -258,6 +263,7 @@ session_destroy();
 							$('#formulario').hide();
 							$('#form_info').hide();
 							$('#contenedor').hide();
+							$('#div_map').hide();
 							$('#div_commerce').hide();
 							$('#the_frame').attr('src', '');
 							$('#div_404').show();">
@@ -273,6 +279,7 @@ session_destroy();
 									$('#formulario').hide();
 									$('#form_info').hide();
 									$('#contenedor').hide();
+									$('#div_map').hide();
 									$('#div_commerce').hide();
 									$('#the_frame').attr('src', '');
 									$('#div_404').show();">
@@ -287,6 +294,7 @@ session_destroy();
 									$('#formulario').hide();
 									$('#form_info').hide();
 									$('#contenedor').hide();
+									$('#div_map').hide();
 									$('#div_commerce').hide();
 									$('#the_frame').attr('src', '');
 									$('#div_404').show();">
@@ -301,6 +309,7 @@ session_destroy();
 									$('#formulario').hide();
 									$('#form_info').hide();
 									$('#contenedor').hide();
+									$('#div_map').hide();
 									$('#div_commerce').hide();
 									$('#the_frame').attr('src', '');
 									$('#div_404').show();">
@@ -581,7 +590,7 @@ session_destroy();
 								enctype="multipart/form-data">
 								<h4 class="nomargin">Iniciar Sesión</h4>
 								<p class="mt5 mb20">
-									Haz seguimiento de tu tramite en linea.
+									Haz seguimiento de tu trámite en línea.
 								</p>
 								<input 
 									type="text" 
@@ -678,14 +687,19 @@ session_destroy();
 					<div id="div_map">
 						<div class="row">
 							<div class="col-sm-12" align="center">
-								- Arrastra el marcador con el mouse al municiio donde quieres consultar. Tambien puedes
-								usar el cuadro de busqueda dentro del mapa.<br />
-								- Despues pulsa sobre el marcador.
+								- Arrastra el marcador con el mouse al municipio donde quieres consultar. También puedes
+								usar el cuadro de búsqueda dentro del mapa.<br />
+								- Después pulsa sobre el marcador.
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<input style="width:300px;" type="text" class="form-control" id="in_add">
+								<input 
+									style="width:300px;" 
+									type="text" 
+									class="form-control" 
+									id="in_add" 
+									placeholder="¿En cuál municipio te encuentras?">
 								<div id="google_map" style="width: 100%; height: 60vh"> </div>
 							</div>
 						</div>
@@ -693,7 +707,7 @@ session_destroy();
 					<div align="center" id="div_index" style="display: none">
 						<div class="row" style="padding-top: 20px">
 							<div class="col-sm-12">
-								<button type="button" class="btn btn-warning btn-lg" id="menu-toggle">Ver Mas</button>
+								<button type="button" class="btn btn-warning btn-lg" id="menu-toggle">Ver más</button>
 								<button 
 									onclick="
 										$('#form_info').show();
@@ -715,7 +729,7 @@ session_destroy();
 					<div align="center" id="div_commerce" style="display: none">
 						<div class="row" style="padding-top: 20px">
 							<div class="col-sm-12">
-								<button type="button" class="btn btn-warning btn-lg" id="menu-toggle2">Ver mas</button>
+								<button type="button" class="btn btn-warning btn-lg" id="menu-toggle2">Ver más</button>
 								<button 
 									type="button" 
 									class="btn btn-secondary btn-lg"
@@ -743,7 +757,7 @@ session_destroy();
 			<div class="modal-dialog modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">Autorizar ubicacion</h5>
+						<h5 class="modal-title">Autorizar ubicación</h5>
 					</div>
 					<div class="modal-body" align="center">
 						<p>
@@ -791,7 +805,6 @@ session_destroy();
 				e.preventDefault();
 				$("#wrapper").toggleClass("toggled");
 			});
-		
 			
 		// Mobile detected
 			if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

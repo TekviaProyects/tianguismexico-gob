@@ -298,14 +298,14 @@
 							<span>Póliza de seguro</span>
 						</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a
 							href="#contenedor"
 						 	class="btn-orange btn-block" >
 							<i class="fa fa-cutlery" aria-hidden="true"></i>
 							<span>Constancia de manejo de alimentos</span>
 						</a>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 			<!-- /#sidebar-wrapper -->
@@ -539,7 +539,7 @@
 
 	</body>
 	<div class="footer">
-		<a href="terminos.html" style="color: grey !important;">Terminos y condiciones</a> /
+		<a href="terminos.html" style="color: grey !important;">Términos y condiciones</a> /
 		<a href="aviso.html" style="color: grey !important;">Aviso de privacidad</a>
 	</div>
 </html>

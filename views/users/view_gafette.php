@@ -1,4 +1,6 @@
 <?php 
+	session_start();
+	
 	$url = 'users_files/'.$user['id'].'/perfil.png';
 
 	switch ($user['state']) {
@@ -37,10 +39,26 @@
 		default: $state = ''; break;
 	}
 ?>
-
+<div class="row">
+	<div class="col-sm-12">
+		<button 
+			onclick="users.view_profile({
+				div: 'contenedor',
+				mail: '<?php echo $_SESSION['user']['correo'] ?>',
+				from_user: 1
+			})"
+			class="btn btn-info">
+			Editar perfil
+		</button>
+	</div>
+</div>
 <div class="row">
 	<div class="col-sm-12 col-md-6">
-		<img src="<?php echo $url ?>" alt="images/uploadfile.png" style="max-height: 260px">
+		<img 
+			src="<?php echo $url ?>" 
+			alt="images/uploadfile.png" 
+			onerror="this.src='images/photos/loggeduser.png';" 
+			style="max-height: 260px">
 	</div>
 	<div class="col-sm-12 col-md-6">
 		<div id="qrcode"></div>
