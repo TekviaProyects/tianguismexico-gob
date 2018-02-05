@@ -96,7 +96,7 @@ class usersModel extends Connection {
 				FROM
 					registros
 				WHERE
-					1 = 1".
+					status = 1".
 				$condition;
 		// return $sql;
 		$result = $this -> query_array($sql);

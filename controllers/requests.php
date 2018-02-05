@@ -336,6 +336,82 @@ class requests extends Common {
 
 ///////////////// ******** ---- 					FIN transfer_rights					------ ************ //////////////////
 
+///////////////// ******** ----						save_permits						------ ************ //////////////////
+//////// Save a permits
+	// The parameters that can receive are:
+		// period -> Period request
+		// description -> Request description 
+		// id_request -> Request ID
+
+	function save_permits($objet) {
+    // If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+    // If not, take its normal value
+    	session_start();
+		$objet = (empty($objet)) ? $_POST : $objet;
+		$resp['status'] = 1;
+		$resp['mail'] = $_SESSION['user']['correo'];
+		
+	// Save a permits
+		$resp['result'] = $this -> requestsModel -> save_permits($objet);
+
+		echo json_encode($resp);
+	}
+
+///////////////// ******** ---- 					FIN save_permits					------ ************ //////////////////
+
+///////////////// ******** ----						list_permits						------ ************ //////////////////
+//////// Check the permits and loaded the view
+	// The parameters that can receive are:
+		// mail -> User mail
+		// div -> Div where the content is loaded
+
+	function list_permits($objet) {
+	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_POST : $objet;
+		
+		$permits = $this -> requestsModel -> list_permits($objet);
+		$permits = $permits['rows'];
+		
+		$view = (!empty($objet['view'])) ? $objet['view'] : 'list_permits';
+
+		require ('views/requests/'.$view.'.php');
+	}
+
+///////////////// ******** ----						END list_permits					------ ************ //////////////////
+
+///////////////// ******** ----						update_permit						------ ************ //////////////////
+//////// Update the request information
+	// The parameters that can receive are:
+		// request_id -> Request ID
+		// status -> 1-> Approved, 2-> Denied
+		// coment -> Request coment
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+
+	function update_permit($objet) {
+	// If the object is empty (called from the ajax) it assigns $ _POST that is sent from the index
+	// If not, take its normal value
+		$objet = (empty($objet)) ? $_REQUEST : $objet;
+		$rep['status'] = 1;
+		$data['columns'] = '';
+		
+		$permits = $this -> requestsModel -> list_permits($objet);
+		$data['id'] = $permits['rows'][0]['id'];
+		
+	// Buil the SQL
+		$data['columns'] .= ($objet['status']) ? ' status = '.$objet['status'].', ' : '' ;
+		$data['columns'] .= ($objet['coment']) ? ' commentary = \''.$objet['coment'].'\', ' : '' ;
+		$data['columns'] = substr($data['columns'], 0, -2);
+
+	// Update request information
+		$rep['result'] = $this -> requestsModel -> update_permit($data);
+
+		echo json_encode($rep);
+	}
+
+///////////////// ******** ----						END update_permit					------ ************ //////////////////
+
 }
 
 ?>

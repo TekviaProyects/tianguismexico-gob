@@ -6,7 +6,7 @@ var requests = {
 	data_messages:{},
 	temp_data_pay:{},
 
-///////////////// ******** ----							list_requests						------ ************ //////////////////
+///////////////// ******** ----							list_requests					------ ************ //////////////////
 //////// Check the requests and loaded the view
 	// The parameters that can receive are:
 		// search -> Word or ID to search
@@ -50,9 +50,9 @@ var requests = {
 		});
 	},
 
-///////////////// ******** ----						END list_requests						------ ************ //////////////////
+///////////////// ******** ----						END list_requests					------ ************ //////////////////
 
-///////////////// ******** ----						load_info_buttons						------ ************ //////////////////
+///////////////// ******** ----						load_info_buttons					------ ************ //////////////////
 //////// Load the info on the buttons
 	// The parameters that can receive are:
 		// c_aceptacion -> Name archive card aceptation
@@ -155,9 +155,9 @@ var requests = {
 		$("#btn_authorize").attr("municipiomx", $objet.municipiomx);
 	},
 
-///////////////// ******** ----						END authorize							------ ************ //////////////////
+///////////////// ******** ----						END authorize						------ ************ //////////////////
 
-///////////////// ******** ----						update_authorize						------ ************ //////////////////
+///////////////// ******** ----						update_authorize					------ ************ //////////////////
 //////// Update the request information
 	// The parameters that can receive are:
 		// request_id -> Request ID
@@ -227,10 +227,10 @@ var requests = {
 			});
 		});
 	},
+	
+///////////////// ******** ----					END update_authorize					------ ************ //////////////////
 
-///////////////// ******** ----					END update_authorize						------ ************ //////////////////
-
-///////////////// ******** ----						load_format								------ ************ //////////////////
+///////////////// ******** ----						load_format							------ ************ //////////////////
 //////// Load the view of the format
 	// The parameters that can receive are:
 		// request_id -> Request ID
@@ -996,8 +996,184 @@ var requests = {
 				type : 'error'
 			});
 		});
-	}
+	},
 
-///////////////// ******** ----						END new_card_pay					------ ************ //////////////////
+///////////////// ******** ----					END new_card_pay						------ ************ //////////////////
+
+///////////////// ******** ----					save_permits							------ ************ //////////////////
+//////// Save a permits
+	// The parameters that can receive are:
+		// period -> Period request
+		// description -> Request description 
+		// id_request -> Request ID
+	
+	save_permits : function($objet){
+		"use strict";
+		console.log('==========> $objet save_permits', $objet);
+		
+		var folder = ($objet.from_user === 1) ? '' : '../';
+		
+		if($objet.period === "" || $objet.description === ""){
+			swal({
+				title : 'Campos no validos',
+				text : 'Debes llenar todos los campos',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'warning'
+			});
+			
+			return;
+		}
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=requests&f=save_permits',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> Done save_permits', resp);
+			
+			swal({
+				title : 'Solicitud creada',
+				text : 'Tu solicitud ha sido creada con exito',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'success'
+			});
+			
+			requests.list_requests({
+				div: 'contenedor',
+				status: 1,
+				mail: resp.mail,
+				view: 'view_permits',
+				from_user: 1
+			});
+		}).fail(function(resp) {
+			console.log('==========> fail !!! save_permits', resp);
+		
+			swal({
+				title : 'Error',
+				text : 'Error al crear la solicitud',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END save_permits					------ ************ //////////////////
+
+///////////////// ******** ----						list_permits						------ ************ //////////////////
+//////// Check the permits and loaded the view
+	// The parameters that can receive are:
+		// mail -> User mail
+		// div -> Div where the content is loaded
+
+	list_permits : function($objet){
+		"use strict";
+		console.log('==========> $objet list_permits', $objet);
+
+		var folder = ($objet.from_user === 1) ? '' : '../';
+
+	// Hide menu on mobile
+		$("#wrapper").removeClass("toggled");
+		
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=requests&f=list_permits',
+			type : 'post',
+			dataType : 'html'
+		}).done(function(resp) {
+			console.log('==========> done list_permits', resp);
+
+			if(!$objet.div){
+				$objet.div = 'contenedor';
+			}
+
+			$("#"+$objet.div).html(resp);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! list_permits', resp);
+
+			swal({
+				title : 'Error',
+				text : 'No se puede cargar la vista',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	},
+
+///////////////// ******** ----						END list_permits					------ ************ //////////////////
+
+///////////////// ******** ----						update_permit						------ ************ //////////////////
+//////// Update the request information
+	// The parameters that can receive are:
+		// request_id -> Request ID
+		// status -> 1-> Approved, 2-> Denied
+		// coment -> Request coment
+		// state -> State dependencie
+		// municipality -> Municipality dependencie
+	
+	update_permit : function($objet){
+		"use strict";
+		console.log('==========> $objet update_permit', $objet);
+
+	// Validate the coment if the requet is denied
+		if($objet.status === "2" && $objet.coment === ""){
+			swal({
+				title : 'Comentario no valido',
+				text : 'Es necesario explicar por que la solicitud fue rechazada',
+				timer : 7000,
+				showConfirmButton : true,
+				type : 'warning'
+			});
+
+			return;
+		}
+
+		var folder = ($objet.from_user === 1) ? '' : '../';
+
+		$.ajax({
+			data : $objet,
+			url : folder+'ajax.php?c=requests&f=update_permit',
+			type : 'post',
+			dataType : 'json'
+		}).done(function(resp) {
+			console.log('==========> done update_permit', resp);
+			
+			$("#modal_authorize").modal('hide');
+			
+			setTimeout(function(){
+				swal({
+					title : 'Cambios guardados',
+					text : 'Los cambios han sido guardados',
+					timer : 5000,
+					showConfirmButton : true,
+					type : 'success'
+				});
+				
+				requests.list_requests({
+					div: 'contenedor',
+					status_per: '0 OR per.status = 1 OR per.status = 2',
+					state: $objet.state,
+					municipality: $objet.municipality,
+					view: 'view_permits_dep'
+				});
+			}, 500);
+		}).fail(function(resp) {
+			console.log('==========> fail !!! update_authorize', resp);
+
+			swal({
+				title : 'Error',
+				text : 'No se puede autorizar la solicitud',
+				timer : 5000,
+				showConfirmButton : true,
+				type : 'error'
+			});
+		});
+	}
+	
+///////////////// ******** ----					END update_authorize					------ ************ //////////////////
 
 };

@@ -28,6 +28,9 @@ session_start();
 		<link rel="stylesheet" href="../plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 	<!-- sweetalert -->
 		<link rel="stylesheet" href="../plugins/sweetalert-master/dist/sweetalert.css" />
+	<!-- Loader -->
+		<link rel="stylesheet" href="../plugins/css3-preloader-transition-start/css/normalize.css">
+		<link rel="stylesheet" href="../plugins/css3-preloader-transition-start/css/main.css">
 		
 		<style>
 			.vuela{
@@ -247,6 +250,19 @@ session_start();
 								</a>
 							</li>
 						</ul>
+					</li>
+					<li>
+						<a 
+							onclick="requests.list_requests({
+								div: 'contenedor',
+								status_per: '0 OR per.status = 1 OR per.status = 2',
+								state: '<?php echo $_SESSION['dependencie']['estadodep'] ?>',
+								municipality: '<?php echo $_SESSION['dependencie']['municipiodep'] ?>',
+								view: 'view_permits_dep'
+							})"
+							href="#contenedor">
+							<i class="fa fa-lock" aria-hidden="true"></i> Permiso por ausencia y Suplencias
+						</a>
 					</li>
 					<li>
 						<a
@@ -621,6 +637,9 @@ session_start();
 			</div>
 			<!-- END Contenedor -->
 		</div>
+		<div id="loader-wrapper">
+			<div id="loader"></div>
+		</div>
 		
 <!-- /////////////////// ===================				JS						=================== /////////////////// -->
 
@@ -649,6 +668,9 @@ session_start();
 		<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
 	<!-- responsivevoice -->
 		<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	<!-- Loader -->
+		<script src="../plugins/css3-preloader-transition-start/js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="../plugins/css3-preloader-transition-start/js/main.js"></script>
 	<!-- fullcalendar -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.8.0/fullcalendar.min.js"></script>
 		<script src='../plugins/fullCalendarLang.js'></script>
@@ -671,5 +693,21 @@ session_start();
 	$("#menu-toggle").click(function(e) {
 		e.preventDefault();
 		$("#wrapper").toggleClass("toggled");
+	});
+	$(document).ready(function () {
+        $('#loader-wrapper').hide();
+    });
+    $(document).ajaxStart(function() {
+		$('#loader-wrapper').show();
+		
+		setTimeout(function(){
+			$('#loader-wrapper').hide();
+		}, 5000);
+	});
+    $(document).ajaxStop(function() {
+		$('#loader-wrapper').hide();
+	});
+    $(document).ajaxError(function() {
+		$('#loader-wrapper').hide();
 	});
 </script>

@@ -246,7 +246,6 @@
 					</li>
 					<li>
 						<a
-
 							href="#contenedor"
 						 	class="btn-orange btn-block"
 							href="#contenedor"
@@ -260,7 +259,14 @@
 						</a>
 					</li>
 					<li>
-						<a
+						<a 
+							onclick="requests.list_requests({
+								div: 'contenedor',
+								status: 1,
+								mail: '<?php echo $_SESSION['user']['correo'] ?>',
+								view: 'view_permits',
+								from_user: 1
+							})"
 							href="#contenedor"
 						 	class="btn-orange btn-block" >
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -498,6 +504,8 @@
 		<script type="text/javascript" src="plugins/transition.js"></script>
 		<script type="text/javascript" src="plugins/collapse.js"></script>
 		<script type="text/javascript" src="plugins/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"></script>
+	<!-- Include Date Range Picker -->
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 	<!-- html2canvas -->
 		<script type="text/javascript" src="plugins/html2canvas.min.js"></script>
 	<!-- jsPDF -->
@@ -517,6 +525,8 @@
 	<!-- openpay -->
 		<script type="text/javascript" src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
 		<script type='text/javascript' src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+	<!-- daterangepicker -->
+		<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 		
 	<!-- System -->
 		<script src="js_system/requests.js"></script>
@@ -559,4 +569,17 @@
 	$(document).ready(function () {
         $('#loader-wrapper').hide();
     });
+    $(document).ajaxStart(function() {
+		$('#loader-wrapper').show();
+		
+		setTimeout(function(){
+			$('#loader-wrapper').hide();
+		}, 5000);
+	});
+    $(document).ajaxStop(function() {
+		$('#loader-wrapper').hide();
+	});
+    $(document).ajaxError(function() {
+		$('#loader-wrapper').hide();
+	});
 </script>

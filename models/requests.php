@@ -64,8 +64,10 @@ class requestsModel extends Connection {
 		$condition .= (!empty($objet['mail'])) ? ' AND r.correo = \''.$objet['mail'].'\'' : '' ;
 	// Filter by status if exists
 		$condition .= (!empty($objet['status'])) ? ' AND r.status = '.$objet['status'] : '' ;
-	// Filter by state if exists
-		$condition .= (!empty($objet['state'])) ? ' AND r.estadomx = '.$objet['state'] : '' ;
+	// Filter by status if exists
+		$condition .= (!empty($objet['status'])) ? ' AND r.status = '.$objet['status'] : '' ;
+	// Filter by permit status
+		$condition .= (!empty($objet['status_per'])) ? ' AND (per.status = '.$objet['status_per'].')' : '' ;
 	// Filter by type of request
 		$condition .= (!empty($objet['estado'])) ? ' AND r.estado = \''.$objet['estado'].'\'' : '' ;
 	// Filter by municipality if exists
@@ -75,9 +77,27 @@ class requestsModel extends Connection {
 		$condition .= (!empty($objet['group'])) ? ' GROUP BY = \''.$objet['group'].'\'' : ' GROUP BY r.id' ;
 		
 		$sql = "SELECT
-					r.*, u.id AS user_id, u.name AS user_name, u.curp, d.cost_transfer_rights, p.status AS pay_status
+					r.*, u.id AS user_id, u.name AS user_name, u.curp, d.cost_transfer_rights, p.status AS pay_status,
+					(	SELECT
+							status
+						FROM
+							permits
+						WHERE
+							id_request = r.id
+						ORDER BY
+							id DESC
+						LIMIT 1) AS status_per
 				FROM
 					registros r
+				LEFT JOIN
+						(	SELECT
+								id_request, status
+							FROM
+								permits
+							ORDER BY
+								id DESC) AS per
+					ON
+						per.id_request = CONVERT(r.id using utf8) collate utf8_spanish_ci
 				LEFT JOIN
 						users u
 					ON
@@ -285,6 +305,81 @@ function notificacion($objet){
 
 ///////////////// ******** ---- 				END save_transfer_rights				------ ************ //////////////////
 
+///////////////// ******** ----						save_permits						------ ************ //////////////////
+//////// Save a permits
+	// The parameters that can receive are:
+		// period -> Period request
+		// description -> Request description 
+		// id_request -> Request ID
+
+	function save_permits($objet) {
+		$date = date("Y-m-d H:i:s");
+		
+		$sql = "INSERT INTO
+					permits(id_request, date, period, description)
+				VALUES
+					('".$objet['id_request']."', '".$date."', '".$objet['period']."', '".$objet['description']."')";
+		$result = $this -> query($sql);
+
+		return $result;
+	}
+
+///////////////// ******** ---- 					END save_permits					------ ************ //////////////////
+
+///////////////// ******** ----						list_permits						------ ************ //////////////////
+//////// Check the permits and loaded the view
+	// The parameters that can receive are:
+		// mail -> User mail
+		// div -> Div where the content is loaded
+
+	function list_permits($objet) {
+	// Filter by user mail
+		$condition .= (!empty($objet['mail'])) ? ' AND r.correo = \''.$objet['mail'].'\'' : '';
+	// Filter by request ID
+		$condition .= (!empty($objet['request_id'])) ? ' AND p.id_request = '.$objet['request_id'] : '';
+		
+	// Order
+		$condition .= (!empty($objet['order'])) ? ' ORDER BY = '.$objet['order'] : ' ORDER BY p.id DESC';
+		
+		$sql = "SELECT
+					p.*
+				FROM
+					permits p
+				LEFT JOIN
+						registros r
+					ON
+						r.id = p.id_request
+				WHERE
+					1 = 1 ".
+				$condition;
+		$result = $this -> query_array($sql);
+
+		return $result;
+	}
+
+///////////////// ******** ---- 					END list_permits					------ ************ //////////////////
+
+///////////////// ******** ----						update_permit						------ ************ //////////////////
+//////// Update the request information in the DB
+	// The parameters that can receive are:
+		// request_id -> Request ID
+		// status -> 1-> Approved, 2-> Denied
+		// coment -> Request coment
+
+	function update_permit($objet) {
+		$sql = "UPDATE
+					permits
+				SET ".
+					$objet['columns']."
+				WHERE
+					id = ".$objet['id'];
+		// return $sql;
+		$result = $this -> query($sql);
+
+		return $result;
+	}
+
+///////////////// ******** ----						END update_permit					------ ************ //////////////////
 }
 
 ?>
